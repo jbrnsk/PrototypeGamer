@@ -1243,6 +1243,21 @@ defineCanvasRenderer('Rectangle', function(ctx, shape) {
   ctx.strokeStyle = shape.strokeColor;
   return ctx.strokeRect(x, y, shape.width, shape.height);
 });
+    
+defineCanvasRenderer('Card', function(ctx, shape) {
+  var x, y;
+  x = shape.x;
+  y = shape.y;
+  if (shape.strokeWidth % 2 !== 0) {
+    x += 0.5;
+    y += 0.5;
+  }
+  ctx.fillStyle = shape.fillColor;
+  ctx.fillRect(x, y, shape.width, shape.height);
+  ctx.lineWidth = shape.strokeWidth;
+  ctx.strokeStyle = shape.strokeColor;
+  return ctx.strokeRect(x, y, shape.width, shape.height);
+});
 
 defineCanvasRenderer('Ellipse', function(ctx, shape) {
   var centerX, centerY, halfHeight, halfWidth;
@@ -2189,6 +2204,43 @@ defineShape('Rectangle', {
     return createShape('Rectangle', data);
   }
 });
+    
+defineShape('Card', {
+  constructor: function(args) {
+    if (args == null) {
+      args = {};
+    }
+    this.x = 400;
+    this.y = 20;
+    this.width = args.width || 0;
+    this.height = args.height || 0;
+    this.strokeWidth = args.strokeWidth || 1;
+    this.strokeColor = args.strokeColor || 'black';
+    return this.fillColor = args.fillColor || 'transparent';
+  },
+  getBoundingRect: function() {
+    return {
+      x: this.x - this.strokeWidth / 2,
+      y: this.y - this.strokeWidth / 2,
+      width: this.width + this.strokeWidth,
+      height: this.height + this.strokeWidth
+    };
+  },
+  toJSON: function() {
+    return {
+      x: this.x,
+      y: this.y,
+      width: this.width,
+      height: this.height,
+      strokeWidth: this.strokeWidth,
+      strokeColor: this.strokeColor,
+      fillColor: this.fillColor
+    };
+  },
+  fromJSON: function(data) {
+    return createShape('Card', data);
+  }
+});
 
 defineShape('Ellipse', {
   constructor: function(args) {
@@ -2752,6 +2804,17 @@ defineSVGRenderer('Rectangle', function(shape) {
   }
   return "<rect x='" + x + "' y='" + y + "' width='" + shape.width + "' height='" + shape.height + "' stroke='" + shape.strokeColor + "' fill='" + shape.fillColor + "' stroke-width='" + shape.strokeWidth + "' />";
 });
+    
+defineSVGRenderer('Card', function(shape) {
+  var x, y;
+  x = shape.x;
+  y = shape.y;
+  if (shape.strokeWidth % 2 !== 0) {
+    x += 0.5;
+    y += 0.5;
+  }
+  return "<rect x='" + x + "' y='" + y + "' width='" + shape.width + "' height='" + shape.height + "' stroke='" + shape.strokeColor + "' fill='" + shape.fillColor + "' stroke-width='" + shape.strokeWidth + "' />";
+});
 
 defineSVGRenderer('Ellipse', function(shape) {
   var centerX, centerY, halfHeight, halfWidth;
@@ -3094,6 +3157,7 @@ tools = {
   //Eraser: _dereq_('./tools/Eraser'),
   //Line: _dereq_('./tools/Line'),
   Rectangle: _dereq_('./tools/Rectangle'),
+  Card: _dereq_('./tools/Card'),
   //Ellipse: _dereq_('./tools/Ellipse'),
   Text: _dereq_('./tools/Text'),
   //Polygon: _dereq_('./tools/Polygon'),
@@ -3104,7 +3168,7 @@ tools = {
 };
 
 //defaultTools = [tools.Pencil, tools.Eraser, tools.Line, tools.Rectangle, tools.Ellipse, tools.Text, tools.Polygon, tools.Pan, tools.Eyedropper];
-defaultTools = [tools.Rectangle, tools.Text];
+defaultTools = [tools.Rectangle, tools.Card, tools.Text];
 
 defaultImageURLPrefix = 'lib/img';
 
@@ -3264,7 +3328,7 @@ module.exports = {
 };
 
 
-},{"./core/LiterallyCanvas":2,"./core/canvasRenderer":6,"./core/localization":9,"./core/renderSnapshotToImage":11,"./core/renderSnapshotToSVG":12,"./core/shapes":13,"./core/svgRenderer":14,"./core/util":15,"./ie_customevent":16,"./ie_setLineDash":17,"./optionsStyles/font":19,"./optionsStyles/line-options-and-stroke-width":20,"./optionsStyles/null":21,"./optionsStyles/optionsStyles":22,"./optionsStyles/stroke-width":23,"./reactGUI/init":34,"./tools/Ellipse":35,"./tools/Eraser":36,"./tools/Eyedropper":37,"./tools/Line":38,"./tools/Pan":39,"./tools/Pencil":40,"./tools/Polygon":41,"./tools/Rectangle":42,"./tools/Text":43,"./tools/base":44}],19:[function(_dereq_,module,exports){
+},{"./core/LiterallyCanvas":2,"./core/canvasRenderer":6,"./core/localization":9,"./core/renderSnapshotToImage":11,"./core/renderSnapshotToSVG":12,"./core/shapes":13,"./core/svgRenderer":14,"./core/util":15,"./ie_customevent":16,"./ie_setLineDash":17,"./optionsStyles/font":19,"./optionsStyles/line-options-and-stroke-width":20,"./optionsStyles/null":21,"./optionsStyles/optionsStyles":22,"./optionsStyles/stroke-width":23,"./reactGUI/init":34,"./tools/Ellipse":35,"./tools/Eraser":36,"./tools/Eyedropper":37,"./tools/Line":38,"./tools/Pan":39,"./tools/Pencil":40,"./tools/Polygon":41,"./tools/Rectangle":42,"./tools/Text":43,"./tools/base":44,"./tools/Card":45}],19:[function(_dereq_,module,exports){
 var defineOptionsStyle, _;
 
 defineOptionsStyle = _dereq_('./optionsStyles').defineOptionsStyle;
@@ -4907,6 +4971,51 @@ module.exports = Rectangle = (function(_super) {
   };
 
   return Rectangle;
+
+})(ToolWithStroke);
+
+
+},{"../core/shapes":13,"./base":44}],45:[function(_dereq_,module,exports){
+var Card, ToolWithStroke, createShape,
+  __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+ToolWithStroke = _dereq_('./base').ToolWithStroke;
+
+createShape = _dereq_('../core/shapes').createShape;
+
+module.exports = Card = (function(_super) {
+  __extends(Card, _super);
+
+  function Card() {
+    return Card.__super__.constructor.apply(this, arguments);
+  }
+
+  Card.prototype.name = 'Card';
+
+  Card.prototype.iconName = 'card';
+
+  Card.prototype.begin = function(x, y, lc) {
+    return this.currentShape = createShape('Card', {
+      x: x,
+      y: y,
+      strokeWidth: this.strokeWidth,
+      strokeColor: lc.getColor('primary'),
+      fillColor: lc.getColor('secondary')
+    });
+  };
+
+  Card.prototype["continue"] = function(x, y, lc) {
+    this.currentShape.width = x - this.currentShape.x;
+    this.currentShape.height = y - this.currentShape.y;
+    return lc.drawShapeInProgress(this.currentShape);
+  };
+
+  Card.prototype.end = function(x, y, lc) {
+    return lc.saveShape(this.currentShape);
+  };
+
+  return Card;
 
 })(ToolWithStroke);
 
