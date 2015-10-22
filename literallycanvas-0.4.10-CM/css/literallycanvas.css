@@ -67,10 +67,10 @@
 }
 .literally .lc-picker {
     top: 0;
-    left: 0;
+    left: 61px;
     bottom: 0;
-    width: 80px;
-    margin-top: 50px;
+    width: 61px;
+    margin-top: 31px;
     background-color: #e6e6e6
 }
 .literally .lc-drawing {
