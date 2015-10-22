@@ -41,7 +41,8 @@
     top: 0
 }
 .literally.toolbar-hidden .lc-options,
-.literally.toolbar-hidden .lc-picker {
+.literally.toolbar-hidden .lc-picker,
+.literally.toolbar-hidden .lc-gameparts,{
     display: none
 }
 .literally {
@@ -73,6 +74,14 @@
     margin-top: 31px;
     background-color: #e6e6e6
 }
+.literally .lc-gameparts {
+    top: 0;
+    left: 0px;
+    bottom: 0;
+    width: 61px;
+    margin-top: 0px;
+    background-color: red;
+}
 .literally .lc-drawing {
     right: 0;
     left: 61px;
@@ -99,7 +108,23 @@
     z-index: 2;
     border-right: 1px solid #555
 }
+.literally .lc-gameparts{
+    z-index: 2;
+    border-right: 1px solid #555
+}
 .literally .lc-picker .toolbar-button {
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    margin: 2px;
+    padding: 0;
+    cursor: pointer;
+    text-align: center;
+    border: 2px solid transparent;
+    border-radius: 3px
+}
+
+.literally .lc-gameparts .toolbar-button {
     width: 26px;
     height: 26px;
     line-height: 26px;
@@ -114,13 +139,27 @@
     text-decoration: none;
     cursor: pointer
 }
+.literally .lc-gameparts .toolbar-button {
+    text-decoration: none;
+    cursor: pointer
+}
 .literally .lc-picker .toolbar-button.selected:not(.disabled) {
+    background-color: #a1d9fe
+}
+.literally .lc-gameparts .toolbar-button.selected:not(.disabled) {
     background-color: #a1d9fe
 }
 .literally .lc-picker .toolbar-button:hover:not(.disabled) {
     border-color: #a1d9fe
 }
+.literally .lc-gameparts .toolbar-button:hover:not(.disabled) {
+    border-color: #a1d9fe
+}
 .literally .lc-picker .toolbar-button.disabled {
+    cursor: default;
+    opacity: 0.3
+}
+.literally .lc-gameparts .toolbar-button.disabled {
     cursor: default;
     opacity: 0.3
 }
@@ -129,7 +168,16 @@
     float: left;
     position: relative
 }
+.literally .lc-gameparts .thin-button {
+    cursor: pointer;
+    float: left;
+    position: relative
+}
 .literally .lc-picker .fat-button {
+    clear: both;
+    width: 56px
+}
+.literally .lc-gameparts .fat-button {
     clear: both;
     width: 56px
 }
@@ -138,6 +186,15 @@
 .literally .lc-picker .lc-redo,
 .literally .lc-picker .lc-zoom-in,
 .literally .lc-picker .lc-zoom-out {
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center center
+}
+.literally .lc-gameparts .lc-pick-tool,
+.literally .lc-gameparts .lc-undo,
+.literally .lc-gameparts .lc-redo,
+.literally .lc-gameparts .lc-zoom-in,
+.literally .lc-gameparts .lc-zoom-out {
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: center center

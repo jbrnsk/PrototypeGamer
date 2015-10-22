@@ -3113,7 +3113,7 @@ setDefaultImageURLPrefix = function(newDefault) {
 };
 
 init = function(el, opts) {
-  var child, drawingViewElement, lc, optionsElement, pickerElement, teardown, topOrBottomClassName, _i, _len, _ref;
+  var child, drawingViewElement, lc, optionsElement, pickerElement, gamepartsElement, teardown, topOrBottomClassName, _i, _len, _ref;
   if (opts == null) {
     opts = {};
   }
@@ -3187,23 +3187,27 @@ init = function(el, opts) {
   el.className = el.className + ' ' + topOrBottomClassName;
   pickerElement = document.createElement('div');
   pickerElement.className = 'lc-picker';
+  gamepartsElement = document.createElement('div');
+  gamepartsElement.className = 'lc-gameparts';
   drawingViewElement = document.createElement('div');
   drawingViewElement.className = 'lc-drawing';
   optionsElement = document.createElement('div');
   optionsElement.className = 'lc-options horz-toolbar';
   el.appendChild(pickerElement);
+  el.appendChild(gamepartsElement);
   el.appendChild(drawingViewElement);
   el.appendChild(optionsElement);
 
   /* and get to work */
   lc = new LiterallyCanvas(drawingViewElement, opts);
-  initReact(pickerElement, optionsElement, lc, opts.tools, opts.imageURLPrefix);
+  initReact(pickerElement, gamepartsElement, optionsElement, lc, opts.tools, opts.imageURLPrefix);
   if ('onInit' in opts) {
     opts.onInit(lc);
   }
   teardown = function() {
     lc._teardown();
     pickerElement.remove();
+    gamepartsElement.remove();
     drawingViewElement.remove();
     return optionsElement.remove();
   };
@@ -3825,7 +3829,7 @@ module.exports = Options;
 
 
 },{"../optionsStyles/optionsStyles":22,"./React-shim":28,"./createSetStateOnEventMixin":32}],27:[function(_dereq_,module,exports){
-var ClearButton, ColorPickers, ColorWell, Picker, React, UndoRedoButtons, ZoomButtons, _;
+var ClearButton, ColorPickers, ColorWell, Picker, Gameparts, React, UndoRedoButtons, ZoomButtons, _;
 
 React = _dereq_('./React-shim');
 
@@ -3914,6 +3918,57 @@ Picker = React.createClass({
   }
 });
 
+Gameparts = React.createClass({
+  displayName: 'Gameparts',
+  getInitialState: function() {
+    return {
+      selectedToolIndex: 0
+    };
+  },
+  render: function() {
+    var div, imageURLPrefix, lc, toolButtonComponents, _ref;
+    div = React.DOM.div;
+    _ref = this.props, toolButtonComponents = _ref.toolButtonComponents, lc = _ref.lc, imageURLPrefix = _ref.imageURLPrefix;
+    return div({
+      className: 'lc-picker-contents'
+    }, toolButtonComponents.map((function(_this) {
+      return function(component, ix) {
+        return component({
+          lc: lc,
+          imageURLPrefix: imageURLPrefix,
+          key: ix,
+          isSelected: ix === _this.state.selectedToolIndex,
+          onSelect: function(tool) {
+            lc.setTool(tool);
+            return _this.setState({
+              selectedToolIndex: ix
+            });
+          }
+        });
+      };
+    })(this)), toolButtonComponents.length % 2 !== 0 ? div({
+      className: 'toolbar-button thin-button disabled'
+    }) : void 0, div({
+      style: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0
+      }
+    }, ColorPickers({
+      lc: this.props.lc
+    }), UndoRedoButtons({
+      lc: lc,
+      imageURLPrefix: imageURLPrefix
+    }), ZoomButtons({
+      lc: lc,
+      imageURLPrefix: imageURLPrefix
+    }), ClearButton({
+      lc: lc
+    })));
+  }
+});   
+    
 module.exports = Picker;
 
 
@@ -4240,7 +4295,7 @@ Options = React.createFactory(_dereq_('./Options'));
 
 Picker = React.createFactory(_dereq_('./Picker'));
 
-init = function(pickerElement, optionsElement, lc, tools, imageURLPrefix) {
+init = function(pickerElement, gamepartsElement, optionsElement, lc, tools, imageURLPrefix) {
   var toolButtonComponents;
   toolButtonComponents = tools.map(function(ToolClass) {
     var toolInstance;
@@ -4258,6 +4313,11 @@ init = function(pickerElement, optionsElement, lc, tools, imageURLPrefix) {
     toolButtonComponents: toolButtonComponents,
     imageURLPrefix: imageURLPrefix
   }), pickerElement);
+  React.render(Picker({
+    lc: lc,
+    toolButtonComponents: toolButtonComponents,
+    imageURLPrefix: imageURLPrefix
+  }), gamepartsElement);
   return React.render(Options({
     lc: lc,
     imageURLPrefix: imageURLPrefix
