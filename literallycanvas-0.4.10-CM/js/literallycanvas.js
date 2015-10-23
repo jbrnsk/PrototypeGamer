@@ -757,7 +757,7 @@ module.exports = LiterallyCanvas = (function() {
 })();
 
 
-},{"../tools/Pencil":40,"./actions":4,"./bindEvents":5,"./canvasRenderer":6,"./math":10,"./renderSnapshotToImage":11,"./renderSnapshotToSVG":12,"./shapes":13,"./svgRenderer":14,"./util":15}],3:[function(_dereq_,module,exports){
+},{"../tools/Pencil":41,"./actions":4,"./bindEvents":5,"./canvasRenderer":6,"./math":10,"./renderSnapshotToImage":11,"./renderSnapshotToSVG":12,"./shapes":13,"./svgRenderer":14,"./util":15}],3:[function(_dereq_,module,exports){
 var TextRenderer, getLinesToRender, getNextLine, parseFontString;
 
 _dereq_('./fontmetrics.js');
@@ -1156,7 +1156,7 @@ module.exports = bindEvents = function(lc, canvas, panWithKeyboard) {
         case 39:
           lc.pan(10, 0);
           break;
-        case 40:
+        case 41:
           lc.pan(0, 10);
       }
       return lc.repaintAllLayers();
@@ -3328,7 +3328,7 @@ module.exports = {
 };
 
 
-},{"./core/LiterallyCanvas":2,"./core/canvasRenderer":6,"./core/localization":9,"./core/renderSnapshotToImage":11,"./core/renderSnapshotToSVG":12,"./core/shapes":13,"./core/svgRenderer":14,"./core/util":15,"./ie_customevent":16,"./ie_setLineDash":17,"./optionsStyles/font":19,"./optionsStyles/line-options-and-stroke-width":20,"./optionsStyles/null":21,"./optionsStyles/optionsStyles":22,"./optionsStyles/stroke-width":23,"./reactGUI/init":34,"./tools/Ellipse":35,"./tools/Eraser":36,"./tools/Eyedropper":37,"./tools/Line":38,"./tools/Pan":39,"./tools/Pencil":40,"./tools/Polygon":41,"./tools/Rectangle":42,"./tools/Text":43,"./tools/base":44,"./tools/Card":45}],19:[function(_dereq_,module,exports){
+},{"./core/LiterallyCanvas":2,"./core/canvasRenderer":6,"./core/localization":9,"./core/renderSnapshotToImage":11,"./core/renderSnapshotToSVG":12,"./core/shapes":13,"./core/svgRenderer":14,"./core/util":15,"./ie_customevent":16,"./ie_setLineDash":17,"./optionsStyles/font":19,"./optionsStyles/line-options-and-stroke-width":20,"./optionsStyles/null":21,"./optionsStyles/optionsStyles":22,"./optionsStyles/stroke-width":23,"./reactGUI/init":35,"./tools/Ellipse":36,"./tools/Eraser":37,"./tools/Eyedropper":38,"./tools/Line":39,"./tools/Pan":40,"./tools/Pencil":41,"./tools/Polygon":42,"./tools/Rectangle":43,"./tools/Text":44,"./tools/base":45,"./tools/Card":46}],19:[function(_dereq_,module,exports){
 var defineOptionsStyle, _;
 
 defineOptionsStyle = _dereq_('./optionsStyles').defineOptionsStyle;
@@ -3508,47 +3508,7 @@ defineOptionsStyle('line-options-and-stroke-width', React.createClass({
   getInitialState: function() {
     return this.getState();
   },
-    
-/*        getFamilies: function() {
-    var lc;
-    lc = this.props.lc;
-    return [
-      {
-        name: _('Poker Card'),
-        value: '"Helvetica Neue",Helvetica,Arial,sans-serif'
-      }, {
-        name: _('Mini Card'),
-        value: ('Garamond,Baskerville,"Baskerville Old Face",', '"Hoefler Text","Times New Roman",serif')
-      }, {
-        name: _('Tarot Card'),
-        value: ('"Courier New",Courier,"Lucida Sans Typewriter",', '"Lucida Typewriter",monospace')
-      }
-    ];
-  },
-  updateTool: function(newState) {
-    var fontSize, items, k;
-    if (newState == null) {
-      newState = {};
-    }
-    for (k in this.state) {
-      if (!(k in newState)) {
-        newState[k] = this.state[k];
-      }
-    }
-    fontSize = this.getFontSizes()[newState.fontSizeIndex];
-    items = [];
-    if (newState.isItalic) {
-      items.push('italic');
-    }
-    if (newState.isBold) {
-      items.push('bold');
-    }
-    items.push("" + fontSize + "px");
-    items.push(this.getFamilies()[newState.fontFamilyIndex].value);
-    this.props.lc.tool.font = items.join(' ');
-    return this.props.lc.trigger('setFont', items.join(' '));
-  },
-    */
+
   mixins: [createSetStateOnEventMixin('toolChange')],
   render: function() {
     var arrowButtonClass, dashButtonClass, div, img, li, style, toggleIsDashed, togglehasEndArrow, ul, _ref;
@@ -3599,7 +3559,7 @@ defineOptionsStyle('line-options-and-stroke-width', React.createClass({
 module.exports = {};
 
 
-},{"../core/util":15,"../reactGUI/StrokeWidthPicker":29,"../reactGUI/createSetStateOnEventMixin":32,"./optionsStyles":22}],21:[function(_dereq_,module,exports){
+},{"../core/util":15,"../reactGUI/StrokeWidthPicker":30,"../reactGUI/createSetStateOnEventMixin":33,"./optionsStyles":22}],21:[function(_dereq_,module,exports){
 var defineOptionsStyle;
 
 defineOptionsStyle = _dereq_('./optionsStyles').defineOptionsStyle;
@@ -3641,7 +3601,7 @@ defineOptionsStyle('stroke-width', StrokeWidthPicker);
 module.exports = {};
 
 
-},{"../reactGUI/StrokeWidthPicker":29,"./optionsStyles":22}],24:[function(_dereq_,module,exports){
+},{"../reactGUI/StrokeWidthPicker":30,"./optionsStyles":22}],24:[function(_dereq_,module,exports){
 var ClearButton, React, classSet, createSetStateOnEventMixin, _;
 
 React = _dereq_('./React-shim');
@@ -3688,7 +3648,7 @@ ClearButton = React.createClass({
 module.exports = ClearButton;
 
 
-},{"../core/localization":9,"../core/util":15,"./React-shim":28,"./createSetStateOnEventMixin":32}],25:[function(_dereq_,module,exports){
+},{"../core/localization":9,"../core/util":15,"./React-shim":29,"./createSetStateOnEventMixin":33}],25:[function(_dereq_,module,exports){
 var ColorWell, React, classSet;
 
 React = _dereq_('./React-shim');
@@ -3855,7 +3815,7 @@ ColorWell = React.createClass({
 module.exports = ColorWell;
 
 
-},{"../core/util":15,"./React-shim":28}],26:[function(_dereq_,module,exports){
+},{"../core/util":15,"./React-shim":29}],26:[function(_dereq_,module,exports){
 var Options, React, createSetStateOnEventMixin, optionsStyles;
 
 React = _dereq_('./React-shim');
@@ -3892,8 +3852,8 @@ Options = React.createClass({
 module.exports = Options;
 
 
-},{"../optionsStyles/optionsStyles":22,"./React-shim":28,"./createSetStateOnEventMixin":32}],27:[function(_dereq_,module,exports){
-var ClearButton, ColorPickers, ColorWell, Picker, Gameparts, React, UndoRedoButtons, ZoomButtons, _;
+},{"../optionsStyles/optionsStyles":22,"./React-shim":29,"./createSetStateOnEventMixin":33}],27:[function(_dereq_,module,exports){
+var ClearButton, ColorPickers, ColorWell, Gameparts, React, UndoRedoButtons, ZoomButtons, _;
 
 React = _dereq_('./React-shim');
 
@@ -3931,6 +3891,100 @@ ColorPickers = React.createFactory(React.createClass({
   }
 }));
 
+Gameparts = React.createClass({
+
+  displayName: 'Gameparts',
+  getInitialState: function() {
+    return {
+      gameToolsIndex: 0
+    };
+  },
+  render: function() {
+    var div, imageURLPrefix, lc, toolButtonComponents, _ref;
+    div = React.DOM.div;
+    _ref = this.props, toolButtonComponents = _ref.toolButtonComponents, lc = _ref.lc, imageURLPrefix = _ref.imageURLPrefix;
+    return div({
+      className: 'lc-gameparts-contents'
+    }, toolButtonComponents.map((function(_this) {
+      return function(component, ix) {
+        return component({
+          lc: lc,
+          imageURLPrefix: imageURLPrefix,
+          key: ix,
+          isSelected: ix === _this.state.gameToolsIndex,
+          onSelect: function(tool) {
+            lc.setTool(tool);
+            return _this.setState({
+              gameToolsIndexIndex: ix
+            });
+          }
+        });
+      };
+    })(this)), toolButtonComponents.length % 2 !== 0 ? div({
+      className: 'toolbar-button thin-button disabled'
+    }) : void 0, div({
+      style: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0
+      }
+    }/*, ColorPickers({
+      lc: this.props.lc
+    }), UndoRedoButtons({
+      lc: lc,
+      imageURLPrefix: imageURLPrefix
+    }), ZoomButtons({
+      lc: lc,
+      imageURLPrefix: imageURLPrefix
+    }), ClearButton({
+      lc: lc
+    })*/));
+  }
+});   
+
+module.exports = Gameparts;
+
+
+},{"../core/localization":9,"./ClearButton":24,"./ColorWell":25,"./React-shim":29,"./UndoRedoButtons":31,"./ZoomButtons":32}], 28:[function(_dereq_,module,exports){
+var ClearButton, ColorPickers, ColorWell, Picker, React, UndoRedoButtons, ZoomButtons, _;
+
+React = _dereq_('./React-shim');
+
+ClearButton = React.createFactory(_dereq_('./ClearButton'));
+
+UndoRedoButtons = React.createFactory(_dereq_('./UndoRedoButtons'));
+
+ZoomButtons = React.createFactory(_dereq_('./ZoomButtons'));
+
+_ = _dereq_('../core/localization')._;
+
+ColorWell = React.createFactory(_dereq_('./ColorWell'));
+
+ColorPickers = React.createFactory(React.createClass({
+  displayName: 'ColorPickers',
+  render: function() {
+    var div, lc;
+    lc = this.props.lc;
+    div = React.DOM.div;
+    return div({
+      className: 'lc-color-pickers'
+    }, ColorWell({
+      lc: lc,
+      colorName: 'primary',
+      label: _('stroke')
+    }), ColorWell({
+      lc: lc,
+      colorName: 'secondary',
+      label: _('fill')
+    }), ColorWell({
+      lc: lc,
+      colorName: 'background',
+      label: _('bg')
+    }));
+  }
+}));
+    
 Picker = React.createClass({
   displayName: 'Picker',
   getInitialState: function() {
@@ -3982,61 +4036,11 @@ Picker = React.createClass({
   }
 });
 
-Gameparts = React.createClass({
-  displayName: 'Gameparts',
-  getInitialState: function() {
-    return {
-      gameToolsIndex: 0
-    };
-  },
-  render: function() {
-    var div, imageURLPrefix, lc, toolButtonComponents, _ref;
-    div = React.DOM.div;
-    _ref = this.props, toolButtonComponents = _ref.toolButtonComponents, lc = _ref.lc, imageURLPrefix = _ref.imageURLPrefix;
-    return div({
-      className: 'lc-gameparts-contents'
-    }, toolButtonComponents.map((function(_this) {
-      return function(component, ix) {
-        return component({
-          lc: lc,
-          imageURLPrefix: imageURLPrefix,
-          key: ix,
-          isSelected: ix === _this.state.gameToolsIndex,
-          onSelect: function(tool) {
-            lc.setTool(tool);
-            return _this.setState({
-              gameToolsIndexIndex: ix
-            });
-          }
-        });
-      };
-    })(this)), toolButtonComponents.length % 2 !== 0 ? div({
-      className: 'toolbar-button thin-button disabled'
-    }) : void 0, div({
-      style: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0
-      }
-    }, ColorPickers({
-      lc: this.props.lc
-    }), UndoRedoButtons({
-      lc: lc,
-      imageURLPrefix: imageURLPrefix
-    }), ZoomButtons({
-      lc: lc,
-      imageURLPrefix: imageURLPrefix
-    }), ClearButton({
-      lc: lc
-    })));
-  }
-});   
-    
 module.exports = Picker;
 
 
-},{"../core/localization":9,"./ClearButton":24,"./ColorWell":25,"./React-shim":28,"./UndoRedoButtons":30,"./ZoomButtons":31}],28:[function(_dereq_,module,exports){
+
+},{"../core/localization":9,"./ClearButton":24,"./ColorWell":25,"./React-shim":29,"./UndoRedoButtons":31,"./ZoomButtons":32}],29:[function(_dereq_,module,exports){
 var React;
 
 try {
@@ -4052,7 +4056,7 @@ if ((React != null ? React.addons : void 0) == null) {
 module.exports = React;
 
 
-},{}],29:[function(_dereq_,module,exports){
+},{}],30:[function(_dereq_,module,exports){
 var classSet, createSetStateOnEventMixin;
 
 createSetStateOnEventMixin = _dereq_('../reactGUI/createSetStateOnEventMixin');
@@ -4107,7 +4111,7 @@ module.exports = React.createClass({
 });
 
 
-},{"../core/util":15,"../reactGUI/createSetStateOnEventMixin":32}],30:[function(_dereq_,module,exports){
+},{"../core/util":15,"../reactGUI/createSetStateOnEventMixin":33}],31:[function(_dereq_,module,exports){
 var React, RedoButton, UndoButton, UndoRedoButtons, classSet, createSetStateOnEventMixin, createUndoRedoButtonComponent;
 
 React = _dereq_('./React-shim');
@@ -4191,7 +4195,7 @@ UndoRedoButtons = React.createClass({
 module.exports = UndoRedoButtons;
 
 
-},{"../core/util":15,"./React-shim":28,"./createSetStateOnEventMixin":32}],31:[function(_dereq_,module,exports){
+},{"../core/util":15,"./React-shim":29,"./createSetStateOnEventMixin":33}],32:[function(_dereq_,module,exports){
 var React, ZoomButtons, ZoomInButton, ZoomOutButton, classSet, createSetStateOnEventMixin, createZoomButtonComponent;
 
 React = _dereq_('./React-shim');
@@ -4275,7 +4279,7 @@ ZoomButtons = React.createClass({
 module.exports = ZoomButtons;
 
 
-},{"../core/util":15,"./React-shim":28,"./createSetStateOnEventMixin":32}],32:[function(_dereq_,module,exports){
+},{"../core/util":15,"./React-shim":29,"./createSetStateOnEventMixin":33}],33:[function(_dereq_,module,exports){
 var React, createSetStateOnEventMixin;
 
 React = _dereq_('./React-shim');
@@ -4296,7 +4300,7 @@ module.exports = createSetStateOnEventMixin = function(eventName) {
 };
 
 
-},{"./React-shim":28}],33:[function(_dereq_,module,exports){
+},{"./React-shim":29}],34:[function(_dereq_,module,exports){
 var React, classSet, createToolButton;
 
 React = _dereq_('./React-shim');
@@ -4348,8 +4352,8 @@ createToolButton = function(_arg) {
 module.exports = createToolButton;
 
 
-},{"../core/util":15,"./React-shim":28}],34:[function(_dereq_,module,exports){
-var Options, Picker, React, createToolButton, init;
+},{"../core/util":15,"./React-shim":29}],35:[function(_dereq_,module,exports){
+var Options, Picker, Gameparts, React, createToolButton, init;
 
 React = _dereq_('./React-shim');
 
@@ -4358,6 +4362,8 @@ createToolButton = _dereq_('./createToolButton');
 Options = React.createFactory(_dereq_('./Options'));
 
 Picker = React.createFactory(_dereq_('./Picker'));
+    
+Gameparts = React.createFactory(_dereq_('./Gameparts'));
 
 init = function(pickerElement, gamepartsElement, optionsElement, lc, tools, imageURLPrefix) {
   var toolButtonComponents;
@@ -4377,7 +4383,7 @@ init = function(pickerElement, gamepartsElement, optionsElement, lc, tools, imag
     toolButtonComponents: toolButtonComponents,
     imageURLPrefix: imageURLPrefix
   }), pickerElement);
-  React.render(Picker({
+  React.render(Gameparts({
     lc: lc,
     toolButtonComponents: toolButtonComponents,
     imageURLPrefix: imageURLPrefix
@@ -4391,7 +4397,7 @@ init = function(pickerElement, gamepartsElement, optionsElement, lc, tools, imag
 module.exports = init;
 
 
-},{"./Options":26,"./Picker":27,"./React-shim":28,"./createToolButton":33}],35:[function(_dereq_,module,exports){
+},{"./Options":26,"./Gameparts":27,"./Picker":28,"./React-shim":29,"./createToolButton":34}],36:[function(_dereq_,module,exports){
 var Ellipse, ToolWithStroke, createShape,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -4436,7 +4442,7 @@ module.exports = Ellipse = (function(_super) {
 })(ToolWithStroke);
 
 
-},{"../core/shapes":13,"./base":44}],36:[function(_dereq_,module,exports){
+},{"../core/shapes":13,"./base":45}],37:[function(_dereq_,module,exports){
 var Eraser, Pencil, createShape,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -4474,7 +4480,7 @@ module.exports = Eraser = (function(_super) {
 })(Pencil);
 
 
-},{"../core/shapes":13,"./Pencil":40}],37:[function(_dereq_,module,exports){
+},{"../core/shapes":13,"./Pencil":41}],38:[function(_dereq_,module,exports){
 var Eyedropper, Tool,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -4511,7 +4517,7 @@ module.exports = Eyedropper = (function(_super) {
 })(Tool);
 
 
-},{"./base":44}],38:[function(_dereq_,module,exports){
+},{"./base":45}],39:[function(_dereq_,module,exports){
 var Line, Tool, createShape,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -4568,7 +4574,7 @@ module.exports = Line = (function(_super) {
 })(Tool);
 
 
-},{"../core/shapes":13,"./base":44}],39:[function(_dereq_,module,exports){
+},{"../core/shapes":13,"./base":45}],40:[function(_dereq_,module,exports){
 var Pan, Tool, createShape,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -4637,7 +4643,7 @@ module.exports = Pan = (function(_super) {
 })(Tool);
 
 
-},{"../core/shapes":13,"./base":44}],40:[function(_dereq_,module,exports){
+},{"../core/shapes":13,"./base":45}],41:[function(_dereq_,module,exports){
 var Pencil, ToolWithStroke, createShape,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -4699,7 +4705,7 @@ module.exports = Pencil = (function(_super) {
 })(ToolWithStroke);
 
 
-},{"../core/shapes":13,"./base":44}],41:[function(_dereq_,module,exports){
+},{"../core/shapes":13,"./base":45}],42:[function(_dereq_,module,exports){
 var Pencil, ToolWithStroke, createShape,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -4930,7 +4936,7 @@ module.exports = Pencil = (function(_super) {
 })(ToolWithStroke);
 
 
-},{"../core/shapes":13,"./base":44}],42:[function(_dereq_,module,exports){
+},{"../core/shapes":13,"./base":45}],43:[function(_dereq_,module,exports){
 var Rectangle, ToolWithStroke, createShape,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -4975,7 +4981,7 @@ module.exports = Rectangle = (function(_super) {
 })(ToolWithStroke);
 
 
-},{"../core/shapes":13,"./base":44}],45:[function(_dereq_,module,exports){
+},{"../core/shapes":13,"./base":45}],46:[function(_dereq_,module,exports){
 var Card, ToolWithStroke, createShape,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -5020,7 +5026,7 @@ module.exports = Card = (function(_super) {
 })(ToolWithStroke);
 
 
-},{"../core/shapes":13,"./base":44}],43:[function(_dereq_,module,exports){
+},{"../core/shapes":13,"./base":45}],44:[function(_dereq_,module,exports){
 var Text, Tool, createShape, getIsPointInBox,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -5381,7 +5387,7 @@ module.exports = Text = (function(_super) {
 })(Tool);
 
 
-},{"../core/shapes":13,"./base":44}],44:[function(_dereq_,module,exports){
+},{"../core/shapes":13,"./base":45}],45:[function(_dereq_,module,exports){
 var Tool, ToolWithStroke, tools,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
