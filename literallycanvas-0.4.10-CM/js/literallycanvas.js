@@ -3986,7 +3986,7 @@ Gameparts = React.createClass({
   displayName: 'Gameparts',
   getInitialState: function() {
     return {
-      selectedToolIndex: 0
+      gameToolsIndex: 0
     };
   },
   render: function() {
@@ -3994,18 +3994,18 @@ Gameparts = React.createClass({
     div = React.DOM.div;
     _ref = this.props, toolButtonComponents = _ref.toolButtonComponents, lc = _ref.lc, imageURLPrefix = _ref.imageURLPrefix;
     return div({
-      className: 'lc-picker-contents'
+      className: 'lc-gameparts-contents'
     }, toolButtonComponents.map((function(_this) {
       return function(component, ix) {
         return component({
           lc: lc,
           imageURLPrefix: imageURLPrefix,
           key: ix,
-          isSelected: ix === _this.state.selectedToolIndex,
+          isSelected: ix === _this.state.gameToolsIndex,
           onSelect: function(tool) {
             lc.setTool(tool);
             return _this.setState({
-              selectedToolIndex: ix
+              gameToolsIndexIndex: ix
             });
           }
         });
