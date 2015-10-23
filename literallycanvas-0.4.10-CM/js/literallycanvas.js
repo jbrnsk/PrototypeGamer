@@ -2212,8 +2212,8 @@ defineShape('Card', {
     }
     this.x = 400;
     this.y = 20;
-    this.width = args.width || 0;
-    this.height = args.height || 0;
+    this.width = 40;
+    this.height = 40;
     this.strokeWidth = args.strokeWidth || 1;
     this.strokeColor = args.strokeColor || 'black';
     return this.fillColor = args.fillColor || 'transparent';
@@ -3153,22 +3153,22 @@ conversion = {
 baseTools = _dereq_('./tools/base');
 
 tools = {
-  //Pencil: _dereq_('./tools/Pencil'),
-  //Eraser: _dereq_('./tools/Eraser'),
-  //Line: _dereq_('./tools/Line'),
+  Pencil: _dereq_('./tools/Pencil'),
+  Eraser: _dereq_('./tools/Eraser'),
+  Line: _dereq_('./tools/Line'),
   Rectangle: _dereq_('./tools/Rectangle'),
   Card: _dereq_('./tools/Card'),
-  //Ellipse: _dereq_('./tools/Ellipse'),
+  Ellipse: _dereq_('./tools/Ellipse'),
   Text: _dereq_('./tools/Text'),
-  //Polygon: _dereq_('./tools/Polygon'),
-  //Pan: _dereq_('./tools/Pan'),
-  //Eyedropper: _dereq_('./tools/Eyedropper'),
+  Polygon: _dereq_('./tools/Polygon'),
+  Pan: _dereq_('./tools/Pan'),
+  Eyedropper: _dereq_('./tools/Eyedropper'),
   Tool: baseTools.Tool,
   ToolWithStroke: baseTools.ToolWithStroke
 };
 
-//defaultTools = [tools.Pencil, tools.Eraser, tools.Line, tools.Rectangle, tools.Ellipse, tools.Text, tools.Polygon, tools.Pan, tools.Eyedropper];
-defaultTools = [tools.Rectangle, tools.Card, tools.Text];
+defaultTools = [tools.Card, tools.Pencil, tools.Eraser, tools.Line, tools.Rectangle, tools.Ellipse, tools.Text, tools.Polygon, tools.Pan, tools.Eyedropper];
+
 
 defaultImageURLPrefix = 'lib/img';
 
@@ -3348,7 +3348,7 @@ defineOptionsStyle('font', React.createClass({
   getFontSizes: function() {
     return [9, 10, 12, 14, 18, 24, 36, 48, 64, 72, 96, 144, 288];
   },
-  /*getFamilies: function() {
+  getFamilies: function() {
     var lc;
     lc = this.props.lc;
     return [
@@ -3360,22 +3360,6 @@ defineOptionsStyle('font', React.createClass({
         value: ('Garamond,Baskerville,"Baskerville Old Face",', '"Hoefler Text","Times New Roman",serif')
       }, {
         name: _('Typewriter'),
-        value: ('"Courier New",Courier,"Lucida Sans Typewriter",', '"Lucida Typewriter",monospace')
-      }
-    ];
-  },*/
-    getFamilies: function() {
-    var lc;
-    lc = this.props.lc;
-    return [
-      {
-        name: _('Poker Card'),
-        value: '"Helvetica Neue",Helvetica,Arial,sans-serif'
-      }, {
-        name: _('Mini Card'),
-        value: ('Garamond,Baskerville,"Baskerville Old Face",', '"Hoefler Text","Times New Roman",serif')
-      }, {
-        name: _('Tarot Card'),
         value: ('"Courier New",Courier,"Lucida Sans Typewriter",', '"Lucida Typewriter",monospace')
       }
     ];
@@ -3853,43 +3837,11 @@ module.exports = Options;
 
 
 },{"../optionsStyles/optionsStyles":22,"./React-shim":29,"./createSetStateOnEventMixin":33}],27:[function(_dereq_,module,exports){
-var ClearButton, ColorPickers, ColorWell, Gameparts, React, UndoRedoButtons, ZoomButtons, _;
+var Gameparts, React, _;
 
 React = _dereq_('./React-shim');
 
-ClearButton = React.createFactory(_dereq_('./ClearButton'));
-
-UndoRedoButtons = React.createFactory(_dereq_('./UndoRedoButtons'));
-
-ZoomButtons = React.createFactory(_dereq_('./ZoomButtons'));
-
 _ = _dereq_('../core/localization')._;
-
-ColorWell = React.createFactory(_dereq_('./ColorWell'));
-
-ColorPickers = React.createFactory(React.createClass({
-  displayName: 'ColorPickers',
-  render: function() {
-    var div, lc;
-    lc = this.props.lc;
-    div = React.DOM.div;
-    return div({
-      className: 'lc-color-pickers'
-    }, ColorWell({
-      lc: lc,
-      colorName: 'primary',
-      label: _('stroke')
-    }), ColorWell({
-      lc: lc,
-      colorName: 'secondary',
-      label: _('fill')
-    }), ColorWell({
-      lc: lc,
-      colorName: 'background',
-      label: _('bg')
-    }));
-  }
-}));
 
 Gameparts = React.createClass({
 
@@ -3929,17 +3881,7 @@ Gameparts = React.createClass({
         left: 0,
         right: 0
       }
-    }/*, ColorPickers({
-      lc: this.props.lc
-    }), UndoRedoButtons({
-      lc: lc,
-      imageURLPrefix: imageURLPrefix
-    }), ZoomButtons({
-      lc: lc,
-      imageURLPrefix: imageURLPrefix
-    }), ClearButton({
-      lc: lc
-    })*/));
+    }));
   }
 });   
 
@@ -5012,10 +4954,10 @@ module.exports = Card = (function(_super) {
   };
 
   Card.prototype["continue"] = function(x, y, lc) {
-    this.currentShape.width = x - this.currentShape.x;
+   /* this.currentShape.width = x - this.currentShape.x;
     this.currentShape.height = y - this.currentShape.y;
     return lc.drawShapeInProgress(this.currentShape);
-  };
+  */};
 
   Card.prototype.end = function(x, y, lc) {
     return lc.saveShape(this.currentShape);
