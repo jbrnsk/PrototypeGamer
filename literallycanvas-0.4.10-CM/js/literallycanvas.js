@@ -2210,10 +2210,10 @@ defineShape('Card', {
     if (args == null) {
       args = {};
     }
-    this.x = 400;
-    this.y = 20;
-    this.width = 40;
-    this.height = 40;
+    this.x = 70;
+    this.y = 10;
+    this.width = 250;
+    this.height = 350;
     this.strokeWidth = args.strokeWidth || 1;
     this.strokeColor = args.strokeColor || 'black';
     return this.fillColor = args.fillColor || 'transparent';
