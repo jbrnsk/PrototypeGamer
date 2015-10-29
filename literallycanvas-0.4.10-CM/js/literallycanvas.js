@@ -1,3 +1,5 @@
+//Don't touch the scary ugly beast from lines 3 to 9.
+
 !function(e){if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.LC=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
 
 },{}],2:[function(_dereq_,module,exports){
@@ -6,6 +8,9 @@ var INFINITE, JSONToShape, LiterallyCanvas, Pencil, actions, bindEvents, createS
   __slice = [].slice,
   __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
+//Dereq or derequires is a strategy for binding requires to a different keyword.
+//Disclaimer. This part is also still very confusin, and should be avoided.
+    
 actions = _dereq_('./actions');
 
 bindEvents = _dereq_('./bindEvents');
@@ -28,6 +33,10 @@ util = _dereq_('./util');
 
 INFINITE = 'infinite';
 
+// This is a bear of an export function. About 700 lines.
+// Looks to be responsible for handling the generation of the actual canvas.
+// Everything below it is just building up the rest of the parts that this function references.
+    
 module.exports = LiterallyCanvas = (function() {
   function LiterallyCanvas(containerEl, opts) {
     this.containerEl = containerEl;
@@ -756,8 +765,14 @@ module.exports = LiterallyCanvas = (function() {
 
 })();
 
+//^And so ends the bear of an export function.  
+    
+//Now begins the long list of elements of which the entire tool is comprised.
+},{"../tools/Pencil":41,"./actions":4,"./bindEvents":5,"./canvasRenderer":6,"./math":10,"./renderSnapshotToImage":11,"./renderSnapshotToSVG":12,"./shapes":13,"./svgRenderer":14,"./util":15}],
 
-},{"../tools/Pencil":41,"./actions":4,"./bindEvents":5,"./canvasRenderer":6,"./math":10,"./renderSnapshotToImage":11,"./renderSnapshotToSVG":12,"./shapes":13,"./svgRenderer":14,"./util":15}],3:[function(_dereq_,module,exports){
+//Element 3: Defines font option behaviors.
+
+3:[function(_dereq_,module,exports){
 var TextRenderer, getLinesToRender, getNextLine, parseFontString;
 
 _dereq_('./fontmetrics.js');
@@ -961,7 +976,11 @@ TextRenderer = (function() {
 module.exports = TextRenderer;
 
 
-},{"./fontmetrics.js":7}],4:[function(_dereq_,module,exports){
+},{"./fontmetrics.js":7}],
+
+//Element 4 defines general behaviors for adding shapes.
+
+4:[function(_dereq_,module,exports){
 var AddShapeAction, ClearAction;
 
 ClearAction = (function() {
@@ -1044,7 +1063,11 @@ module.exports = {
 };
 
 
-},{}],5:[function(_dereq_,module,exports){
+},{}],
+
+//Element 5 defines mouse positioning for adjustable shape sizes.
+
+5:[function(_dereq_,module,exports){
 var bindEvents, buttonIsDown, coordsForTouchEvent, position;
 
 coordsForTouchEvent = function(el, e) {
@@ -1178,7 +1201,11 @@ module.exports = bindEvents = function(lc, canvas, panWithKeyboard) {
 };
 
 
-},{}],6:[function(_dereq_,module,exports){
+},{}],
+
+//Element 6 defines how each shape is rendered on canvas.
+
+6:[function(_dereq_,module,exports){
 var defineCanvasRenderer, drawErasedLinePath, drawErasedLinePathLatest, drawLinePath, drawLinePathLatest, lineEndCapShapes, noop, renderShapeToCanvas, renderShapeToContext, renderers, _drawRawLinePath;
 
 lineEndCapShapes = _dereq_('./lineEndCapShapes.coffee');
@@ -1638,7 +1665,11 @@ module.exports = {
   };
 }());
 
-},{}],8:[function(_dereq_,module,exports){
+},{}],
+
+//Element 8 defines drawing an arrow.
+
+8:[function(_dereq_,module,exports){
 module.exports = {
   arrow: (function() {
     var getPoints;
@@ -1689,7 +1720,11 @@ module.exports = {
 };
 
 
-},{}],9:[function(_dereq_,module,exports){
+},{}],
+
+//Element 9 defines strings? What? For text tool, I guess?
+
+9:[function(_dereq_,module,exports){
 var localize, strings, _;
 
 strings = {};
@@ -1710,7 +1745,11 @@ module.exports = {
 };
 
 
-},{}],10:[function(_dereq_,module,exports){
+},{}],
+
+//Element 10. Something something math.
+
+10:[function(_dereq_,module,exports){
 var Point, math, normals, unit, util, _slope;
 
 Point = _dereq_('./shapes').Point;
@@ -1799,7 +1838,11 @@ math.scalePositionScalar = function(val, viewportSize, oldScale, newScale) {
 module.exports = math;
 
 
-},{"./shapes":13,"./util":15}],11:[function(_dereq_,module,exports){
+},{"./shapes":13,"./util":15}],
+
+//Element 11 is for turning on a watermark or background shape.
+
+11:[function(_dereq_,module,exports){
 var INFINITE, JSONToShape, renderWatermark, util;
 
 util = _dereq_('./util');
@@ -1898,7 +1941,11 @@ module.exports = function(snapshot, opts) {
 };
 
 
-},{"./shapes":13,"./util":15}],12:[function(_dereq_,module,exports){
+},{"./shapes":13,"./util":15}],
+
+//Element 12
+
+12:[function(_dereq_,module,exports){
 var INFINITE, JSONToShape, util;
 
 util = _dereq_('./util');
@@ -1936,8 +1983,8 @@ module.exports = function(snapshot, opts) {
     })();
   }
   imageSize = snapshot.imageSize || {
-    width: INFINITE,
-    height: INFINITE
+    width: 20,
+    height: 20
   };
   width = imageSize.width, height = imageSize.height;
   colors = snapshot.colors || {
