@@ -2,14 +2,24 @@
 
 !function(e){if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.LC=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
 
-},{}],2:[function(_dereq_,module,exports){
+},{}],
+
+//////////////////////////////////////////////////////////////
+//Element 2. This seems to kind of run everything important.//
+//////////////////////////////////////////////////////////////
+
+2:[function(_dereq_,module,exports){
 var INFINITE, JSONToShape, LiterallyCanvas, Pencil, actions, bindEvents, createShape, math, renderShapeToContext, renderShapeToSVG, renderSnapshotToImage, renderSnapshotToSVG, shapeToJSON, util, _ref,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
   __slice = [].slice,
   __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
+
 //Dereq or derequires is a strategy for binding requires to a different keyword.
 //Disclaimer. This part is also still very confusin, and should be avoided.
+//I think it has something to do with the coffeescript that the original developor used
+//to generate this .js. Might not be necessary, but everything is working.
+    
     
 actions = _dereq_('./actions');
 
@@ -770,7 +780,10 @@ module.exports = LiterallyCanvas = (function() {
 //Now begins the long list of elements of which the entire tool is comprised.
 },{"../tools/Pencil":41,"./actions":4,"./bindEvents":5,"./canvasRenderer":6,"./math":10,"./renderSnapshotToImage":11,"./renderSnapshotToSVG":12,"./shapes":13,"./svgRenderer":14,"./util":15}],
 
-//Element 3: Defines font option behaviors.
+
+/////////////////////////////////////////////
+//Element 3: Defines font option behaviors.//
+/////////////////////////////////////////////
 
 3:[function(_dereq_,module,exports){
 var TextRenderer, getLinesToRender, getNextLine, parseFontString;
@@ -978,7 +991,9 @@ module.exports = TextRenderer;
 
 },{"./fontmetrics.js":7}],
 
-//Element 4 defines general behaviors for adding shapes.
+//////////////////////////////////////////////////////////
+//Element 4 defines general behaviors for adding shapes.//
+//////////////////////////////////////////////////////////
 
 4:[function(_dereq_,module,exports){
 var AddShapeAction, ClearAction;
@@ -1065,7 +1080,9 @@ module.exports = {
 
 },{}],
 
-//Element 5 defines mouse positioning for adjustable shape sizes.
+///////////////////////////////////////////////////////////////////
+//Element 5 defines mouse positioning for adjustable shape sizes.//
+///////////////////////////////////////////////////////////////////
 
 5:[function(_dereq_,module,exports){
 var bindEvents, buttonIsDown, coordsForTouchEvent, position;
@@ -1203,7 +1220,9 @@ module.exports = bindEvents = function(lc, canvas, panWithKeyboard) {
 
 },{}],
 
-//Element 6 defines how each shape is rendered on canvas.
+///////////////////////////////////////////////////////////
+//Element 6 defines how each shape is rendered on canvas.//
+///////////////////////////////////////////////////////////
 
 6:[function(_dereq_,module,exports){
 var defineCanvasRenderer, drawErasedLinePath, drawErasedLinePathLatest, drawLinePath, drawLinePathLatest, lineEndCapShapes, noop, renderShapeToCanvas, renderShapeToContext, renderers, _drawRawLinePath;
@@ -1474,7 +1493,13 @@ module.exports = {
 };
 
 
-},{"./lineEndCapShapes.coffee":8}],7:[function(_dereq_,module,exports){
+},{"./lineEndCapShapes.coffee":8}],
+
+///////////////////////////////////////////////////////////
+//Element 7. Will let original devs speak for themselves.//
+///////////////////////////////////////////////////////////
+
+7:[function(_dereq_,module,exports){
 /**
   This library rewrites the Canvas2D "measureText" function
   so that it returns a more complete metrics object.
@@ -1667,7 +1692,9 @@ module.exports = {
 
 },{}],
 
-//Element 8 defines drawing an arrow.
+///////////////////////////////////////
+//Element 8 defines drawing an arrow.//
+///////////////////////////////////////
 
 8:[function(_dereq_,module,exports){
 module.exports = {
@@ -1840,7 +1867,9 @@ module.exports = math;
 
 },{"./shapes":13,"./util":15}],
 
-//Element 11 is for turning on a watermark or background shape.
+/////////////////////////////////////////////////////////////////
+//Element 11 is for turning on a watermark or background image.//
+/////////////////////////////////////////////////////////////////
 
 11:[function(_dereq_,module,exports){
 var INFINITE, JSONToShape, renderWatermark, util;
@@ -1943,7 +1972,9 @@ module.exports = function(snapshot, opts) {
 
 },{"./shapes":13,"./util":15}],
 
-//Element 12
+//////////////////////////////////////////
+//Element 12 does stuff. Inifinite. Huh?//
+//////////////////////////////////////////
 
 12:[function(_dereq_,module,exports){
 var INFINITE, JSONToShape, util;
@@ -1983,8 +2014,8 @@ module.exports = function(snapshot, opts) {
     })();
   }
   imageSize = snapshot.imageSize || {
-    width: 20,
-    height: 20
+    width: INFINITE,
+    height: INFINITE
   };
   width = imageSize.width, height = imageSize.height;
   colors = snapshot.colors || {
@@ -2020,7 +2051,13 @@ module.exports = function(snapshot, opts) {
 };
 
 
-},{"./shapes":13,"./util":15}],13:[function(_dereq_,module,exports){
+},{"./shapes":13,"./util":15}],
+
+/////////////////////////////////////////////////////////////////
+//Element 13 is another beast. Need more time to figure it out.//
+/////////////////////////////////////////////////////////////////
+
+13:[function(_dereq_,module,exports){
 var JSONToShape, LinePath, TextRenderer, bspline, createShape, defineCanvasRenderer, defineSVGRenderer, defineShape, lineEndCapShapes, linePathFuncs, renderShapeToContext, renderShapeToSVG, shapeToJSON, shapes, util, _createLinePathFromData, _doAllPointsShareStyle, _dual, _mid, _ref, _ref1, _refine;
 
 util = _dereq_('./util');
@@ -2813,7 +2850,13 @@ module.exports = {
 };
 
 
-},{"./TextRenderer":3,"./canvasRenderer":6,"./lineEndCapShapes.coffee":8,"./svgRenderer":14,"./util":15}],14:[function(_dereq_,module,exports){
+},{"./TextRenderer":3,"./canvasRenderer":6,"./lineEndCapShapes.coffee":8,"./svgRenderer":14,"./util":15}],
+
+///////////////////////////////////////////////////////////////////
+//Element 14. More rendering stuff. Rendering stuff is confusing.//
+///////////////////////////////////////////////////////////////////
+
+14:[function(_dereq_,module,exports){
 var defineSVGRenderer, lineEndCapShapes, renderShapeToSVG, renderers;
 
 lineEndCapShapes = _dereq_('./lineEndCapShapes.coffee');
@@ -2955,7 +2998,13 @@ module.exports = {
 };
 
 
-},{"./lineEndCapShapes.coffee":8}],15:[function(_dereq_,module,exports){
+},{"./lineEndCapShapes.coffee":8}],
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+//Element 15 does something important with rendering, but still doesn't make a ton of sense.//
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+15:[function(_dereq_,module,exports){
 var renderShapeToContext, renderShapeToSVG, slice, util,
   __slice = [].slice;
 
@@ -3040,6 +3089,14 @@ util = {
     }
     return c;
   },
+    
+    
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //I think canvas width is being defined here.
+    //But changing the canvas to something non-iinfinite is proving very confusing.
+    //////////////////////////////////////////////
+
+    
   renderShapes: function(shapes, bounds, scale, canvas) {
     var ctx, shape, _i, _len;
     if (scale == null) {
@@ -3121,7 +3178,13 @@ util = {
 module.exports = util;
 
 
-},{"./canvasRenderer":6,"./svgRenderer":14}],16:[function(_dereq_,module,exports){
+},{"./canvasRenderer":6,"./svgRenderer":14}],
+
+//////////////////////////////////////////////////
+//Element 16 defines something with custom events.
+///////////////////////////////////////////////////
+
+16:[function(_dereq_,module,exports){
 (function () {
   function CustomEvent ( event, params ) {
     params = params || { bubbles: false, cancelable: false, detail: undefined };
@@ -3134,7 +3197,13 @@ module.exports = util;
 
   window.CustomEvent = CustomEvent;
 })();
-},{}],17:[function(_dereq_,module,exports){
+},{}],
+
+/////////////////////////////////////////////////////////
+//Element 17 does something with the dashed line.
+/////////////////////////////////////////////////////////
+
+17:[function(_dereq_,module,exports){
 var hasWarned = false;
 if (!CanvasRenderingContext2D.prototype.setLineDash) {
   CanvasRenderingContext2D.prototype.setLineDash = function() {
@@ -3146,7 +3215,13 @@ if (!CanvasRenderingContext2D.prototype.setLineDash) {
   }
 }
 module.exports = null;
-},{}],18:[function(_dereq_,module,exports){
+},{}],
+
+///////////////////////////////////////////////////////////////
+//Element 18 defines all of the tools that reside within picker.
+///////////////////////////////////////////////////////////////
+
+18:[function(_dereq_,module,exports){
 var LiterallyCanvas, baseTools, canvasRenderer, conversion, defaultImageURLPrefix, defaultTools, defineOptionsStyle, init, initReact, localize, registerJQueryPlugin, renderSnapshotToImage, renderSnapshotToSVG, setDefaultImageURLPrefix, shapes, svgRenderer, tools, util;
 
 _dereq_('./ie_customevent');
@@ -3310,6 +3385,8 @@ init = function(el, opts) {
   el.appendChild(optionsElement);
 
   /* and get to work */
+  
+  //lc!!! So sneaky, so important. This is what the drawing view element becomes.
   lc = new LiterallyCanvas(drawingViewElement, opts);
   initReact(pickerElement, gamepartsElement, optionsElement, lc, opts.tools, opts.imageURLPrefix);
   if ('onInit' in opts) {
@@ -3375,7 +3452,13 @@ module.exports = {
 };
 
 
-},{"./core/LiterallyCanvas":2,"./core/canvasRenderer":6,"./core/localization":9,"./core/renderSnapshotToImage":11,"./core/renderSnapshotToSVG":12,"./core/shapes":13,"./core/svgRenderer":14,"./core/util":15,"./ie_customevent":16,"./ie_setLineDash":17,"./optionsStyles/font":19,"./optionsStyles/line-options-and-stroke-width":20,"./optionsStyles/null":21,"./optionsStyles/optionsStyles":22,"./optionsStyles/stroke-width":23,"./reactGUI/init":35,"./tools/Ellipse":36,"./tools/Eraser":37,"./tools/Eyedropper":38,"./tools/Line":39,"./tools/Pan":40,"./tools/Pencil":41,"./tools/Polygon":42,"./tools/Rectangle":43,"./tools/Text":44,"./tools/base":45,"./tools/Card":46}],19:[function(_dereq_,module,exports){
+},{"./core/LiterallyCanvas":2,"./core/canvasRenderer":6,"./core/localization":9,"./core/renderSnapshotToImage":11,"./core/renderSnapshotToSVG":12,"./core/shapes":13,"./core/svgRenderer":14,"./core/util":15,"./ie_customevent":16,"./ie_setLineDash":17,"./optionsStyles/font":19,"./optionsStyles/line-options-and-stroke-width":20,"./optionsStyles/null":21,"./optionsStyles/optionsStyles":22,"./optionsStyles/stroke-width":23,"./reactGUI/init":35,"./tools/Ellipse":36,"./tools/Eraser":37,"./tools/Eyedropper":38,"./tools/Line":39,"./tools/Pan":40,"./tools/Pencil":41,"./tools/Polygon":42,"./tools/Rectangle":43,"./tools/Text":44,"./tools/base":45,"./tools/Card":46}],
+
+////////////////////////////////////
+//Element 19 defines font options.//
+////////////////////////////////////
+
+19:[function(_dereq_,module,exports){
 var defineOptionsStyle, _;
 
 defineOptionsStyle = _dereq_('./optionsStyles').defineOptionsStyle;
@@ -3516,7 +3599,13 @@ defineOptionsStyle('font', React.createClass({
 module.exports = {};
 
 
-},{"../core/localization":9,"./optionsStyles":22}],20:[function(_dereq_,module,exports){
+},{"../core/localization":9,"./optionsStyles":22}],
+
+///////////////////////////////////////////////////////////////
+//Element 20 defines the stroke option for tools with stroke.//
+///////////////////////////////////////////////////////////////
+
+20:[function(_dereq_,module,exports){
 var StrokeWidthPicker, classSet, createSetStateOnEventMixin, defineOptionsStyle;
 
 defineOptionsStyle = _dereq_('./optionsStyles').defineOptionsStyle;
@@ -3590,7 +3679,13 @@ defineOptionsStyle('line-options-and-stroke-width', React.createClass({
 module.exports = {};
 
 
-},{"../core/util":15,"../reactGUI/StrokeWidthPicker":30,"../reactGUI/createSetStateOnEventMixin":33,"./optionsStyles":22}],21:[function(_dereq_,module,exports){
+},{"../core/util":15,"../reactGUI/StrokeWidthPicker":30,"../reactGUI/createSetStateOnEventMixin":33,"./optionsStyles":22}],
+
+////////////////////////////////////////////////////////
+//Element 21 defines tools that have no extra options.//
+////////////////////////////////////////////////////////
+
+21:[function(_dereq_,module,exports){
 var defineOptionsStyle;
 
 defineOptionsStyle = _dereq_('./optionsStyles').defineOptionsStyle;
@@ -3605,7 +3700,13 @@ defineOptionsStyle('null', React.createClass({
 module.exports = {};
 
 
-},{"./optionsStyles":22}],22:[function(_dereq_,module,exports){
+},{"./optionsStyles":22}],
+
+////////////////////////////////////////////////////
+//Element 22 defines options styles? No comprendo.//
+////////////////////////////////////////////////////
+
+22:[function(_dereq_,module,exports){
 var defineOptionsStyle, optionsStyles;
 
 optionsStyles = {};
@@ -3620,7 +3721,13 @@ module.exports = {
 };
 
 
-},{}],23:[function(_dereq_,module,exports){
+},{}],
+
+//////////////////////////////////////////////
+//Element 23 defines the strokewidth picker.//
+//////////////////////////////////////////////
+
+23:[function(_dereq_,module,exports){
 var StrokeWidthPicker, defineOptionsStyle;
 
 defineOptionsStyle = _dereq_('./optionsStyles').defineOptionsStyle;
@@ -3632,7 +3739,13 @@ defineOptionsStyle('stroke-width', StrokeWidthPicker);
 module.exports = {};
 
 
-},{"../reactGUI/StrokeWidthPicker":30,"./optionsStyles":22}],24:[function(_dereq_,module,exports){
+},{"../reactGUI/StrokeWidthPicker":30,"./optionsStyles":22}],
+
+////////////////////////////////////////
+//Element 24 defines the clear button.//
+////////////////////////////////////////
+
+24:[function(_dereq_,module,exports){
 var ClearButton, React, classSet, createSetStateOnEventMixin, _;
 
 React = _dereq_('./React-shim');
@@ -3679,7 +3792,14 @@ ClearButton = React.createClass({
 module.exports = ClearButton;
 
 
-},{"../core/localization":9,"../core/util":15,"./React-shim":29,"./createSetStateOnEventMixin":33}],25:[function(_dereq_,module,exports){
+},{"../core/localization":9,"../core/util":15,"./React-shim":29,"./createSetStateOnEventMixin":33}],
+
+/////////////////////////////////////
+//Element 25 defines the colorwell.//
+/////////////////////////////////////
+
+
+25:[function(_dereq_,module,exports){
 var ColorWell, React, classSet;
 
 React = _dereq_('./React-shim');
@@ -3846,7 +3966,14 @@ ColorWell = React.createClass({
 module.exports = ColorWell;
 
 
-},{"../core/util":15,"./React-shim":29}],26:[function(_dereq_,module,exports){
+},{"../core/util":15,"./React-shim":29}],
+
+////////////////////////////////////////////
+//Element 26 defines the tool options box.//
+////////////////////////////////////////////
+
+
+26:[function(_dereq_,module,exports){
 var Options, React, createSetStateOnEventMixin, optionsStyles;
 
 React = _dereq_('./React-shim');
@@ -3883,7 +4010,13 @@ Options = React.createClass({
 module.exports = Options;
 
 
-},{"../optionsStyles/optionsStyles":22,"./React-shim":29,"./createSetStateOnEventMixin":33}],27:[function(_dereq_,module,exports){
+},{"../optionsStyles/optionsStyles":22,"./React-shim":29,"./createSetStateOnEventMixin":33}],
+
+/////////////////////////////////////////
+//Element 27 defines the gameparts box.//
+/////////////////////////////////////////
+
+27:[function(_dereq_,module,exports){
 var Gameparts, React, _;
 
 React = _dereq_('./React-shim');
@@ -3935,7 +4068,14 @@ Gameparts = React.createClass({
 module.exports = Gameparts;
 
 
-},{"../core/localization":9,"./ClearButton":24,"./ColorWell":25,"./React-shim":29,"./UndoRedoButtons":31,"./ZoomButtons":32}], 28:[function(_dereq_,module,exports){
+},{"../core/localization":9,"./ClearButton":24,"./ColorWell":25,"./React-shim":29,"./UndoRedoButtons":31,"./ZoomButtons":32}], 
+
+//////////////////////////////////////
+//Element 28 defines the picker box.//
+//////////////////////////////////////
+
+
+28:[function(_dereq_,module,exports){
 var ClearButton, ColorPickers, ColorWell, Picker, React, UndoRedoButtons, ZoomButtons, _;
 
 React = _dereq_('./React-shim');
@@ -4029,7 +4169,13 @@ module.exports = Picker;
 
 
 
-},{"../core/localization":9,"./ClearButton":24,"./ColorWell":25,"./React-shim":29,"./UndoRedoButtons":31,"./ZoomButtons":32}],29:[function(_dereq_,module,exports){
+},{"../core/localization":9,"./ClearButton":24,"./ColorWell":25,"./React-shim":29,"./UndoRedoButtons":31,"./ZoomButtons":32}],
+
+/////////////////////////////////////////////////////////////////////
+//Element 29 defines the error when the browser doesn't have react.//
+/////////////////////////////////////////////////////////////////////
+
+29:[function(_dereq_,module,exports){
 var React;
 
 try {
@@ -4045,7 +4191,13 @@ if ((React != null ? React.addons : void 0) == null) {
 module.exports = React;
 
 
-},{}],30:[function(_dereq_,module,exports){
+},{}],
+
+////////////////////////////////////////////////////////////////////
+//Element 30 defines how the options change when the tools change.//
+////////////////////////////////////////////////////////////////////
+
+30:[function(_dereq_,module,exports){
 var classSet, createSetStateOnEventMixin;
 
 createSetStateOnEventMixin = _dereq_('../reactGUI/createSetStateOnEventMixin');
@@ -4100,7 +4252,13 @@ module.exports = React.createClass({
 });
 
 
-},{"../core/util":15,"../reactGUI/createSetStateOnEventMixin":33}],31:[function(_dereq_,module,exports){
+},{"../core/util":15,"../reactGUI/createSetStateOnEventMixin":33}],
+
+/////////////////////////////////////////////////
+//Element 31 defines the undo and redo buttons.//
+/////////////////////////////////////////////////
+
+31:[function(_dereq_,module,exports){
 var React, RedoButton, UndoButton, UndoRedoButtons, classSet, createSetStateOnEventMixin, createUndoRedoButtonComponent;
 
 React = _dereq_('./React-shim');
@@ -4184,7 +4342,13 @@ UndoRedoButtons = React.createClass({
 module.exports = UndoRedoButtons;
 
 
-},{"../core/util":15,"./React-shim":29,"./createSetStateOnEventMixin":33}],32:[function(_dereq_,module,exports){
+},{"../core/util":15,"./React-shim":29,"./createSetStateOnEventMixin":33}],
+
+////////////////////////////////////////
+//Element 32 defines the zoom buttons.//
+////////////////////////////////////////
+
+32:[function(_dereq_,module,exports){
 var React, ZoomButtons, ZoomInButton, ZoomOutButton, classSet, createSetStateOnEventMixin, createZoomButtonComponent;
 
 React = _dereq_('./React-shim');
@@ -4268,7 +4432,13 @@ ZoomButtons = React.createClass({
 module.exports = ZoomButtons;
 
 
-},{"../core/util":15,"./React-shim":29,"./createSetStateOnEventMixin":33}],33:[function(_dereq_,module,exports){
+},{"../core/util":15,"./React-shim":29,"./createSetStateOnEventMixin":33}],
+
+//////////////////////////////////////////////////////////////////
+//Element 33 defines what happens when you click on a tool icon.//
+//////////////////////////////////////////////////////////////////
+
+33:[function(_dereq_,module,exports){
 var React, createSetStateOnEventMixin;
 
 React = _dereq_('./React-shim');
@@ -4289,7 +4459,13 @@ module.exports = createSetStateOnEventMixin = function(eventName) {
 };
 
 
-},{"./React-shim":29}],34:[function(_dereq_,module,exports){
+},{"./React-shim":29}],
+
+///////////////////////////////////////////////////////////
+//Element 34 defines how to create a tool button on load.//
+///////////////////////////////////////////////////////////
+
+34:[function(_dereq_,module,exports){
 var React, classSet, createToolButton;
 
 React = _dereq_('./React-shim');
@@ -4341,7 +4517,13 @@ createToolButton = function(_arg) {
 module.exports = createToolButton;
 
 
-},{"../core/util":15,"./React-shim":29}],35:[function(_dereq_,module,exports){
+},{"../core/util":15,"./React-shim":29}],
+
+///////////////////////////////////////////////////////////////
+//Element 35 describes how to initialize the main containers.//
+///////////////////////////////////////////////////////////////
+
+35:[function(_dereq_,module,exports){
 var Options, Picker, Gameparts, React, createToolButton, init;
 
 React = _dereq_('./React-shim');
@@ -4386,7 +4568,13 @@ init = function(pickerElement, gamepartsElement, optionsElement, lc, tools, imag
 module.exports = init;
 
 
-},{"./Options":26,"./Gameparts":27,"./Picker":28,"./React-shim":29,"./createToolButton":34}],36:[function(_dereq_,module,exports){
+},{"./Options":26,"./Gameparts":27,"./Picker":28,"./React-shim":29,"./createToolButton":34}],
+
+////////////////////////////////////////
+//Element 36 defines the ellipse tool.//
+////////////////////////////////////////
+
+36:[function(_dereq_,module,exports){
 var Ellipse, ToolWithStroke, createShape,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -4431,7 +4619,13 @@ module.exports = Ellipse = (function(_super) {
 })(ToolWithStroke);
 
 
-},{"../core/shapes":13,"./base":45}],37:[function(_dereq_,module,exports){
+},{"../core/shapes":13,"./base":45}],
+
+////////////////////////////////////////////////////////////////////////////////
+//Element 37 defines the some general behaviors of the eraser and pencil tool.//
+////////////////////////////////////////////////////////////////////////////////
+
+37:[function(_dereq_,module,exports){
 var Eraser, Pencil, createShape,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -4469,7 +4663,13 @@ module.exports = Eraser = (function(_super) {
 })(Pencil);
 
 
-},{"../core/shapes":13,"./Pencil":41}],38:[function(_dereq_,module,exports){
+},{"../core/shapes":13,"./Pencil":41}],
+
+///////////////////////////////////////////
+//Element 38 defines the eyedropper tool.//
+///////////////////////////////////////////
+
+38:[function(_dereq_,module,exports){
 var Eyedropper, Tool,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -4506,7 +4706,13 @@ module.exports = Eyedropper = (function(_super) {
 })(Tool);
 
 
-},{"./base":45}],39:[function(_dereq_,module,exports){
+},{"./base":45}],
+
+/////////////////////////////////////
+//Element 39 defines the line tool.//
+/////////////////////////////////////
+
+39:[function(_dereq_,module,exports){
 var Line, Tool, createShape,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -4563,7 +4769,13 @@ module.exports = Line = (function(_super) {
 })(Tool);
 
 
-},{"../core/shapes":13,"./base":45}],40:[function(_dereq_,module,exports){
+},{"../core/shapes":13,"./base":45}],
+
+////////////////////////////////////
+//Element 40 defines the pan tool.//
+////////////////////////////////////
+
+40:[function(_dereq_,module,exports){
 var Pan, Tool, createShape,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -4632,7 +4844,13 @@ module.exports = Pan = (function(_super) {
 })(Tool);
 
 
-},{"../core/shapes":13,"./base":45}],41:[function(_dereq_,module,exports){
+},{"../core/shapes":13,"./base":45}],
+
+///////////////////////////////////////
+//Element 41 defines the pencil tool.//
+///////////////////////////////////////
+
+41:[function(_dereq_,module,exports){
 var Pencil, ToolWithStroke, createShape,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -4694,7 +4912,13 @@ module.exports = Pencil = (function(_super) {
 })(ToolWithStroke);
 
 
-},{"../core/shapes":13,"./base":45}],42:[function(_dereq_,module,exports){
+},{"../core/shapes":13,"./base":45}],
+
+////////////////////////////////////////////////////////////////////////
+//Element 42 defines the pencil tool? What? Why so many pencil things?//
+////////////////////////////////////////////////////////////////////////
+
+42:[function(_dereq_,module,exports){
 var Pencil, ToolWithStroke, createShape,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -4925,7 +5149,13 @@ module.exports = Pencil = (function(_super) {
 })(ToolWithStroke);
 
 
-},{"../core/shapes":13,"./base":45}],43:[function(_dereq_,module,exports){
+},{"../core/shapes":13,"./base":45}],
+
+//////////////////////////////////////////
+//Element 43 defines the rectangle tool.//
+//////////////////////////////////////////
+
+43:[function(_dereq_,module,exports){
 var Rectangle, ToolWithStroke, createShape,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -4970,7 +5200,13 @@ module.exports = Rectangle = (function(_super) {
 })(ToolWithStroke);
 
 
-},{"../core/shapes":13,"./base":45}],46:[function(_dereq_,module,exports){
+},{"../core/shapes":13,"./base":45}],
+
+//////////////////////////////////////////////////////
+//Element 46 is out of order. Defines the card tool.//
+//////////////////////////////////////////////////////
+
+46:[function(_dereq_,module,exports){
 var Card, ToolWithStroke, createShape,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -5015,7 +5251,17 @@ module.exports = Card = (function(_super) {
 })(ToolWithStroke);
 
 
-},{"../core/shapes":13,"./base":45}],44:[function(_dereq_,module,exports){
+},{"../core/shapes":13,"./base":45}],
+
+/////////////////////////////////////////////////////////////////////////////////////
+//Element 44 defines the behavior for moving a text box.
+//Any click inside the box won't do anything. The first click outside of the box
+//will activate movement mode. Then the user can click and drag the box around, but
+//no longer change the text. One more click outside the box and its position
+//is set.
+/////////////////////////////////////////////////////////////////////////////////////
+
+44:[function(_dereq_,module,exports){
 var Text, Tool, createShape, getIsPointInBox,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -5376,7 +5622,13 @@ module.exports = Text = (function(_super) {
 })(Tool);
 
 
-},{"../core/shapes":13,"./base":45}],45:[function(_dereq_,module,exports){
+},{"../core/shapes":13,"./base":45}],
+
+/////////////////////////////////////////
+//Element 45 defines tools with stroke.//
+/////////////////////////////////////////
+
+45:[function(_dereq_,module,exports){
 var Tool, ToolWithStroke, tools,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
