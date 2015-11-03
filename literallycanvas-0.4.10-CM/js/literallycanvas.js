@@ -19,8 +19,8 @@ var INFINITE, JSONToShape, LiterallyCanvas, Pencil, actions, bindEvents, createS
 //Disclaimer. This part is also still very confusin, and should be avoided.
 //I think it has something to do with the coffeescript that the original developor used
 //to generate this .js. Might not be necessary, but everything is working.
-    
-    
+
+
 actions = _dereq_('./actions');
 
 bindEvents = _dereq_('./bindEvents');
@@ -46,7 +46,7 @@ INFINITE = 'infinite';
 // This is a bear of an export function. About 700 lines.
 // Looks to be responsible for handling the generation of the actual canvas.
 // Everything below it is just building up the rest of the parts that this function references.
-    
+
 module.exports = LiterallyCanvas = (function() {
   function LiterallyCanvas(containerEl, opts) {
     this.containerEl = containerEl;
@@ -63,7 +63,7 @@ module.exports = LiterallyCanvas = (function() {
       secondary: opts.secondaryColor || '#fff',
       background: opts.backgroundColor || 'transparent'
     };
-    this.containerEl.style['background-color'] = this.colors.background;
+    this.containerEl.style['background-color'] = 'this.colors.background';
     this.watermarkImage = opts.watermarkImage;
     this.watermarkScale = opts.watermarkScale || 1;
     this.backgroundCanvas = document.createElement('canvas');
@@ -72,7 +72,7 @@ module.exports = LiterallyCanvas = (function() {
     this.backgroundShapes = opts.backgroundShapes || [];
     this._shapesInProgress = [];
     this.canvas = document.createElement('canvas');
-    this.canvas.style['background-color'] = 'transparent';
+    this.canvas.style['background-color'] = '#ddd';
     this.containerEl.appendChild(this.canvas);
     this.buffer = document.createElement('canvas');
     this.buffer.style['background-color'] = 'transparent';
@@ -142,8 +142,13 @@ module.exports = LiterallyCanvas = (function() {
 
   LiterallyCanvas.prototype.clientCoordsToDrawingCoords = function(x, y) {
     return {
-      x: (x * this.backingScale - this.position.x) / this.getRenderScale(),
-      y: (y * this.backingScale - this.position.y) / this.getRenderScale()
+      // x: (x * this.backingScale - this.position.x) / this.getRenderScale(),
+      // y: (y * this.backingScale - this.position.y) / this.getRenderScale()
+
+      //Chelsea: Took out backing scale. I do not know what this is though.
+      // X & Y position
+      x: (x * 1 - this.position.x) / this.getRenderScale(),
+      y: (y * 1 - this.position.y) / this.getRenderScale()
     };
   };
 
@@ -775,8 +780,8 @@ module.exports = LiterallyCanvas = (function() {
 
 })();
 
-//^And so ends the bear of an export function.  
-    
+//^And so ends the bear of an export function.
+
 //Now begins the long list of elements of which the entire tool is comprised.
 },{"../tools/Pencil":41,"./actions":4,"./bindEvents":5,"./canvasRenderer":6,"./math":10,"./renderSnapshotToImage":11,"./renderSnapshotToSVG":12,"./shapes":13,"./svgRenderer":14,"./util":15}],
 
@@ -1289,7 +1294,7 @@ defineCanvasRenderer('Rectangle', function(ctx, shape) {
   ctx.strokeStyle = shape.strokeColor;
   return ctx.strokeRect(x, y, shape.width, shape.height);
 });
-    
+
 defineCanvasRenderer('Card', function(ctx, shape) {
   var x, y;
   x = shape.x;
@@ -2288,7 +2293,7 @@ defineShape('Rectangle', {
     return createShape('Rectangle', data);
   }
 });
-    
+
 defineShape('Card', {
   constructor: function(args) {
     if (args == null) {
@@ -2894,7 +2899,7 @@ defineSVGRenderer('Rectangle', function(shape) {
   }
   return "<rect x='" + x + "' y='" + y + "' width='" + shape.width + "' height='" + shape.height + "' stroke='" + shape.strokeColor + "' fill='" + shape.fillColor + "' stroke-width='" + shape.strokeWidth + "' />";
 });
-    
+
 defineSVGRenderer('Card', function(shape) {
   var x, y;
   x = shape.x;
@@ -3047,29 +3052,32 @@ util = {
     return classNames.join(' ');
   },
   matchElementSize: function(elementToMatch, elementsToResize, scale, callback) {
-    var resize;
-    if (callback == null) {
-      callback = function() {};
-    }
-    resize = (function(_this) {
-      return function() {
-        var el, _i, _len;
-        for (_i = 0, _len = elementsToResize.length; _i < _len; _i++) {
-          el = elementsToResize[_i];
-          el.style.width = "" + elementToMatch.offsetWidth + "px";
-          el.style.height = "" + elementToMatch.offsetHeight + "px";
-          if (el.width != null) {
-            el.setAttribute('width', el.offsetWidth * scale);
-            el.setAttribute('height', el.offsetHeight * scale);
-          }
-        }
-        return callback();
-      };
-    })(this);
-    elementToMatch.addEventListener('resize', resize);
-    window.addEventListener('resize', resize);
-    window.addEventListener('orientationchange', resize);
-    return resize();
+
+    //RESIZE FUNCTION
+
+    // var resize;
+    // if (callback == null) {
+    //   callback = function() {};
+    // }
+    // resize = (function(_this) {
+    //   return function() {
+    //     var el, _i, _len;
+    //     for (_i = 0, _len = elementsToResize.length; _i < _len; _i++) {
+    //       el = elementsToResize[_i];
+    //       el.style.width = "" + elementToMatch.offsetWidth + "px";
+    //       el.style.height = "" + elementToMatch.offsetHeight + "px";
+    //       if (el.width != null) {
+    //         el.setAttribute('width', el.offsetWidth * scale);
+    //         el.setAttribute('height', el.offsetHeight * scale);
+    //       }
+    //     }
+    //     return callback();
+    //   };
+    // })(this);
+    // elementToMatch.addEventListener('resize', resize);
+    // window.addEventListener('resize', resize);
+    // window.addEventListener('orientationchange', resize);
+    // return resize();
   },
   combineCanvases: function() {
     var c, canvas, canvases, ctx, _i, _j, _len, _len1;
@@ -3089,19 +3097,19 @@ util = {
     }
     return c;
   },
-    
-    
+
+
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //I think canvas width is being defined here.
     //But changing the canvas to something non-iinfinite is proving very confusing.
     //////////////////////////////////////////////
 
-    
+
   renderShapes: function(shapes, bounds, scale, canvas) {
     var ctx, shape, _i, _len;
-    if (scale == null) {
+    // if (scale == null) {
       scale = 1;
-    }
+    // }
     if (canvas == null) {
       canvas = null;
     }
@@ -3385,7 +3393,7 @@ init = function(el, opts) {
   el.appendChild(optionsElement);
 
   /* and get to work */
-  
+
   //lc!!! So sneaky, so important. This is what the drawing view element becomes.
   lc = new LiterallyCanvas(drawingViewElement, opts);
   initReact(pickerElement, gamepartsElement, optionsElement, lc, opts.tools, opts.imageURLPrefix);
@@ -4063,12 +4071,12 @@ Gameparts = React.createClass({
       }
     }));
   }
-});   
+});
 
 module.exports = Gameparts;
 
 
-},{"../core/localization":9,"./ClearButton":24,"./ColorWell":25,"./React-shim":29,"./UndoRedoButtons":31,"./ZoomButtons":32}], 
+},{"../core/localization":9,"./ClearButton":24,"./ColorWell":25,"./React-shim":29,"./UndoRedoButtons":31,"./ZoomButtons":32}],
 
 //////////////////////////////////////
 //Element 28 defines the picker box.//
@@ -4113,7 +4121,7 @@ ColorPickers = React.createFactory(React.createClass({
     }));
   }
 }));
-    
+
 Picker = React.createClass({
   displayName: 'Picker',
   getInitialState: function() {
@@ -4533,7 +4541,7 @@ createToolButton = _dereq_('./createToolButton');
 Options = React.createFactory(_dereq_('./Options'));
 
 Picker = React.createFactory(_dereq_('./Picker'));
-    
+
 Gameparts = React.createFactory(_dereq_('./Gameparts'));
 
 init = function(pickerElement, gamepartsElement, optionsElement, lc, tools, imageURLPrefix) {

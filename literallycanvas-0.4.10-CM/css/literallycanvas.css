@@ -47,7 +47,6 @@
 }
 .literally {
     position: relative;
-    background-color: #ddd;
     min-height: 400px;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -345,4 +344,8 @@
 }
 .literally .lc-options .lc-font-settings input[type=checkbox] {
     margin: 0 0.5em 0 0.5em
+}
+
+canvas {
+  border: 2px dotted red;
 }
