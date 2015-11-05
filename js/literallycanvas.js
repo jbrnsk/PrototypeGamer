@@ -72,7 +72,7 @@ module.exports = LiterallyCanvas = (function() {
     this.backgroundShapes = opts.backgroundShapes || [];
     this._shapesInProgress = [];
     this.canvas = document.createElement('canvas');
-    this.canvas.style['background-color'] = '#ddd';
+    this.canvas.style['background-color'] = 'transparent';
     this.containerEl.appendChild(this.canvas);
     this.buffer = document.createElement('canvas');
     this.buffer.style['background-color'] = 'transparent';
