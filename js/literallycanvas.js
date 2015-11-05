@@ -4194,11 +4194,7 @@ module.exports = Gameparts;
 
 
 },{"../core/localization":9,
-   "./ClearButton":24,
-   "./ColorWell":25,
    "./React-shim":29,
-   "./UndoRedoButtons":31,
-   "./ZoomButtons":32
   }
 ],
 
@@ -4208,11 +4204,13 @@ module.exports = Gameparts;
 
 
 28:[function(_dereq_,module,exports){
-var ClearButton, ColorPickers, ColorWell, Picker, React, UndoRedoButtons, ZoomButtons, _;
+var ClearButton, ColorPickers, ColorWell, Picker, React, UndoRedoButtons, ZoomButtons, SaveComponentButton_;
 
 React = _dereq_('./React-shim');
 
 ClearButton = React.createFactory(_dereq_('./ClearButton'));
+    
+SaveComponentButton = React.createFactory(_dereq_('./SaveComponentButton'));
 
 UndoRedoButtons = React.createFactory(_dereq_('./UndoRedoButtons'));
 
@@ -4295,7 +4293,10 @@ Picker = React.createClass({
       imageURLPrefix: imageURLPrefix
     }),*/ ClearButton({
       lc: lc
-    })));
+    }),SaveComponentButton({
+      lc: lc
+    }) 
+    ));
   }
 });
 
@@ -4308,7 +4309,8 @@ module.exports = Picker;
    "./ColorWell":25,
    "./React-shim":29,
    "./UndoRedoButtons":31,
-   "./ZoomButtons":32
+   "./ZoomButtons":32,
+   "./SaveComponentButton":47
   }
 ],
 
@@ -4710,11 +4712,11 @@ init = function(pickerElement, gamepartsElement, optionsElement, lc, tools, imag
     toolButtonComponents: toolButtonComponents,
     imageURLPrefix: imageURLPrefix
   }), pickerElement);
-  React.render(Gameparts({
+/*  React.render(Gameparts({
     lc: lc,
     toolButtonComponents: toolButtonComponents,
     imageURLPrefix: imageURLPrefix
-  }), gamepartsElement);
+  }), gamepartsElement);*/
   return React.render(Options({
     lc: lc,
     imageURLPrefix: imageURLPrefix
@@ -5867,7 +5869,66 @@ module.exports = Card = (function(_super) {
 },{"../core/shapes":13,
    "./base":45
   }
+],
+            
+/////////////////////////////////////////////////
+//Element 47 defines the save component button.//
+/////////////////////////////////////////////////
+
+47:[function(_dereq_,module,exports){
+var SaveComponentButton, React, classSet, createSetStateOnEventMixin, _;
+
+React = _dereq_('./React-shim');
+
+createSetStateOnEventMixin = _dereq_('./createSetStateOnEventMixin');
+
+_ = _dereq_('../core/localization')._;
+
+classSet = _dereq_('../core/util').classSet;
+
+SaveComponentButton = React.createClass({
+  displayName: 'SaveComponentButton',
+  getState: function() {
+    return {
+      isEnabled: this.props.lc.canUndo()
+    };
+  },
+  getInitialState: function() {
+    return this.getState();
+  },
+  mixins: [createSetStateOnEventMixin('drawingChange')],
+  render: function() {
+    var className, div, lc, onClick;
+    div = React.DOM.div;
+    lc = this.props.lc;
+    className = classSet({
+      'lc-clear': true,
+      'toolbar-button': true,
+      'fat-button': true,
+      'disabled': !this.state.isEnabled
+    });
+    onClick = lc.canUndo() ? ((function(_this) {
+      return function() {
+        return lc.clear();
+      };
+    })(this)) : function() {};
+    return div({
+      className: className,
+      onClick: onClick
+    }, _('Save'));
+  }
+});
+
+module.exports = SaveComponentButton;
+
+
+},{"../core/localization":9,
+   "../core/util":15,
+   "./React-shim":29,
+   "./createSetStateOnEventMixin":33
+  }
 ]
+
    
 
         
