@@ -1,4 +1,4 @@
-//Don't touch the scary ugly beast from lines 3 to 9.
+//Don't touch the scary ugly beast from lines 3 to 34.
 
 ! function(e) {
     if ("object" == typeof exports) module.exports = e();
@@ -31,7 +31,13 @@
             var i = typeof require == "function" && require;
             for (var o = 0; o < r.length; o++) s(r[o]);
             return s
-        })({1:[function(_dereq_,module,exports){
+        })({
+            
+///////////////////////////////////
+//Element 1. I don't really know.//
+///////////////////////////////////
+            
+1:[function(_dereq_,module,exports){
 
 },{}],
 
@@ -1796,7 +1802,9 @@ module.exports = {
 
 },{}],
 
-//Element 9 defines strings? What? For text tool, I guess?
+////////////////////////////////////////////////////////////
+//Element 9 defines strings? What? For text tool, I guess?//
+////////////////////////////////////////////////////////////
 
 9:[function(_dereq_,module,exports){
 var localize, strings, _;
@@ -1821,7 +1829,9 @@ module.exports = {
 
 },{}],
 
-//Element 10. Something something math.
+/////////////////////////////////////////
+//Element 10. Something something math.//
+/////////////////////////////////////////
 
 10:[function(_dereq_,module,exports){
 var Point, math, normals, unit, util, _slope;
@@ -1912,7 +1922,10 @@ math.scalePositionScalar = function(val, viewportSize, oldScale, newScale) {
 module.exports = math;
 
 
-},{"./shapes":13,"./util":15}],
+},{"./shapes":13,
+   "./util":15
+  }
+],
 
 /////////////////////////////////////////////////////////////////
 //Element 11 is for turning on a watermark or background image.//
@@ -2017,7 +2030,10 @@ module.exports = function(snapshot, opts) {
 };
 
 
-},{"./shapes":13,"./util":15}],
+},{"./shapes":13,
+   "./util":15
+  }
+],
 
 //////////////////////////////////////////
 //Element 12 does stuff. Inifinite. Huh?//
@@ -2098,7 +2114,10 @@ module.exports = function(snapshot, opts) {
 };
 
 
-},{"./shapes":13,"./util":15}],
+},{"./shapes":13,
+   "./util":15
+  }
+],
 
 /////////////////////////////////////////////////////////////////
 //Element 13 is another beast. Need more time to figure it out.//
@@ -2897,7 +2916,13 @@ module.exports = {
 };
 
 
-},{"./TextRenderer":3,"./canvasRenderer":6,"./lineEndCapShapes.coffee":8,"./svgRenderer":14,"./util":15}],
+},{"./TextRenderer":3,
+   "./canvasRenderer":6,
+   "./lineEndCapShapes.coffee":8,
+   "./svgRenderer":14,
+   "./util":15
+  }
+],
 
 ///////////////////////////////////////////////////////////////////
 //Element 14. More rendering stuff. Rendering stuff is confusing.//
@@ -3045,7 +3070,9 @@ module.exports = {
 };
 
 
-},{"./lineEndCapShapes.coffee":8}],
+},{"./lineEndCapShapes.coffee":8
+  }
+],
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 //Element 15 does something important with rendering, but still doesn't make a ton of sense.//
@@ -3228,7 +3255,10 @@ util = {
 module.exports = util;
 
 
-},{"./canvasRenderer":6,"./svgRenderer":14}],
+},{"./canvasRenderer":6,
+   "./svgRenderer":14
+  }
+],
 
 //////////////////////////////////////////////////
 //Element 16 defines something with custom events.
@@ -3502,7 +3532,33 @@ module.exports = {
 };
 
 
-},{"./core/LiterallyCanvas":2,"./core/canvasRenderer":6,"./core/localization":9,"./core/renderSnapshotToImage":11,"./core/renderSnapshotToSVG":12,"./core/shapes":13,"./core/svgRenderer":14,"./core/util":15,"./ie_customevent":16,"./ie_setLineDash":17,"./optionsStyles/font":19,"./optionsStyles/line-options-and-stroke-width":20,"./optionsStyles/null":21,"./optionsStyles/optionsStyles":22,"./optionsStyles/stroke-width":23,"./reactGUI/init":35,"./tools/Ellipse":36,"./tools/Eraser":37,"./tools/Eyedropper":38,"./tools/Line":39,"./tools/Pan":40,"./tools/Pencil":41,"./tools/Polygon":42,"./tools/Rectangle":43,"./tools/Text":44,"./tools/base":45,"./tools/Card":46}],
+},{"./core/LiterallyCanvas":2,
+   "./core/canvasRenderer":6,
+   "./core/localization":9,
+   "./core/renderSnapshotToImage":11,
+   "./core/renderSnapshotToSVG":12,
+   "./core/shapes":13,
+   "./core/svgRenderer":14,
+   "./core/util":15,
+   "./ie_customevent":16,
+   "./ie_setLineDash":17,
+   "./optionsStyles/font":19,
+   "./optionsStyles/line-options-and-stroke-width":20,
+   "./optionsStyles/null":21,
+   "./optionsStyles/optionsStyles":22,
+   "./optionsStyles/stroke-width":23,
+   "./reactGUI/init":35,
+   "./tools/Ellipse":36,
+   "./tools/Eraser":37,
+   "./tools/Eyedropper":38,
+   "./tools/Line":39,
+   "./tools/Pan":40,
+   "./tools/Pencil":41,
+   "./tools/Polygon":42,
+   "./tools/Rectangle":43,
+   "./tools/Text":44,
+   "./tools/base":45,
+   "./tools/Card":46}],
 
 ////////////////////////////////////
 //Element 19 defines font options.//
@@ -3649,7 +3705,10 @@ defineOptionsStyle('font', React.createClass({
 module.exports = {};
 
 
-},{"../core/localization":9,"./optionsStyles":22}],
+},{"../core/localization":9,
+   "./optionsStyles":22
+  }
+],
 
 ///////////////////////////////////////////////////////////////
 //Element 20 defines the stroke option for tools with stroke.//
@@ -3750,7 +3809,8 @@ defineOptionsStyle('null', React.createClass({
 module.exports = {};
 
 
-},{"./optionsStyles":22}],
+},{"./optionsStyles":22}
+],
 
 ////////////////////////////////////////////////////
 //Element 22 defines options styles? No comprendo.//
@@ -3789,7 +3849,10 @@ defineOptionsStyle('stroke-width', StrokeWidthPicker);
 module.exports = {};
 
 
-},{"../reactGUI/StrokeWidthPicker":30,"./optionsStyles":22}],
+},{"../reactGUI/StrokeWidthPicker":30,
+   "./optionsStyles":22
+  }
+],
 
 ////////////////////////////////////////
 //Element 24 defines the clear button.//
@@ -3842,7 +3905,12 @@ ClearButton = React.createClass({
 module.exports = ClearButton;
 
 
-},{"../core/localization":9,"../core/util":15,"./React-shim":29,"./createSetStateOnEventMixin":33}],
+},{"../core/localization":9,
+   "../core/util":15,
+   "./React-shim":29,
+   "./createSetStateOnEventMixin":33
+  }
+],
 
 /////////////////////////////////////
 //Element 25 defines the colorwell.//
@@ -4016,7 +4084,10 @@ ColorWell = React.createClass({
 module.exports = ColorWell;
 
 
-},{"../core/util":15,"./React-shim":29}],
+},{"../core/util":15,
+   "./React-shim":29
+  }
+],
 
 ////////////////////////////////////////////
 //Element 26 defines the tool options box.//
@@ -4060,7 +4131,11 @@ Options = React.createClass({
 module.exports = Options;
 
 
-},{"../optionsStyles/optionsStyles":22,"./React-shim":29,"./createSetStateOnEventMixin":33}],
+},{"../optionsStyles/optionsStyles":22,
+   "./React-shim":29,
+   "./createSetStateOnEventMixin":33
+  }
+],
 
 /////////////////////////////////////////
 //Element 27 defines the gameparts box.//
@@ -4118,7 +4193,14 @@ Gameparts = React.createClass({
 module.exports = Gameparts;
 
 
-},{"../core/localization":9,"./ClearButton":24,"./ColorWell":25,"./React-shim":29,"./UndoRedoButtons":31,"./ZoomButtons":32}],
+},{"../core/localization":9,
+   "./ClearButton":24,
+   "./ColorWell":25,
+   "./React-shim":29,
+   "./UndoRedoButtons":31,
+   "./ZoomButtons":32
+  }
+],
 
 //////////////////////////////////////
 //Element 28 defines the picker box.//
@@ -4219,7 +4301,14 @@ module.exports = Picker;
 
 
 
-},{"../core/localization":9,"./ClearButton":24,"./ColorWell":25,"./React-shim":29,"./UndoRedoButtons":31,"./ZoomButtons":32}],
+},{"../core/localization":9,
+   "./ClearButton":24,
+   "./ColorWell":25,
+   "./React-shim":29,
+   "./UndoRedoButtons":31,
+   "./ZoomButtons":32
+  }
+],
 
 /////////////////////////////////////////////////////////////////////
 //Element 29 defines the error when the browser doesn't have react.//
@@ -4302,7 +4391,10 @@ module.exports = React.createClass({
 });
 
 
-},{"../core/util":15,"../reactGUI/createSetStateOnEventMixin":33}],
+},{"../core/util":15,
+   "../reactGUI/createSetStateOnEventMixin":33
+  }
+],
 
 /////////////////////////////////////////////////
 //Element 31 defines the undo and redo buttons.//
@@ -4392,7 +4484,11 @@ UndoRedoButtons = React.createClass({
 module.exports = UndoRedoButtons;
 
 
-},{"../core/util":15,"./React-shim":29,"./createSetStateOnEventMixin":33}],
+},{"../core/util":15,
+   "./React-shim":29,
+   "./createSetStateOnEventMixin":33
+  }
+],
 
 ////////////////////////////////////////
 //Element 32 defines the zoom buttons.//
@@ -4482,7 +4578,11 @@ ZoomButtons = React.createClass({
 module.exports = ZoomButtons;
 
 
-},{"../core/util":15,"./React-shim":29,"./createSetStateOnEventMixin":33}],
+},{"../core/util":15,
+   "./React-shim":29,
+   "./createSetStateOnEventMixin":33
+  }
+],
 
 //////////////////////////////////////////////////////////////////
 //Element 33 defines what happens when you click on a tool icon.//
@@ -4509,7 +4609,8 @@ module.exports = createSetStateOnEventMixin = function(eventName) {
 };
 
 
-},{"./React-shim":29}],
+},{"./React-shim":29}
+],
 
 ///////////////////////////////////////////////////////////
 //Element 34 defines how to create a tool button on load.//
@@ -4567,7 +4668,10 @@ createToolButton = function(_arg) {
 module.exports = createToolButton;
 
 
-},{"../core/util":15,"./React-shim":29}],
+},{"../core/util":15,
+   "./React-shim":29
+  }
+],
 
 ///////////////////////////////////////////////////////////////
 //Element 35 describes how to initialize the main containers.//
@@ -4618,7 +4722,13 @@ init = function(pickerElement, gamepartsElement, optionsElement, lc, tools, imag
 module.exports = init;
 
 
-},{"./Options":26,"./Gameparts":27,"./Picker":28,"./React-shim":29,"./createToolButton":34}],
+},{"./Options":26,
+   "./Gameparts":27,
+   "./Picker":28,
+   "./React-shim":29,
+   "./createToolButton":34
+  }
+],
 
 ////////////////////////////////////////
 //Element 36 defines the ellipse tool.//
@@ -4669,7 +4779,10 @@ module.exports = Ellipse = (function(_super) {
 })(ToolWithStroke);
 
 
-},{"../core/shapes":13,"./base":45}],
+},{"../core/shapes":13,
+   "./base":45
+  }
+],
 
 ////////////////////////////////////////////////////////////////////////////////
 //Element 37 defines the some general behaviors of the eraser and pencil tool.//
@@ -4713,7 +4826,10 @@ module.exports = Eraser = (function(_super) {
 })(Pencil);
 
 
-},{"../core/shapes":13,"./Pencil":41}],
+},{"../core/shapes":13,
+   "./Pencil":41
+  }
+],
 
 ///////////////////////////////////////////
 //Element 38 defines the eyedropper tool.//
@@ -4756,7 +4872,8 @@ module.exports = Eyedropper = (function(_super) {
 })(Tool);
 
 
-},{"./base":45}],
+},{"./base":45}
+],
 
 /////////////////////////////////////
 //Element 39 defines the line tool.//
@@ -4819,7 +4936,10 @@ module.exports = Line = (function(_super) {
 })(Tool);
 
 
-},{"../core/shapes":13,"./base":45}],
+},{"../core/shapes":13,
+   "./base":45
+  }
+],
 
 ////////////////////////////////////
 //Element 40 defines the pan tool.//
@@ -4894,7 +5014,10 @@ module.exports = Pan = (function(_super) {
 })(Tool);
 
 
-},{"../core/shapes":13,"./base":45}],
+},{"../core/shapes":13,
+   "./base":45
+  }
+],
 
 ///////////////////////////////////////
 //Element 41 defines the pencil tool.//
@@ -4962,7 +5085,10 @@ module.exports = Pencil = (function(_super) {
 })(ToolWithStroke);
 
 
-},{"../core/shapes":13,"./base":45}],
+},{"../core/shapes":13,
+   "./base":45
+  }
+],
 
 ////////////////////////////////////////////////////////////////////////
 //Element 42 defines the pencil tool? What? Why so many pencil things?//
@@ -5199,7 +5325,10 @@ module.exports = Pencil = (function(_super) {
 })(ToolWithStroke);
 
 
-},{"../core/shapes":13,"./base":45}],
+},{"../core/shapes":13,
+   "./base":45
+  }
+],
 
 //////////////////////////////////////////
 //Element 43 defines the rectangle tool.//
@@ -5250,7 +5379,10 @@ module.exports = Rectangle = (function(_super) {
 })(ToolWithStroke);
 
 
-},{"../core/shapes":13,"./base":45}],
+},{"../core/shapes":13,
+   "./base":45
+  }
+],
 
 //////////////////////////////////////////////////////
 //Element 46 is out of order. Defines the card tool.//
@@ -5301,7 +5433,10 @@ module.exports = Card = (function(_super) {
 })(ToolWithStroke);
 
 
-},{"../core/shapes":13,"./base":45}],
+},{"../core/shapes":13,
+   "./base":45
+  }
+],
 
 /////////////////////////////////////////////////////////////////////////////////////
 //Element 44 defines the behavior for moving a text box.
@@ -5672,7 +5807,10 @@ module.exports = Text = (function(_super) {
 })(Tool);
 
 
-},{"../core/shapes":13,"./base":45}],
+},{"../core/shapes":13,
+   "./base":45
+  }
+],
 
 /////////////////////////////////////////
 //Element 45 defines tools with stroke.//
