@@ -1927,9 +1927,9 @@ module.exports = math;
   }
 ],
 
-/////////////////////////////////////////////////////////////////
-//Element 11 is for turning on a watermark or background image.//
-/////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+//Element 11 is rendering the snapshot of the canvas to an image.//
+///////////////////////////////////////////////////////////////////
 
 11:[function(_dereq_,module,exports){
 var INFINITE, JSONToShape, renderWatermark, util;
@@ -4217,6 +4217,8 @@ ClearButton = React.createFactory(_dereq_('./ClearButton'));
 UndoRedoButtons = React.createFactory(_dereq_('./UndoRedoButtons'));
 
 ZoomButtons = React.createFactory(_dereq_('./ZoomButtons'));
+    
+/*SaveButton = React.createFactory(_dereq_('./SaveButton'));*/
 
 _ = _dereq_('../core/localization')._;
 
@@ -5384,60 +5386,6 @@ module.exports = Rectangle = (function(_super) {
   }
 ],
 
-//////////////////////////////////////////////////////
-//Element 46 is out of order. Defines the card tool.//
-//////////////////////////////////////////////////////
-
-46:[function(_dereq_,module,exports){
-var Card, ToolWithStroke, createShape,
-  __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
-
-ToolWithStroke = _dereq_('./base').ToolWithStroke;
-
-createShape = _dereq_('../core/shapes').createShape;
-
-module.exports = Card = (function(_super) {
-  __extends(Card, _super);
-
-  function Card() {
-    return Card.__super__.constructor.apply(this, arguments);
-  }
-
-  Card.prototype.name = 'Card';
-
-  Card.prototype.iconName = 'card';
-
-  Card.prototype.begin = function(x, y, lc) {
-    return this.currentShape = createShape('Card', {
-      x: x,
-      y: y,
-      strokeWidth: this.strokeWidth,
-      strokeColor: lc.getColor('primary'),
-      fillColor: lc.getColor('secondary')
-    });
-  };
-
-  Card.prototype["continue"] = function(x, y, lc) {
-   /* this.currentShape.width = x - this.currentShape.x;
-    this.currentShape.height = y - this.currentShape.y;
-    return lc.drawShapeInProgress(this.currentShape);
-  */};
-
-  Card.prototype.end = function(x, y, lc) {
-    return lc.saveShape(this.currentShape);
-  };
-
-  return Card;
-
-})(ToolWithStroke);
-
-
-},{"../core/shapes":13,
-   "./base":45
-  }
-],
-
 /////////////////////////////////////////////////////////////////////////////////////
 //Element 44 defines the behavior for moving a text box.
 //Any click inside the box won't do anything. The first click outside of the box
@@ -5864,6 +5812,65 @@ tools.ToolWithStroke = ToolWithStroke = (function(_super) {
 module.exports = tools;
 
 
-},{}]},{},[18])
+},{}],
+            
+
+/////////////////////////////////////////////////////////////////
+//Element 46 defines the card tool, which needs to be banished.//
+/////////////////////////////////////////////////////////////////
+
+46:[function(_dereq_,module,exports){
+var Card, ToolWithStroke, createShape,
+  __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+ToolWithStroke = _dereq_('./base').ToolWithStroke;
+
+createShape = _dereq_('../core/shapes').createShape;
+
+module.exports = Card = (function(_super) {
+  __extends(Card, _super);
+
+  function Card() {
+    return Card.__super__.constructor.apply(this, arguments);
+  }
+
+  Card.prototype.name = 'Card';
+
+  Card.prototype.iconName = 'card';
+
+  Card.prototype.begin = function(x, y, lc) {
+    return this.currentShape = createShape('Card', {
+      x: x,
+      y: y,
+      strokeWidth: this.strokeWidth,
+      strokeColor: lc.getColor('primary'),
+      fillColor: lc.getColor('secondary')
+    });
+  };
+
+  Card.prototype["continue"] = function(x, y, lc) {
+   /* this.currentShape.width = x - this.currentShape.x;
+    this.currentShape.height = y - this.currentShape.y;
+    return lc.drawShapeInProgress(this.currentShape);
+  */};
+
+  Card.prototype.end = function(x, y, lc) {
+    return lc.saveShape(this.currentShape);
+  };
+
+  return Card;
+
+})(ToolWithStroke);
+
+
+},{"../core/shapes":13,
+   "./base":45
+  }
+]
+   
+
+        
+},{},[18])
 (18)
 });
