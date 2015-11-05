@@ -1,6 +1,37 @@
 //Don't touch the scary ugly beast from lines 3 to 9.
 
-!function(e){if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.LC=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
+! function(e) {
+    if ("object" == typeof exports) module.exports = e();
+    else if ("function" == typeof define && define.amd) define(e);
+    else {
+        var f;
+        "undefined" != typeof window ? f = window : "undefined" != typeof global ? f = global : "undefined" != typeof self && (f = self), f.LC = e()
+    }
+}(function() {
+        var define, module, exports;
+        return (function e(t, n, r) {
+            function s(o, u) {
+                if (!n[o]) {
+                    if (!t[o]) {
+                        var a = typeof require == "function" && require;
+                        if (!u && a) return a(o, !0);
+                        if (i) return i(o, !0);
+                        throw new Error("Cannot find module '" + o + "'")
+                    }
+                    var f = n[o] = {
+                        exports: {}
+                    };
+                    t[o][0].call(f.exports, function(e) {
+                        var n = t[o][1][e];
+                        return s(n ? n : e)
+                    }, f, f.exports, e, t, n, r)
+                }
+                return n[o].exports
+            }
+            var i = typeof require == "function" && require;
+            for (var o = 0; o < r.length; o++) s(r[o]);
+            return s
+        })({1:[function(_dereq_,module,exports){
 
 },{}],
 
@@ -780,11 +811,22 @@ module.exports = LiterallyCanvas = (function() {
 
 })();
 
+
+},{"../tools/Pencil":41,
+   "./actions":4,
+   "./bindEvents":5,
+   "./canvasRenderer":6,
+   "./math":10,
+   "./renderSnapshotToImage":11,
+   "./renderSnapshotToSVG":12,
+   "./shapes":13,
+   "./svgRenderer":14,
+   "./util":15}],
+
+            
 //^And so ends the bear of an export function.
 
 //Now begins the long list of elements of which the entire tool is comprised.
-},{"../tools/Pencil":41,"./actions":4,"./bindEvents":5,"./canvasRenderer":6,"./math":10,"./renderSnapshotToImage":11,"./renderSnapshotToSVG":12,"./shapes":13,"./svgRenderer":14,"./util":15}],
-
 
 /////////////////////////////////////////////
 //Element 3: Defines font option behaviors.//
@@ -3055,29 +3097,29 @@ util = {
 
     //RESIZE FUNCTION
 
-    // var resize;
-    // if (callback == null) {
-    //   callback = function() {};
-    // }
-    // resize = (function(_this) {
-    //   return function() {
-    //     var el, _i, _len;
-    //     for (_i = 0, _len = elementsToResize.length; _i < _len; _i++) {
-    //       el = elementsToResize[_i];
-    //       el.style.width = "" + elementToMatch.offsetWidth + "px";
-    //       el.style.height = "" + elementToMatch.offsetHeight + "px";
-    //       if (el.width != null) {
-    //         el.setAttribute('width', el.offsetWidth * scale);
-    //         el.setAttribute('height', el.offsetHeight * scale);
-    //       }
-    //     }
-    //     return callback();
-    //   };
-    // })(this);
-    // elementToMatch.addEventListener('resize', resize);
-    // window.addEventListener('resize', resize);
-    // window.addEventListener('orientationchange', resize);
-    // return resize();
+   /*  var resize;
+     if (callback == null) {
+       callback = function() {};
+     }
+     resize = (function(_this) {
+       return function() {
+         var el, _i, _len;
+         for (_i = 0, _len = elementsToResize.length; _i < _len; _i++) {
+           el = elementsToResize[_i];
+           el.style.width = "" + elementToMatch.offsetWidth + "px";
+           el.style.height = "" + elementToMatch.offsetHeight + "px";
+           if (el.width != null) {
+             el.setAttribute('width', el.offsetWidth * scale);
+             el.setAttribute('height', el.offsetHeight * scale);
+           }
+         }
+         return callback();
+       };
+     })(this);
+     elementToMatch.addEventListener('resize', resize);
+     window.addEventListener('resize', resize);
+     window.addEventListener('orientationchange', resize);
+     return resize();*/
   },
   combineCanvases: function() {
     var c, canvas, canvases, ctx, _i, _j, _len, _len1;
@@ -3291,13 +3333,13 @@ tools = {
   Ellipse: _dereq_('./tools/Ellipse'),
   Text: _dereq_('./tools/Text'),
   Polygon: _dereq_('./tools/Polygon'),
-  Pan: _dereq_('./tools/Pan'),
+  /*Pan: _dereq_('./tools/Pan'),*/
   Eyedropper: _dereq_('./tools/Eyedropper'),
   Tool: baseTools.Tool,
   ToolWithStroke: baseTools.ToolWithStroke
 };
 
-defaultTools = [tools.Card, tools.Pencil, tools.Eraser, tools.Line, tools.Rectangle, tools.Ellipse, tools.Text, tools.Polygon, tools.Pan, tools.Eyedropper];
+defaultTools = [tools.Card, tools.Pencil, tools.Eraser, tools.Line, tools.Rectangle, tools.Ellipse, tools.Text, tools.Polygon, /*tools.Pan,*/ tools.Eyedropper];
 
 
 defaultImageURLPrefix = 'lib/img';
@@ -4164,10 +4206,10 @@ Picker = React.createClass({
     }), UndoRedoButtons({
       lc: lc,
       imageURLPrefix: imageURLPrefix
-    }), ZoomButtons({
+    }), /*ZoomButtons({
       lc: lc,
       imageURLPrefix: imageURLPrefix
-    }), ClearButton({
+    }),*/ ClearButton({
       lc: lc
     })));
   }
