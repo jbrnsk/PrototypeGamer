@@ -5871,9 +5871,10 @@ module.exports = Card = (function(_super) {
   }
 ],
             
-/////////////////////////////////////////////////
-//Element 47 defines the save component button.//
-/////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+//Element 47 defines the save component button./////////////
+//I'm trying to morph the clear button into a save button.//
+////////////////////////////////////////////////////////////
 
 47:[function(_dereq_,module,exports){
 var SaveComponentButton, React, classSet, createSetStateOnEventMixin, _;
@@ -5885,7 +5886,32 @@ createSetStateOnEventMixin = _dereq_('./createSetStateOnEventMixin');
 _ = _dereq_('../core/localization')._;
 
 classSet = _dereq_('../core/util').classSet;
-
+    
+var imageSize = {width: 320, height: 320};
+var imageBounds = {
+      x: 0, y: 0, width: imageSize.width, height: imageSize.height
+    };
+    
+//Documentation for exporting an image on the literally canvas website.
+    
+/*
+  $(document).ready(function() {
+    var imageSize = {width: 200, height: 200};
+    var imageBounds = {
+      x: 0, y: 0, width: imageSize.width, height: imageSize.height
+    };
+    var lc = LC.init(
+      document.getElementsByClassName('literally export-bounded')[0],
+      {imageSize: imageSize}
+    );
+    $('.controls.export-bounded [data-action=export-as-png]')
+      .click(function(e) {
+        e.preventDefault();
+        window.open(lc.getImage({rect: imageBounds}).toDataURL());
+      });
+  }); 
+    */
+    
 SaveComponentButton = React.createClass({
   displayName: 'SaveComponentButton',
   getState: function() {
@@ -5909,7 +5935,8 @@ SaveComponentButton = React.createClass({
     });
     onClick = lc.canUndo() ? ((function(_this) {
       return function() {
-        return lc.clear();
+        /*return lc.getImage();*/
+        window.open(lc.getImage({rect: imageBounds}).toDataURL()); 
       };
     })(this)) : function() {};
     return div({
