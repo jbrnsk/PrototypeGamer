@@ -8,19 +8,24 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react-with-addons.js"></script>
 
     <!-- Literally Canvas -->
-    <script src="js/literallycanvas.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/literallycanvas.js"></script>
     
   </head>
   <body>
     <!-- where the widget goes. you can do CSS to it. -->
     <div class="literally"></div>
-    
+    <form class="imgur-submit">
+        <input type="submit" data-action="upload-to-imgur" value="Upload to Imgur">
+    </form>
     <!-- kick it off -->
     <script>
         // Look ma, no jQuery!
-
-        LC.init(
+        
+        var TTS_Test = createdJSON("http://google.com");
+        var TTS_SaveFile;
+        var lc = LC.init(
             document.getElementsByClassName('literally')[0],
             {imageURLPrefix: 'img'}
         );
@@ -28,7 +33,58 @@
         /* or if you just love jQuery,
             $('.literally').literallycanvas({imageURLPrefix: 'img'})
         */
+        
+          $(document).ready(function(){
+    
+    $('[data-action=upload-to-imgur]').click(function(e) {
+      e.preventDefault();
+        
+        var url;
 
+      $('.imgur-submit').html('Uploading...')
+
+      // this is all standard Imgur API; only LC-specific thing is the image
+      // data argument;
+      $.ajax({
+        url: 'https://api.imgur.com/3/image',
+        type: 'POST',
+        async: false,
+        headers: {
+          // Your application gets an imgurClientId from Imgur
+          Authorization: 'Client-ID ' + 'a804111608f1744',
+          Accept: 'application/json'
+        },
+        data: {
+          // convert the image data to base64
+          image:  lc.canvasForExport().toDataURL().split(',')[1],
+          type: 'base64'
+        },
+        success: function(result) {
+          url = 'https://i.imgur.com/' + result.data.id +'.png';
+          $('.imgur-submit').html("<a href='" + url + "'>" + url + "</a>");
+         
+          //console.log(TTS_SaveFile);
+        
+            
+            //TTS_Test.ObjectStates[0].CustomDeck[1].FaceURL = url;
+            //TTS_Test.ObjectStates[0].CustomDeck[1].BackURL = url;
+          
+        },
+      });
+        
+    //var TTS_Test = createdJSON(url);
+        //console.log(url);
+    //console.log(TTS_Test.ObjectStates[0].CustomDeck[1].BackURL);
+         TTS_Test = createdJSON(url);
+          TTS_SaveFile = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(TTS_Test));
+    
+        
+    });
+  });
+        
+//        console.log(TTS_Test.ObjectStates[0].CustomDeck[1].BackURL);
+        
+        
     </script>
     
   </body>
