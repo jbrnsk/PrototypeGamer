@@ -355,11 +355,11 @@ console.log("Reset");*/
             for (var o = 0; o < r.length; o++) s(r[o]);
             return s
         })({
-            
+
 ///////////////////////////////////
 //Element 1. I don't really know.//
 ///////////////////////////////////
-            
+
 1:[function(_dereq_,module,exports){
 
 },{}],
@@ -1152,7 +1152,7 @@ module.exports = LiterallyCanvas = (function() {
    "./svgRenderer":14,
    "./util":15}],
 
-            
+
 //^And so ends the bear of an export function.
 
 //Now begins the long list of elements of which the entire tool is comprised.
@@ -4532,13 +4532,13 @@ var ClearButton, ColorPickers, ColorWell, Picker, React, UndoRedoButtons, ZoomBu
 React = _dereq_('./React-shim');
 
 ClearButton = React.createFactory(_dereq_('./ClearButton'));
-    
+
 SaveComponentButton = React.createFactory(_dereq_('./SaveComponentButton'));
 
 UndoRedoButtons = React.createFactory(_dereq_('./UndoRedoButtons'));
 
 ZoomButtons = React.createFactory(_dereq_('./ZoomButtons'));
-    
+
 /*SaveButton = React.createFactory(_dereq_('./SaveButton'));*/
 
 _ = _dereq_('../core/localization')._;
@@ -4618,7 +4618,7 @@ Picker = React.createClass({
       lc: lc
     }),SaveComponentButton({
       lc: lc
-    }) 
+    })
     ));
   }
 });
@@ -6138,7 +6138,7 @@ module.exports = tools;
 
 
 },{}],
-            
+
 
 /////////////////////////////////////////////////////////////////
 //Element 46 defines the card tool, which needs to be banished.//
@@ -6193,7 +6193,7 @@ module.exports = Card = (function(_super) {
    "./base":45
   }
 ],
-            
+
 ////////////////////////////////////////////////////////////
 //Element 47 defines the save component button./////////////
 //I'm trying to morph the clear button into a save button.//
@@ -6209,14 +6209,14 @@ createSetStateOnEventMixin = _dereq_('./createSetStateOnEventMixin');
 _ = _dereq_('../core/localization')._;
 
 classSet = _dereq_('../core/util').classSet;
-    
+
 var imageSize = {width: 250, height: 350};
 var imageBounds = {
       x: 0, y: 0, width: imageSize.width, height: imageSize.height
     };
-    
+
 //Documentation for exporting an image on the literally canvas website.
-    
+
 /*
   $(document).ready(function() {
     var imageSize = {width: 200, height: 200};
@@ -6232,9 +6232,9 @@ var imageBounds = {
         e.preventDefault();
         window.open(lc.getImage({rect: imageBounds}).toDataURL());
       });
-  }); 
+  });
     */
-    
+
 SaveComponentButton = React.createClass({
   displayName: 'SaveComponentButton',
   getState: function() {
@@ -6248,20 +6248,11 @@ SaveComponentButton = React.createClass({
   mixins: [createSetStateOnEventMixin('drawingChange')],
   render: function() {
     var className, div, lc, onClick;
-      
+
     //Going to be beastly for a moment, an entire TTS Save File.
-      
-   
-    var TTS_SaveFile = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(TTS_Test));
-    
-    
-      
-      
-      
-      
-      
-      
-      
+
+
+
     div = React.DOM.div;
     lc = this.props.lc;
     className = classSet({
@@ -6270,19 +6261,21 @@ SaveComponentButton = React.createClass({
       'fat-button': true,
       'disabled': !this.state.isEnabled
     });
+
     onClick = lc.canUndo() ? ((function(_this) {
       return function() {
+
+        window.open("data:" + TTS_SaveFile, '_blank');
+
         /*return lc.getImage();*/
         //window.open(lc.getImage({rect: imageBounds}).toDataURL());
-        window.open("data:" + TTS_SaveFile, '_blank');
+        
         /*window.focus();*/
-/*        localStorage.setItem('gameStorage', JSON.stringify(TTS_Test));
+        /*localStorage.setItem('gameStorage', JSON.stringify(TTS_Test));
         var TTS_Test = JSON.parse(localStorage.getItem('gameStorage'));
         download(TTS_Test);*/
         ////////////////////////////////////////
         //Creating JSON file, documentation.//
-          
-          
         /*var obj = {
             name: 'Dhayalan',
             score: 100
@@ -6302,7 +6295,6 @@ SaveComponentButton = React.createClass({
 
 module.exports = SaveComponentButton;
 
-
 },{"../core/localization":9,
    "../core/util":15,
    "./React-shim":29,
@@ -6310,9 +6302,9 @@ module.exports = SaveComponentButton;
   }
 ]
 
-   
 
-        
+
+
 },{},[18])
 (18)
 });

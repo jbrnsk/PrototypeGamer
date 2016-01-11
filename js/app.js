@@ -1,5 +1,4 @@
 //Some extra custom functions here.
-
 window.onload = function()  {
   var canvas_1 = document.getElementsByTagName('canvas')[0];
   canvas_1.width  = 250;
@@ -10,11 +9,10 @@ window.onload = function()  {
   canvas_2.height = 350;
 };
 
-
 function createdJSON(url){
-  
-   var TTS_Test = {
-
+   uploaded = true;
+   
+   TTS_Test = {
               "SaveName": "TTS_Test",
               "GameMode": "Pachisi",
               "Date": "12/7/2015 1:08:48 PM",
@@ -329,10 +327,10 @@ function createdJSON(url){
                   },
                   "id": 9
                 }
-
             }
     };
-//console.log("Reset");
-  
-  return TTS_Test;
+
+  //console.log("Reset");
+  // return TTS_Test;
+  TTS_SaveFile = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(TTS_Test));
 };
