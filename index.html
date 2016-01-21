@@ -17,7 +17,9 @@
     <!-- where the widget goes. you can do CSS to it. -->
     <div class="literally"></div>
     <form class="imgur-submit">
+        <input type="text" name = "cardName" placeholder = "Enter card name here"/>
         <input type="submit" data-action="upload-to-imgur" value="Upload to Imgur">
+        <p class="message"></p>
     </form>
 
     <!-- kick it off -->
@@ -28,6 +30,7 @@
         var TTS_SaveFile;
         var url;
         var uploaded = false;
+        var cardName;
 
         var lc = LC.init(
             document.getElementsByClassName('literally')[0],
@@ -41,10 +44,13 @@
         $('[data-action=upload-to-imgur]').click(function(e) {
             e.preventDefault();
 
-            $('.imgur-submit').html('Uploading...');
+            $('.message').html('Uploading...');
+            
+            cardName = $('input[name="cardName"]').val();
 
             // this is all standard Imgur API; only LC-specific thing is the image
             // data argument;
+            
             $.ajax({
               url: 'https://api.imgur.com/3/image',
               type: 'POST',
@@ -60,7 +66,7 @@
               },
               success: function(result) {
                 url = 'https://i.imgur.com/' + result.data.id +'.png';
-                $('.imgur-submit').html("<a href='" + url + "'>" + url + "</a>");
+                $('.message').html("<a href='" + url + "'>" + url + "</a>");
                 createdJSON('https://i.imgur.com/' + result.data.id +'.png');
               },
             });
