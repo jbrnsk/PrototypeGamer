@@ -26,11 +26,10 @@
     <script>
       $(document).ready(function(){
         // Look ma, no jQuery!
-        var TTS_Test;
-        var TTS_SaveFile;
         var url;
         var uploaded = false;
         var cardName;
+        var i = 1;
 
         var lc = LC.init(
             document.getElementsByClassName('literally')[0],
@@ -43,33 +42,51 @@
 
         $('[data-action=upload-to-imgur]').click(function(e) {
             e.preventDefault();
-
-            $('.message').html('Uploading...');
-            
             cardName = $('input[name="cardName"]').val();
+      
+            if(cardName){
 
-            // this is all standard Imgur API; only LC-specific thing is the image
-            // data argument;
-            
-            $.ajax({
-              url: 'https://api.imgur.com/3/image',
-              type: 'POST',
-              headers: {
-                // Your application gets an imgurClientId from Imgur
-                Authorization: 'Client-ID ' + 'a804111608f1744',
-                Accept: 'application/json'
-              },
-              data: {
-                // convert the image data to base64
-                image:  lc.canvasForExport().toDataURL().split(',')[1],
-                type: 'base64'
-              },
-              success: function(result) {
-                url = 'https://i.imgur.com/' + result.data.id +'.png';
-                $('.message').html("<a href='" + url + "'>" + url + "</a>");
-                createdJSON('https://i.imgur.com/' + result.data.id +'.png');
-              },
-            });
+
+              $('.message').html('Uploading...');
+
+
+              // this is all standard Imgur API; only LC-specific thing is the image
+              // data argument;
+
+              $.ajax({
+                url: 'https://api.imgur.com/3/image',
+                type: 'POST',
+                headers: {
+                  // Your application gets an imgurClientId from Imgur
+                  Authorization: 'Client-ID ' + 'a804111608f1744',
+                  Accept: 'application/json'
+                },
+                data: {
+                  // convert the image data to base64
+                  image:  lc.canvasForExport().toDataURL().split(',')[1],
+                  type: 'base64'
+                },
+                success: function(result) {
+                  url = 'https://i.imgur.com/' + result.data.id +'.png';
+                  $('.message').html("<a href='" + url + "'>" + url + "</a>");
+
+                  //TTS_Test = createdJSON();
+                  TTS_Test.ObjectStates[0].CustomDeck[cardName] = {
+                                                            "FaceURL": url,
+                                                            "BackURL": url,
+                                                            "NumWidth": 10,
+                                                            "NumHeight": 7
+                                                          };
+                  i++;
+
+                  createdJSON(TTS_Test);
+                  console.log(TTS_Test.ObjectStates[0].CustomDeck);
+                },
+              });
+            } else {
+              alert("Enter Card Name");
+            }
+
           });
         });
     </script>
