@@ -9,6 +9,17 @@ window.onload = function()  {
   canvas_2.height = 350;
 };
 
+ $('.card-list button').click(function(e){
+     e.preventDefault();
+     
+     alert("clicked!");
+    var url = $(this).data('img-url');
+    var name = $(this).html();
+    var newImage = new Image();
+    newImage.src = url;
+    lc.saveShape(LC.createShape('Image', {x: 10, y: 10, image: newImage}));
+    $(".cardName").val(name);
+ });
 
  TTS_Test = {
             "SaveName": "TTS_Test",
