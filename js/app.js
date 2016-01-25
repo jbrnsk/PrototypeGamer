@@ -1,25 +1,39 @@
 //Some extra custom functions here.
+var ctx;
+var canvas_1;
+var canvas_2;
+
 window.onload = function()  {
-  var canvas_1 = document.getElementsByTagName('canvas')[0];
+  canvas_1 = document.getElementsByTagName('canvas')[0];
   canvas_1.width  = 250;
   canvas_1.height = 350;
 
-  var canvas_2 = document.getElementsByTagName('canvas')[1];
+  // ctx.canvas_1
+
+  canvas_2 = document.getElementsByTagName('canvas')[1];
   canvas_2.width  = 250;
   canvas_2.height = 350;
+
+  ctx = canvas_2.getContext("2d");
 };
 
- $('.card-list button').click(function(e){
+
+function addCard() {
+  $('.card-list button').click(function(e){
      e.preventDefault();
-     
-     alert("clicked!");
-    var url = $(this).data('img-url');
-    var name = $(this).html();
-    var newImage = new Image();
-    newImage.src = url;
-    lc.saveShape(LC.createShape('Image', {x: 10, y: 10, image: newImage}));
-    $(".cardName").val(name);
- });
+     var cardUrl = $(this).data('img-url');
+     var name = $(this).html();
+     var newImage = new Image();
+     newImage.src = cardUrl;
+
+     $("input[name='cardName']").val(name);
+
+     ctx.fillRect(0,0,250,350);
+     ctx.fillStyle = "white";
+     ctx.fill();
+     ctx.drawImage(newImage, 0, 0, canvas_2.width, canvas_2.height);
+  });
+}
 
  TTS_Test = {
             "SaveName": "TTS_Test",

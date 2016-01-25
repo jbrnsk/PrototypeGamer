@@ -5948,7 +5948,7 @@ SaveComponentButton = React.createClass({
 
         /*return lc.getImage();*/
         //window.open(lc.getImage({rect: imageBounds}).toDataURL());
-        
+
         /*window.focus();*/
         /*localStorage.setItem('gameStorage', JSON.stringify(TTS_Test));
         var TTS_Test = JSON.parse(localStorage.getItem('gameStorage'));

@@ -38,6 +38,7 @@
             {imageURLPrefix: 'img'}
         );
 
+
         /* or if you just love jQuery,
             $('.literally').literallycanvas({imageURLPrefix: 'img'})
         */
@@ -98,19 +99,9 @@
                   console.log(TTS_Test.ObjectStates[0].CustomDeck);
 
                   $('.card-list').append('<li><button data-img-url="'+ url +'">'+ cardName + '</button></li>');
+                  $('input[name="cardName"]').val('');
+                  addCard();
 
-                  $('.card-list button').click(function(){
-                    e.preventDefault();
-                     //
-                    //alert("clicked!");
-                     var cardUrl = $(this).data('img-url');
-                     var name = $(this).html();
-                     var newImage = new Image();
-                     newImage.src = cardUrl;
-                     //SCALE NOT WORKING??
-                     lc.saveShape(LC.createShape('Image', {x: -10, y: -10, image: newImage, scale: 0.01}));
-                     $(".cardName").val(name);
-                  });
                 },
               });
             } else {
