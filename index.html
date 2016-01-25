@@ -21,6 +21,8 @@
         <input type="submit" data-action="upload-to-imgur" value="Upload to Imgur">
         <p class="message"></p>
     </form>
+    
+    <ul class="card-list"></ul>
 
     <!-- kick it off -->
     <script>
@@ -81,6 +83,8 @@
 
                   createdJSON(TTS_Test);
                   console.log(TTS_Test.ObjectStates[0].CustomDeck);
+                    
+                  $('.card-list').append("<li>"+ cardName + "</li>");
                 },
               });
             } else {
