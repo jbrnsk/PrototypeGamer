@@ -21,7 +21,7 @@
         <input type="submit" data-action="upload-to-imgur" value="Upload to Imgur">
         <p class="message"></p>
     </form>
-    
+
     <ul class="card-list"></ul>
 
     <!-- kick it off -->
@@ -41,23 +41,24 @@
         /* or if you just love jQuery,
             $('.literally').literallycanvas({imageURLPrefix: 'img'})
         */
-          
-         $('button').click(function(e){
-             e.preventDefault();
 
-             alert("clicked!");
-            var url = $(this).data('img-url');
-            var name = $(this).html();
-            var newImage = new Image();
-            newImage.src = url;
-            lc.saveShape(LC.createShape('Image', {x: 10, y: 10, image: newImage}));
-            $(".cardName").val(name);
-         });
+         //$('button').click(function(e){
+            //  e.preventDefault();
+             //
+            //alert("clicked!");
+            //  var url = $(this).data('img-url');
+            //  var name = $(this).html();
+            //  var newImage = new Image();
+            //  newImage.src = url;
+            //  lc.saveShape(LC.createShape('Image', {x: 10, y: 10, image: newImage}));
+            //  $(".cardName").val(name);
+         //});
+
 
         $('[data-action=upload-to-imgur]').click(function(e) {
             e.preventDefault();
             cardName = $('input[name="cardName"]').val();
-      
+
             if(cardName){
 
 
@@ -95,8 +96,21 @@
 
                   createdJSON(TTS_Test);
                   console.log(TTS_Test.ObjectStates[0].CustomDeck);
-                    
+
                   $('.card-list').append('<li><button data-img-url="'+ url +'">'+ cardName + '</button></li>');
+
+                  $('.card-list button').click(function(){
+                    e.preventDefault();
+                     //
+                    //alert("clicked!");
+                     var cardUrl = $(this).data('img-url');
+                     var name = $(this).html();
+                     var newImage = new Image();
+                     newImage.src = cardUrl;
+                     //SCALE NOT WORKING??
+                     lc.saveShape(LC.createShape('Image', {x: -10, y: -10, image: newImage, scale: 0.01}));
+                     $(".cardName").val(name);
+                  });
                 },
               });
             } else {
