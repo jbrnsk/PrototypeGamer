@@ -21,9 +21,9 @@
         <input type="submit" data-action="upload-to-imgur" value="Upload to Imgur">
         <p class="message"></p>
     </form>
-
+    <a href="data:application/xml;charset=utf-8,your code here" download="TS_Save_1.json">Save</a>
     <ul class="card-list"></ul>
-
+    
     <!-- kick it off -->
     <script>
       $(document).ready(function(){
@@ -101,6 +101,8 @@
                   $('.card-list').append('<li><button data-img-url="'+ url +'">'+ cardName + '</button></li>');
                   $('input[name="cardName"]').val('');
                   addCard();
+                    
+                  $('a[download]').attr("href", "data:application/" + TTS_SaveFile);
 
                 },
               });
