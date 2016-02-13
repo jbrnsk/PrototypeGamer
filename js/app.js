@@ -2,6 +2,7 @@
 var ctx;
 var canvas_1;
 var canvas_2;
+var canvas_sprite;
 
 window.onload = function()  {
   canvas_1 = document.getElementsByTagName('canvas')[0];
@@ -17,8 +18,7 @@ window.onload = function()  {
   ctx = canvas_2.getContext("2d");
     
     
-    canvas_sprite = document.getElementById('sprite');
-
+  canvas_sprite = document.getElementById('sprite');
   sprite = canvas_sprite.getContext("2d");
 };
 
@@ -96,7 +96,7 @@ function spritesToImgur() {
         },
         dataType: 'json'
     }).success(function(data) {
-        var url = 'http://imgur.com/' + data.data.id + '?tags';
+        var url = 'http://imgur.com/' + data.data.id;
     }).error(function() {
         alert('Could not reach api.imgur.com. Sorry :(');
         w.close();
