@@ -51,7 +51,10 @@ function makeSprite(cards){
             x += 250;
             console.log(base_image.src);
         }
+        
+        spritesToImgur();
     }
+    
 
 };
 
@@ -70,6 +73,34 @@ function addCard() {
      ctx.fill();
      ctx.drawImage(newImage, 0, 0, canvas_2.width, canvas_2.height);
   });
+};
+
+function spritesToImgur() {
+    var img;
+    try {
+        img = canvas_sprite.toDataURL('image/jpeg', 0.9).split(',')[1];
+    } catch(e) {
+        img = canvas_sprite.toDataURL().split(',')[1];
+    }
+    var w = window.open();
+    w.document.write('Uploading to imgur.com...');
+    $.ajax({
+       url: 'https://api.imgur.com/3/upload.json',
+       type: 'POST',
+       headers: {
+           Authorization: 'Client-ID ' + 'a804111608f1744'
+       },
+       data: {
+            type: 'base64',
+            image: img
+        },
+        dataType: 'json'
+    }).success(function(data) {
+        var url = 'http://imgur.com/' + data.data.id + '?tags';
+    }).error(function() {
+        alert('Could not reach api.imgur.com. Sorry :(');
+        w.close();
+    });
 };
 
  TTS_Test = {
