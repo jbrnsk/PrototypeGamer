@@ -15,8 +15,45 @@ window.onload = function()  {
   canvas_2.height = 350;
 
   ctx = canvas_2.getContext("2d");
+    
+    
+    canvas_sprite = document.getElementById('sprite');
+
+  sprite = canvas_sprite.getContext("2d");
 };
 
+function makeSprite(cards){
+    event.preventDefault();
+    //figure out how many cards there are and set width
+    var count = 0;
+    var x = 0;
+    
+    
+    for (var k in cards) {
+        if (cards.hasOwnProperty(k)) {
+            base_image = new Image();
+            base_image.src = cards[k].FaceURL;
+            ++count;
+            //console.log(1);
+        }
+    }
+    
+    canvas_sprite.width = 250 * count;
+    canvas_sprite.height = 350;
+    
+   
+    base_image.onload = function(){
+        for (var k in cards) {
+            base_image = new Image();
+            base_image.src = cards[k].FaceURL;
+            //console.log(cards[k].FaceURL);
+            sprite.drawImage(base_image, x, 0, 250, 350);
+            x += 250;
+            console.log(base_image.src);
+        }
+    }
+
+};
 
 function addCard() {
   $('.card-list button').click(function(e){
@@ -33,7 +70,7 @@ function addCard() {
      ctx.fill();
      ctx.drawImage(newImage, 0, 0, canvas_2.width, canvas_2.height);
   });
-}
+};
 
  TTS_Test = {
             "SaveName": "TTS_Test",
@@ -354,4 +391,4 @@ function addCard() {
 
 function createdJSON(newJSON) {
   TTS_SaveFile = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(newJSON));
-}
+};

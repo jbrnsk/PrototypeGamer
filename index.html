@@ -22,7 +22,10 @@
         <p class="message"></p>
     </form>
     <a href="data:application/xml;charset=utf-8,your code here" download="TS_Save_1.json">Save</a>
+    <a href="#" onclick="makeSprite(TTS_Test.ObjectStates[0].CustomDeck)">Make Sprite</a>
     <ul class="card-list"></ul>
+    
+    <canvas id = "sprite"></canvas>
     
     <!-- kick it off -->
     <script>
@@ -103,6 +106,7 @@
                   addCard();
                     
                   $('a[download]').attr("href", "data:application/" + TTS_SaveFile);
+                  //makeSprite(TTS_Test.ObjectStates[0].CustomDeck);    
 
                 },
               });
