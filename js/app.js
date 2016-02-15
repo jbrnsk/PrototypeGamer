@@ -3,6 +3,11 @@ var ctx;
 var canvas_1;
 var canvas_2;
 var canvas_sprite;
+var myCards = {
+  cards : {
+
+  }
+};
 
 window.onload = function()  {
   canvas_1 = document.getElementsByTagName('canvas')[0];
@@ -23,7 +28,6 @@ window.onload = function()  {
 };
 
 function makeSprite(cards){
-    event.preventDefault();
     //figure out how many cards there are and set width
     var count = 0;
     var x = 0;
@@ -38,10 +42,8 @@ function makeSprite(cards){
             //console.log(1);
         }
     }
-
     canvas_sprite.width = 250 * count;
     canvas_sprite.height = 350;
-
 
     base_image.onload = function(){
         for (var k in cards) {
@@ -77,6 +79,8 @@ function addCard() {
   });
 };
 
+
+
 function spritesToImgur() {
   $.ajax({
     url: 'https://api.imgur.com/3/image',
@@ -94,6 +98,22 @@ function spritesToImgur() {
     success: function(result) {
       url = 'https://i.imgur.com/' + result.data.id +'.png';
       console.log(url);
+
+      cardsCount = 0;
+      for (var k in myCards.cards) {
+          if (myCards.cards.hasOwnProperty(k)) {
+              ++cardsCount;
+          }
+      }
+
+      TTS_Test.ObjectStates[0].CustomDeck[1] = {
+                                                        "FaceURL": url,
+                                                        "BackURL": "https://i.imgur.com/UHmHyZ5.png",
+                                                        "NumWidth": cardsCount,
+                                                        "NumHeight": 1
+                                                      };
+      createdJSON(TTS_Test);
+      $('a[download]').attr("href", "data:application/" + TTS_SaveFile);
 
     },
   });
