@@ -102,16 +102,17 @@ function spritesToImgur() {
       cardsCount = 0;
       for (var k in myCards.cards) {
           if (myCards.cards.hasOwnProperty(k)) {
-              ++cardsCount;
+            TTS_Test.ObjectStates[0].DeckIDs[cardsCount] = 100 + cardsCount;
+            ++cardsCount;
           }
       }
 
       TTS_Test.ObjectStates[0].CustomDeck[1] = {
-                                                        "FaceURL": url,
-                                                        "BackURL": "https://i.imgur.com/UHmHyZ5.png",
-                                                        "NumWidth": cardsCount,
-                                                        "NumHeight": 1
-                                                      };
+                                                  "FaceURL": url,
+                                                  "BackURL": "https://i.imgur.com/UHmHyZ5.png",
+                                                  "NumWidth": cardsCount,
+                                                  "NumHeight": 1
+                                                };
       createdJSON(TTS_Test);
       $('a[download]').attr("href", "data:application/" + TTS_SaveFile);
 
@@ -269,58 +270,7 @@ function spritesToImgur() {
                 "Sticky": true,
                 "SidewaysCard": false,
                 "DeckIDs": [
-                  101,
-                  102,
-                  103,
-                  104,
-                  105,
-                  106,
-                  107,
-                  108,
-                  109,
-                  110,
-                  111,
-                  112,
-                  113,
-                  114,
-                  115,
-                  116,
-                  117,
-                  118,
-                  119,
-                  120,
-                  121,
-                  122,
-                  123,
-                  124,
-                  125,
-                  126,
-                  127,
-                  128,
-                  129,
-                  130,
-                  131,
-                  132,
-                  133,
-                  134,
-                  135,
-                  136,
-                  137,
-                  138,
-                  139,
-                  140,
-                  141,
-                  142,
-                  143,
-                  144,
-                  145,
-                  146,
-                  147,
-                  148,
-                  149,
-                  150,
-                  151,
-                  100
+
                 ],
                 "CustomDeck": {
 
