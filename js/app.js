@@ -16,8 +16,8 @@ window.onload = function()  {
   canvas_2.height = 350;
 
   ctx = canvas_2.getContext("2d");
-    
-    
+
+
   canvas_sprite = document.getElementById('sprite');
   sprite = canvas_sprite.getContext("2d");
 };
@@ -27,34 +27,36 @@ function makeSprite(cards){
     //figure out how many cards there are and set width
     var count = 0;
     var x = 0;
-    
-    
+
+
     for (var k in cards) {
         if (cards.hasOwnProperty(k)) {
             base_image = new Image();
+            base_image.crossOrigin = "Anonymous";
             base_image.src = cards[k].FaceURL;
             ++count;
             //console.log(1);
         }
     }
-    
+
     canvas_sprite.width = 250 * count;
     canvas_sprite.height = 350;
-    
-   
+
+
     base_image.onload = function(){
         for (var k in cards) {
             base_image = new Image();
+            base_image.crossOrigin = "Anonymous";
             base_image.src = cards[k].FaceURL;
             //console.log(cards[k].FaceURL);
             sprite.drawImage(base_image, x, 0, 250, 350);
             x += 250;
             console.log(base_image.src);
         }
-        
+
         spritesToImgur();
     }
-    
+
 
 };
 
@@ -76,31 +78,25 @@ function addCard() {
 };
 
 function spritesToImgur() {
-    var img;
-    try {
-        img = canvas_sprite.toDataURL('image/jpeg', 0.9).split(',')[1];
-    } catch(e) {
-        img = canvas_sprite.toDataURL().split(',')[1];
-    }
-    var w = window.open();
-    w.document.write('Uploading to imgur.com...');
-    $.ajax({
-       url: 'https://api.imgur.com/3/upload.json',
-       type: 'POST',
-       headers: {
-           Authorization: 'Client-ID ' + 'a804111608f1744'
-       },
-       data: {
-            type: 'base64',
-            image: img
-        },
-        dataType: 'json'
-    }).success(function(data) {
-        var url = 'http://imgur.com/' + data.data.id;
-    }).error(function() {
-        alert('Could not reach api.imgur.com. Sorry :(');
-        w.close();
-    });
+  $.ajax({
+    url: 'https://api.imgur.com/3/image',
+    type: 'POST',
+    headers: {
+      // Your application gets an imgurClientId from Imgur
+      Authorization: 'Client-ID ' + 'a804111608f1744',
+      Accept: 'application/json'
+    },
+    data: {
+      // convert the image data to base64
+      image:  sprite.canvas.toDataURL().split(',')[1],
+      type: 'base64'
+    },
+    success: function(result) {
+      url = 'https://i.imgur.com/' + result.data.id +'.png';
+      console.log(url);
+
+    },
+  });
 };
 
  TTS_Test = {
