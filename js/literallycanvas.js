@@ -100,7 +100,7 @@ module.exports = LiterallyCanvas = (function() {
     this.colors = {
       primary: opts.primaryColor || '#000',
       secondary: opts.secondaryColor || '#fff',
-      background: opts.backgroundColor || 'transparent'
+      background: opts.backgroundColor || 'white'
     };
     this.containerEl.style['background-color'] = 'this.colors.background';
     this.watermarkImage = opts.watermarkImage;
@@ -114,7 +114,7 @@ module.exports = LiterallyCanvas = (function() {
     this.canvas.style['background-color'] = 'transparent';
     this.containerEl.appendChild(this.canvas);
     this.buffer = document.createElement('canvas');
-    this.buffer.style['background-color'] = 'transparent';
+    this.buffer.style['background-color'] = 'white';
     this.ctx = this.canvas.getContext('2d');
     this.bufferCtx = this.buffer.getContext('2d');
     this.backingScale = util.getBackingScale(this.ctx);
@@ -2084,7 +2084,7 @@ module.exports = function(snapshot, opts) {
   };
   width = imageSize.width, height = imageSize.height;
   colors = snapshot.colors || {
-    background: 'transparent'
+    background: 'white'
   };
   allShapes = shapes.concat(backgroundShapes);
   dummyCanvas = document.createElement('canvas');
@@ -3361,7 +3361,6 @@ tools = {
   Eraser: _dereq_('./tools/Eraser'),
   Line: _dereq_('./tools/Line'),
   Rectangle: _dereq_('./tools/Rectangle'),
-  Card: _dereq_('./tools/Card'),
   Ellipse: _dereq_('./tools/Ellipse'),
   Text: _dereq_('./tools/Text'),
   Polygon: _dereq_('./tools/Polygon'),
@@ -3371,7 +3370,7 @@ tools = {
   ToolWithStroke: baseTools.ToolWithStroke
 };
 
-defaultTools = [tools.Card, tools.Pencil, tools.Eraser, tools.Line, tools.Rectangle, tools.Ellipse, tools.Text, tools.Polygon, /*tools.Pan,*/ tools.Eyedropper];
+defaultTools = [tools.Pencil, tools.Eraser, tools.Line, tools.Rectangle, tools.Ellipse, tools.Text, tools.Polygon, /*tools.Pan,*/ tools.Eyedropper];
 
 
 defaultImageURLPrefix = 'lib/img';
@@ -3395,7 +3394,7 @@ init = function(el, opts) {
     opts.secondaryColor = '#fff';
   }
   if (opts.backgroundColor == null) {
-    opts.backgroundColor = 'transparent';
+    opts.backgroundColor = 'white';
   }
   if (opts.strokeWidths == null) {
     opts.strokeWidths = [1, 2, 5, 10, 20, 30];
