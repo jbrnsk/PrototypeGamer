@@ -31,6 +31,7 @@ function makeSprite(cards){
     //figure out how many cards there are and set width
     var count = 0;
     var x = 0;
+    var imgsLoaded = 0;
 
 
     for (var k in cards) {
@@ -39,13 +40,24 @@ function makeSprite(cards){
             base_image.crossOrigin = "Anonymous";
             base_image.src = cards[k].FaceURL;
             ++count;
-            //console.log(1);
+
+            base_image.onload = function(){
+              ++imgsLoaded;
+
+              //console.log(imgsLoaded);
+              if(imgsLoaded == count){
+                loadInImages();
+              }
+           }
+
+
         }
+
     }
     canvas_sprite.width = 250 * count;
     canvas_sprite.height = 350;
 
-    base_image.onload = function(){
+    function loadInImages() {
         for (var k in cards) {
             base_image = new Image();
             base_image.crossOrigin = "Anonymous";
@@ -55,7 +67,6 @@ function makeSprite(cards){
             x += 250;
             console.log(base_image.src);
         }
-
         spritesToImgur();
     }
 
