@@ -84,6 +84,8 @@
 .literally .lc-drawing {
     right: 0;
     left: 122px;
+    width: 254px;
+    height: 354px;
     cursor: default
 }
 .literally .lc-drawing>* {

@@ -111,7 +111,8 @@ module.exports = LiterallyCanvas = (function() {
     this.backgroundShapes = opts.backgroundShapes || [];
     this._shapesInProgress = [];
     this.canvas = document.createElement('canvas');
-    this.canvas.style['background-color'] = 'transparent';
+    //Background color is set to black now.
+    this.canvas.style['background-color'] = 'black';
     this.containerEl.appendChild(this.canvas);
     this.buffer = document.createElement('canvas');
     this.buffer.style['background-color'] = 'white';
@@ -425,7 +426,7 @@ module.exports = LiterallyCanvas = (function() {
     }
     switch (repaintLayerKey) {
       case 'background':
-        this.backgroundCtx.clearRect(0, 0, this.backgroundCanvas.width, this.backgroundCanvas.height);
+        this.backgroundCtx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         retryCallback = (function(_this) {
           return function() {
             return _this.repaintLayer('background');
@@ -4239,11 +4240,13 @@ ColorPickers = React.createFactory(React.createClass({
       lc: lc,
       colorName: 'secondary',
       label: _('fill')
-    }), ColorWell({
+    })
+         //Colorwell button has been removed for now.      
+               /*, ColorWell({
       lc: lc,
       colorName: 'background',
       label: _('bg')
-    }));
+    })*/);
   }
 }));
 
