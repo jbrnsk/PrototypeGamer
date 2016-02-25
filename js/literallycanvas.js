@@ -2365,8 +2365,8 @@ defineShape('Card', {
     }
     this.x = 0;
     this.y = 0;
-    this.width = 226;
-    this.height = 316;
+    this.width = 250;
+    this.height = 350;
     this.strokeWidth = args.strokeWidth || 1;
     this.strokeColor = args.strokeColor || 'black';
     return this.fillColor = args.fillColor || 'transparent';
