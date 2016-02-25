@@ -2363,10 +2363,10 @@ defineShape('Card', {
     if (args == null) {
       args = {};
     }
-    this.x = 70;
-    this.y = 10;
-    this.width = 250;
-    this.height = 350;
+    this.x = 0;
+    this.y = 0;
+    this.width = 226;
+    this.height = 316;
     this.strokeWidth = args.strokeWidth || 1;
     this.strokeColor = args.strokeColor || 'black';
     return this.fillColor = args.fillColor || 'transparent';
@@ -3358,8 +3358,9 @@ conversion = {
 baseTools = _dereq_('./tools/base');
 
 tools = {
+  Card:  _dereq_('./tools/Card'),
   Pencil: _dereq_('./tools/Pencil'),
-  Eraser: _dereq_('./tools/Eraser'),
+  //Eraser: _dereq_('./tools/Eraser'),
   Line: _dereq_('./tools/Line'),
   Rectangle: _dereq_('./tools/Rectangle'),
   Ellipse: _dereq_('./tools/Ellipse'),
@@ -3371,7 +3372,7 @@ tools = {
   ToolWithStroke: baseTools.ToolWithStroke
 };
 
-defaultTools = [tools.Pencil, tools.Eraser, tools.Line, tools.Rectangle, tools.Ellipse, tools.Text, tools.Polygon, /*tools.Pan,*/ tools.Eyedropper];
+defaultTools = [tools.Card, tools.Pencil, /*tools.Eraser,*/ tools.Line, tools.Rectangle, tools.Ellipse, tools.Text, tools.Polygon, /*tools.Pan,*/ tools.Eyedropper];
 
 
 defaultImageURLPrefix = 'lib/img';

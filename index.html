@@ -68,7 +68,7 @@
             e.preventDefault();
             cardName = $('input[name="cardName"]').val();
 
-            if(cardName){
+            if(cardName && typeof myCards.cards[cardName] === 'undefined'){
               $('.message').html('Uploading...');
               // this is all standard Imgur API; only LC-specific thing is the image
               // data argument;
@@ -116,6 +116,8 @@
 
                 },
               });
+            } else if (cardName){
+                alert("There is already a card by this name. Overwrite previous version?");
             } else {
               alert("Enter Card Name");
             }
