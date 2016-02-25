@@ -4298,9 +4298,9 @@ Picker = React.createClass({
       imageURLPrefix: imageURLPrefix
     }),*/ ClearButton({
       lc: lc
-    }),SaveComponentButton({
+    })/*,SaveComponentButton({
       lc: lc
-    })
+    })*/
     ));
   }
 });
