@@ -47,7 +47,7 @@
 }
 .literally {
     position: relative;
-    min-height: 400px;
+    min-height: 384px;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -67,7 +67,7 @@
 }
 .literally .lc-picker {
     top: 0;
-    left: 61px;
+    right: 0px;
     bottom: 0;
     width: 61px;
     margin-top: 31px;
@@ -79,7 +79,7 @@
     bottom: 0;
     width: 61px;
     margin-top: 0px;
-    background-color: red;
+    background-color: #BF4D28;
 }
 .literally .lc-drawing {
     right: 0;
