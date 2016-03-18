@@ -335,6 +335,10 @@
     right: 0;
     left: 61px
 }
+
+#sprite{
+    display: none;
+}
 .literally .lc-options .lc-font-settings {
     height: 30px;
     line-height: 31px;
