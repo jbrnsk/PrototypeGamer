@@ -21,7 +21,7 @@
         <input type="submit" data-action="upload-to-imgur" value="Save Current Card to Project">
         <p class="message"></p>
     </form>
-    <a href="data:application/xml;charset=utf-8,your code here" download="TS_Save_1.json">Save Deck</a>
+    <a id = "downloadHiddenButton" href="data:application/xml;charset=utf-8,your code here" download="TS_Save_1.json">Save Deck</a>
     <a class="sprite-maker" href="#">Make Sprite</a>
     <ul class="card-list"></ul>
 
@@ -60,7 +60,8 @@
 
          $('.sprite-maker').click(function(){
            event.preventDefault();
-           makeSprite(myCards.cards);
+           makeSprite(myCards.cards); 
+           //document.getElementById('downloadHiddenButton').click();
          });
 
 

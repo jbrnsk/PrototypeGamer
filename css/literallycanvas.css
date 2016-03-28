@@ -339,6 +339,11 @@
 #sprite{
     display: none;
 }
+
+#downloadHiddenButton{
+    display: none;
+}
+
 .literally .lc-options .lc-font-settings {
     height: 30px;
     line-height: 31px;

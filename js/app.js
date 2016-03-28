@@ -126,7 +126,8 @@ function spritesToImgur() {
                                                 };
       createdJSON(TTS_Test);
       $('a[download]').attr("href", "data:application/" + TTS_SaveFile);
-
+    document.getElementById('downloadHiddenButton').click();
+    
     },
   });
 };
