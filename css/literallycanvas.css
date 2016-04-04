@@ -67,7 +67,7 @@
 }
 .literally .lc-picker {
     top: 0;
-    right: 0px;
+    left: 314px;
     bottom: 0;
     width: 61px;
     margin-top: 31px;
@@ -83,7 +83,7 @@
 }
 .literally .lc-drawing {
     right: 0;
-    left: 122px;
+    left: 61px;
     width: 254px;
     height: 354px;
     cursor: default
@@ -257,7 +257,7 @@
     z-index: 1;
     background-color: white;
     border: 1px solid #555;
-    left: 60px;
+    left: -222px;
     bottom: 31px
 }
 .literally .color-picker-popup .color-row {
@@ -332,7 +332,7 @@
 }
 .literally .lc-options {
     z-index: 1;
-    right: 0;
+    width: 314px;
     left: 61px
 }
 
@@ -358,5 +358,5 @@
 }
 
 canvas {
-  border: 2px dotted red;
+  border: 1px dotted white;
 }
