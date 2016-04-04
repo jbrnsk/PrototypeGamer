@@ -132,7 +132,7 @@ function spritesToImgur() {
   });
 };
 
- TTS_Test = {
+TTS_Test = {
             "SaveName": "TTS_Test",
             "GameMode": "Pachisi",
             "Date": "12/7/2015 1:08:48 PM",
@@ -393,10 +393,6 @@ function spritesToImgur() {
               }
           }
   };
-
-//console.log("Reset");
-// return TTS_Test;
-
 
 function createdJSON(newJSON) {
   TTS_SaveFile = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(newJSON));

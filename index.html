@@ -45,27 +45,9 @@
             {imageURLPrefix: 'img'}
         );
 
-
-        /* or if you just love jQuery,
-            $('.literally').literallycanvas({imageURLPrefix: 'img'})
-        */
-
-         //$('button').click(function(e){
-            //  e.preventDefault();
-             //
-            //alert("clicked!");
-            //  var url = $(this).data('img-url');
-            //  var name = $(this).html();
-            //  var newImage = new Image();
-            //  newImage.src = url;
-            //  lc.saveShape(LC.createShape('Image', {x: 10, y: 10, image: newImage}));
-            //  $(".cardName").val(name);
-         //});
-
          $('.sprite-maker').click(function(){
            event.preventDefault();
            makeSprite(myCards.cards); 
-           //document.getElementById('downloadHiddenButton').click();
          });
 
 
@@ -95,29 +77,15 @@
                   url = 'https://i.imgur.com/' + result.data.id +'.png';
                   $('.message').html("<a href='" + url + "'>" + url + "</a>");
 
-                  //TTS_Test = createdJSON();
-                  // TTS_Test.ObjectStates[0].CustomDeck[cardName] = {
-                  //                                           "FaceURL": url,
-                  //                                           "BackURL": url,
-                  //                                           "NumWidth": 10,
-                  //                                           "NumHeight": 7
-                  //                                         };
-
                   myCards.cards[cardName] =  { FaceURL: url};
 
                   console.log(myCards.cards);
 
                   i++;
 
-                  //createdJSON(TTS_Test);
-                  //console.log(TTS_Test.ObjectStates[0].CustomDeck);
-
                   $('.card-list').append('<li><button data-img-url="'+ url +'">'+ cardName + '</button></li>');
                   $('input[name="cardName"]').val('');
                   addCard();
-
-                  //$('a[download]').attr("href", "data:application/" + TTS_SaveFile);
-                  //makeSprite(TTS_Test.ObjectStates[0].CustomDeck);
 
                 },
               });

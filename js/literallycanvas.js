@@ -5851,8 +5851,8 @@ module.exports = Card = (function(_super) {
       x: x,
       y: y,
       strokeWidth: this.strokeWidth,
-      strokeColor: lc.getColor('primary'),
-      fillColor: lc.getColor('secondary')
+      strokeColor: 'white',
+      fillColor: 'white'
     });
   };
 
