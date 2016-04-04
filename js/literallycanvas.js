@@ -5897,26 +5897,6 @@ var imageBounds = {
       x: 0, y: 0, width: imageSize.width, height: imageSize.height
     };
 
-//Documentation for exporting an image on the literally canvas website.
-
-/*
-  $(document).ready(function() {
-    var imageSize = {width: 200, height: 200};
-    var imageBounds = {
-      x: 0, y: 0, width: imageSize.width, height: imageSize.height
-    };
-    var lc = LC.init(
-      document.getElementsByClassName('literally export-bounded')[0],
-      {imageSize: imageSize}
-    );
-    $('.controls.export-bounded [data-action=export-as-png]')
-      .click(function(e) {
-        e.preventDefault();
-        window.open(lc.getImage({rect: imageBounds}).toDataURL());
-      });
-  });
-    */
-
 SaveComponentButton = React.createClass({
   displayName: 'SaveComponentButton',
   getState: function() {
@@ -5948,24 +5928,7 @@ SaveComponentButton = React.createClass({
       return function() {
 
         window.open("data:" + TTS_SaveFile, '_blank');
-
-        /*return lc.getImage();*/
-        //window.open(lc.getImage({rect: imageBounds}).toDataURL());
-
-        /*window.focus();*/
-        /*localStorage.setItem('gameStorage', JSON.stringify(TTS_Test));
-        var TTS_Test = JSON.parse(localStorage.getItem('gameStorage'));
-        download(TTS_Test);*/
-        ////////////////////////////////////////
-        //Creating JSON file, documentation.//
-        /*var obj = {
-            name: 'Dhayalan',
-            score: 100
-            };
-
-        localStorage.setItem('gameStorage', JSON.stringify(obj));
-        */
-        /////////////////////////////
+          
       };
     })(this)) : function() {};
     return div({
