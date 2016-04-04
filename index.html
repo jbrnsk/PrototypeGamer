@@ -14,21 +14,23 @@
 
   </head>
   <body>
-    <form class="imgur-submit">
-        <input type="text" name = "cardName" placeholder = "Enter card name here"/>
-        <input type="submit" data-action="upload-to-imgur" value="Save Current Card to Project">
-        <p class="message"></p>
-    </form>
-    <!-- where the widget goes. you can do CSS to it. -->
-    <div class="literally"></div>
+    <div class = containsAll>
+        <form class="imgur-submit">
+            <input type="text" name = "cardName" placeholder = "Enter card name here"/>
+            <input type="submit" data-action="upload-to-imgur" value="Save Current Card to Project">
+            <p class="message"></p>
+        </form>
+        <!-- where the widget goes. you can do CSS to it. -->
+        <div class="literally"></div>
+        <p>
+           
+            <a class="sprite-maker" href="#">Save Deck as TTS Save File</a>
+            <a id = "downloadHiddenButton" href="data:application/xml;charset=utf-8,your code here" download="TS_Save_1.json">Save Deck</a>
+        </p>
+        <ul class="card-list"></ul>
 
-    <a class="sprite-maker" href="#">Save Deck as TTS Save File</a>
-    <a id = "downloadHiddenButton" href="data:application/xml;charset=utf-8,your code here" download="TS_Save_1.json">Save Deck</a>
-    
-    <ul class="card-list"></ul>
-
-    <canvas id = "sprite"></canvas>
-
+        <canvas id = "sprite"></canvas>
+     </div>
     <!-- kick it off -->
     <script>
       $(document).ready(function(){
