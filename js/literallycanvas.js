@@ -1508,18 +1508,21 @@ drawLinePathLatest = function(ctx, bufferCtx, shape) {
 
 defineCanvasRenderer('LinePath', drawLinePath, drawLinePathLatest);
 
+//We replace destination-over with source-over for our new white eraser.
+    
+    
 drawErasedLinePath = function(ctx, shape) {
   ctx.save();
-  ctx.globalCompositeOperation = "destination-out";
+  ctx.globalCompositeOperation = /*"destination-over"*/"source-over";
   drawLinePath(ctx, shape);
   return ctx.restore();
 };
 
 drawErasedLinePathLatest = function(ctx, bufferCtx, shape) {
   ctx.save();
-  ctx.globalCompositeOperation = "destination-out";
+  ctx.globalCompositeOperation = /*"destination-over"*/"source-over";
   bufferCtx.save();
-  bufferCtx.globalCompositeOperation = "destination-out";
+  bufferCtx.globalCompositeOperation = /*"destination-over"*/"source-over";
   drawLinePathLatest(ctx, bufferCtx, shape);
   ctx.restore();
   return bufferCtx.restore();
@@ -3360,7 +3363,7 @@ baseTools = _dereq_('./tools/base');
 tools = {
   Card:  _dereq_('./tools/Card'),
   Pencil: _dereq_('./tools/Pencil'),
-  //Eraser: _dereq_('./tools/Eraser'),
+  Eraser: _dereq_('./tools/Eraser'),
   Line: _dereq_('./tools/Line'),
   Rectangle: _dereq_('./tools/Rectangle'),
   Ellipse: _dereq_('./tools/Ellipse'),
@@ -3372,7 +3375,7 @@ tools = {
   ToolWithStroke: baseTools.ToolWithStroke
 };
 
-defaultTools = [tools.Card, tools.Pencil, /*tools.Eraser,*/ tools.Line, tools.Rectangle, tools.Ellipse, tools.Text, tools.Polygon, /*tools.Pan,*/ tools.Eyedropper];
+defaultTools = [tools.Card, tools.Pencil, tools.Eraser, tools.Line, tools.Rectangle, tools.Ellipse, tools.Text, tools.Polygon, /*tools.Pan,*/ tools.Eyedropper];
 
 
 defaultImageURLPrefix = 'lib/img';
@@ -4797,6 +4800,8 @@ module.exports = Ellipse = (function(_super) {
 //Element 37 defines the some general behaviors of the eraser and pencil tool.//
 ////////////////////////////////////////////////////////////////////////////////
 
+//First we have the old eraser, which we replace with a modified version that actually is drawing a white line.            
+            
 37:[function(_dereq_,module,exports){
 var Eraser, Pencil, createShape,
   __hasProp = {}.hasOwnProperty,
@@ -4806,6 +4811,9 @@ Pencil = _dereq_('./Pencil');
 
 createShape = _dereq_('../core/shapes').createShape;
 
+    
+
+    
 module.exports = Eraser = (function(_super) {
   __extends(Eraser, _super);
 
@@ -4822,7 +4830,7 @@ module.exports = Eraser = (function(_super) {
       x: x,
       y: y,
       size: this.strokeWidth,
-      color: '#000'
+      color: 'white' //Replacing black for our new white eraser.
     });
   };
 
@@ -4839,7 +4847,7 @@ module.exports = Eraser = (function(_super) {
    "./Pencil":41
   }
 ],
-
+            
 ///////////////////////////////////////////
 //Element 38 defines the eyedropper tool.//
 ///////////////////////////////////////////
