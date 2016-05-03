@@ -112,10 +112,10 @@ module.exports = LiterallyCanvas = (function() {
     this._shapesInProgress = [];
     this.canvas = document.createElement('canvas');
     //Background color is set to black now.
-    this.canvas.style['background-color'] = 'black';
+    this.canvas.style['background-color'] = 'clear';
     this.containerEl.appendChild(this.canvas);
     this.buffer = document.createElement('canvas');
-    this.buffer.style['background-color'] = 'white';
+    this.buffer.style['background-color'] = 'red';
     this.ctx = this.canvas.getContext('2d');
     this.bufferCtx = this.buffer.getContext('2d');
     this.backingScale = util.getBackingScale(this.ctx);
@@ -692,7 +692,8 @@ module.exports = LiterallyCanvas = (function() {
   };
 
   LiterallyCanvas.prototype.canvasForExport = function() {
-    this.repaintAllLayers();
+    //this.repaintAllLayers();
+      this.repaintLayer('main');
     return util.combineCanvases(this.backgroundCanvas, this.canvas);
   };
 
@@ -806,7 +807,8 @@ module.exports = LiterallyCanvas = (function() {
     if (snapshot.scale) {
       this.scale = snapshot.scale;
     }
-    this.repaintAllLayers();
+    //this.repaintAllLayers();
+      this.repaintLayer('main');
     this.trigger('snapshotLoad');
     return this.trigger('drawingChange', {});
   };
@@ -1255,7 +1257,8 @@ module.exports = bindEvents = function(lc, canvas, panWithKeyboard) {
         case 41:
           lc.pan(0, 10);
       }
-      return lc.repaintAllLayers();
+      //return lc.repaintAllLayers();
+        return lc.repaintLayer('main');
     };
     document.addEventListener('keydown', listener);
     unsubs.push(function() {
@@ -3361,7 +3364,7 @@ conversion = {
 baseTools = _dereq_('./tools/base');
 
 tools = {
-  Card:  _dereq_('./tools/Card'),
+  //Card:  _dereq_('./tools/Card'),
   Pencil: _dereq_('./tools/Pencil'),
   Eraser: _dereq_('./tools/Eraser'),
   Line: _dereq_('./tools/Line'),
@@ -3375,7 +3378,7 @@ tools = {
   ToolWithStroke: baseTools.ToolWithStroke
 };
 
-defaultTools = [tools.Card, tools.Pencil, tools.Eraser, tools.Line, tools.Rectangle, tools.Ellipse, tools.Text, tools.Polygon, /*tools.Pan,*/ tools.Eyedropper];
+defaultTools = [/*tools.Card,*/ tools.Pencil, tools.Eraser, tools.Line, tools.Rectangle, tools.Ellipse, tools.Text, tools.Polygon, /*tools.Pan,*/ tools.Eyedropper];
 
 
 defaultImageURLPrefix = 'lib/img';
@@ -5107,9 +5110,9 @@ module.exports = Pencil = (function(_super) {
   }
 ],
 
-////////////////////////////////////////////////////////////////////////
-//Element 42 defines the pencil tool? What? Why so many pencil things?//
-////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////
+//Element 42 defines the polygon tool//
+///////////////////////////////////////
 
 42:[function(_dereq_,module,exports){
 var Pencil, ToolWithStroke, createShape,

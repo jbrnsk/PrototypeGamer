@@ -1,8 +1,10 @@
 //Some extra custom functions here.
 var ctx;
+var lc;
 var canvas_1;
 var canvas_2;
 var canvas_sprite;
+var preview;
 var myCards = {
   cards : {
 
@@ -19,9 +21,8 @@ window.onload = function()  {
   canvas_2 = document.getElementsByTagName('canvas')[1];
   canvas_2.width  = 250;
   canvas_2.height = 350;
-
-  ctx = canvas_2.getContext("2d");
-
+    
+  ctx = canvas_1.getContext("2d");
 
   canvas_sprite = document.getElementById('sprite');
   sprite = canvas_sprite.getContext("2d");
@@ -73,6 +74,22 @@ function makeSprite(cards){
 
 };
 
+   function previewFile(){
+       preview = document.querySelector('img'); //selects the query named img
+       var file    = document.querySelector('input[type=file]').files[0]; //sames as here
+       var reader  = new FileReader();
+
+       reader.onloadend = function () {
+           preview.src = reader.result;
+       }
+
+       if (file) {
+           reader.readAsDataURL(file); //reads the data as a URL
+       } else {
+           preview.src = "";
+       }
+  };
+
 function addCard() {
   $('.card-list button').click(function(e){
      e.preventDefault();
@@ -82,11 +99,7 @@ function addCard() {
      newImage.src = cardUrl;
 
      $("input[name='cardName']").val(name);
-
-     ctx.fillRect(0,0,250,350);
-     ctx.fillStyle = "white";
-     ctx.fill();
-     ctx.drawImage(newImage, 0, 0, canvas_2.width, canvas_2.height);
+     preview.addEventListener("load", ctx.drawImage(preview, 0, 0, canvas_2.width, canvas_2.height), false);
   });
 };
 
