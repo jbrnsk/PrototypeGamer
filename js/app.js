@@ -6,6 +6,7 @@ var canvas_2;
 var canvas_sprite;
 var preview;
 var whiteBackground = new Image();
+whiteBackground.crossOrigin = "Anonymous";
 whiteBackground.src = "https://i.imgur.com/tvWOuFw.png";
 var myCards = {
   cards : {
