@@ -4305,9 +4305,9 @@ Picker = React.createClass({
       imageURLPrefix: imageURLPrefix
     }),*/ ClearButton({
       lc: lc
-    })/*,SaveComponentButton({
+    }),SaveComponentButton({
       lc: lc
-    })*/
+    })
     ));
   }
 });
@@ -5938,15 +5938,14 @@ SaveComponentButton = React.createClass({
 
     onClick = lc.canUndo() ? ((function(_this) {
       return function() {
-
-        window.open("data:" + TTS_SaveFile, '_blank');
-          
+         document.getElementsByClassName('lc-clear')[0].click();
+         preview.addEventListener("load", ctx.drawImage(preview, 0, 0, canvas_2.width, canvas_2.height), false);
       };
     })(this)) : function() {};
     return div({
       className: className,
       onClick: onClick
-    }, _('Save'));
+    }, _('Custom'));
   }
 });
 
