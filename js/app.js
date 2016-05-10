@@ -101,10 +101,11 @@ function addCard() {
      var cardUrl = $(this).data('img-url');
      var name = $(this).html();
      var newImage = new Image();
+     newImage.crossOrigin = "Anonymous";
      newImage.src = cardUrl;
 
      $("input[name='cardName']").val(name);
-     preview.addEventListener("load", ctx.drawImage(preview, 0, 0, canvas_2.width, canvas_2.height), false);
+     newImage.addEventListener("load", ctx.drawImage(newImage, 0, 0, canvas_2.width, canvas_2.height), false);
   });
 };
 
