@@ -105,8 +105,9 @@ function addCard() {
      newImage.src = cardUrl;
 
      $("input[name='cardName']").val(name);
-     newImage.addEventListener("load", ctx.drawImage(newImage, 0, 0, canvas_2.width, canvas_2.height), false);
      document.getElementsByClassName('lc-clear')[0].click();
+     newImage.addEventListener("load", ctx.drawImage(newImage, 0, 0, canvas_2.width, canvas_2.height), false);
+   
   });
 };
 
