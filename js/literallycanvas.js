@@ -3901,6 +3901,7 @@ ClearButton = React.createClass({
     });
     onClick = lc.canUndo() ? ((function(_this) {
       return function() {
+        ctx.drawImage(whiteBackground, 0, 0, canvas_2.width, canvas_2.height);
         return lc.clear();
       };
     })(this)) : function() {};

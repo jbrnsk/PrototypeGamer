@@ -5,6 +5,8 @@ var canvas_1;
 var canvas_2;
 var canvas_sprite;
 var preview;
+var whiteBackground = new Image();
+whiteBackground.src = "https://i.imgur.com/tvWOuFw.png";
 var myCards = {
   cards : {
 
@@ -26,6 +28,8 @@ window.onload = function()  {
 
   canvas_sprite = document.getElementById('sprite');
   sprite = canvas_sprite.getContext("2d");
+    
+  whiteBackground.addEventListener("load", ctx.drawImage(whiteBackground, 0, 0, canvas_2.width, canvas_2.height), false);
 };
 
 function makeSprite(cards){
