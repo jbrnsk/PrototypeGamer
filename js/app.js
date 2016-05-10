@@ -33,6 +33,22 @@ window.onload = function()  {
   whiteBackground.addEventListener("load", ctx.drawImage(whiteBackground, 0, 0, canvas_2.width, canvas_2.height), false);
 };
 
+function downloadPDF() {
+  // only jpeg is supported by jsPDF
+  var imgData = canvas_sprite.toDataURL("image/jpeg", 1.0);
+  var pdf = new jsPDF();
+
+  pdf.addImage(imgData, 'JPEG', 0, 0);
+  var download = document.getElementById('download');
+
+  pdf.save("download.pdf");
+};
+
+function ttsClicked() {
+    
+    document.getElementsByClassName('sprite-maker')[0].click();
+};
+
 function makeSprite(cards){
     //figure out how many cards there are and set width
     var count = 0;

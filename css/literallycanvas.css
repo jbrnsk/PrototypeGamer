@@ -1,4 +1,17 @@
 /*# sourceMappingURL=literallycanvas.css.map */
+ul {
+    list-style:none;
+    padding-top:0;
+    padding-bottom: 0;
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+li {
+    display: inline;
+    margin: 2px;
+}
 
 .literally .button-style-1 {
     border: 2px solid transparent;
@@ -79,8 +92,18 @@
     bottom: 0;
     width: 61px;
     margin-top: 0px;
-    background-color: #D76B00;
+    background-color: #BF4D28;
 }
+
+.card-list-container {
+    top: 0;
+    left: 0px;
+    bottom: 0;
+    width: 375px;
+    margin-top: 0px;
+    background-color: #BF4D28;
+}
+
 .literally .lc-drawing {
     right: 0;
     left: 61px;
@@ -331,9 +354,15 @@
     padding-top: 10px;
     margin-left: 10px;
 }
+.deckButtons{
+    padding-top: 10px;
+    margin-left: 10px;
+}
+
 .literally .polygon-toolbar {
     border-top: 1px solid #555
 }
+
 .literally .lc-options {
     z-index: 1;
     width: 314px;
@@ -345,6 +374,10 @@
 }
 
 #downloadHiddenButton{
+    display: none;
+}
+
+.sprite-maker{
     display: none;
 }
 

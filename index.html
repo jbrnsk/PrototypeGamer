@@ -11,6 +11,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/literallycanvas.js"></script>
+    <!-- JS PDF Library -->
+    <script src="https://parall.ax/parallax/js/jspdf.js"></script>
 
   </head>
   <body>
@@ -20,18 +22,20 @@
             <form class="imgur-submit">
                 <input type="text" name = "cardName" placeholder = "Enter card name here"/>
                 <input type="submit" data-action="upload-to-imgur" value="Save Current Card to Project">
-               
             </form>
         </div>
-        
+
         <!-- where the widget goes. you can do CSS to it. -->
         <div class="literally"></div>
+        <div class="card-list-container"><ul class="card-list"></ul></div>
         <div class = "cardNamer">
-           
-            <a class="sprite-maker" href="#">Save Deck as TTS Save File</a>
-            <a id = "downloadHiddenButton" href="data:application/xml;charset=utf-8,your code here" download="TS_Save_1.json">Save Deck</a>
+           <div class ="deckButtons">
+                <button class="ttsButton">Download For Tabletop Simulator</button>
+                <a class="sprite-maker" href="#">Save Deck as TTS Save File</a>
+                <a id = "downloadHiddenButton" href="data:application/xml;charset=utf-8,your code here" download="TS_Save_1.json">Save Deck</a>
+                <button class="downloadAsPDF">Download As PDF</button>
+            </div>
         </div>
-        <ul class="card-list"></ul>
 
         <canvas id = "sprite"></canvas>
         <input type="file" onchange="previewFile()"><br>
@@ -52,12 +56,21 @@
             {imageURLPrefix: 'img'}
         );
 
-         $('.sprite-maker').click(function(){
+         $('.sprite-maker').click(function(){ 
            event.preventDefault();
-           makeSprite(myCards.cards); 
+           makeSprite(myCards.cards);
          });
-
-
+          
+          $('.downloadAsPDF').click(function(){
+           event.preventDefault();
+           downloadPDF(); 
+         });
+          
+           $('.ttsButton').click(function(){
+           event.preventDefault();
+           ttsClicked(); 
+         });
+          
         $('[data-action=upload-to-imgur]').click(function(e) {
             e.preventDefault();
             cardName = $('input[name="cardName"]').val();
@@ -82,7 +95,7 @@
                 },
                 success: function(result) {
                   url = 'https://i.imgur.com/' + result.data.id +'.png';
-                  $('.message').html("<a href='" + url + "'>" + url + "</a>");
+                  $('.message').html("<a href='" + url + "' target='_blank'>" + url + "</a>");
 
                   myCards.cards[cardName] =  { FaceURL: url};
 
@@ -97,7 +110,7 @@
                 },
               });
             } else if (cardName){
-                alert("There is already a card by this name. Overwrite previous version?");
+                alert("There is already a card by this name!");
             } else {
               alert("Enter Card Name");
             }
