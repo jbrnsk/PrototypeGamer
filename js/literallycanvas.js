@@ -3373,12 +3373,12 @@ tools = {
   Text: _dereq_('./tools/Text'),
   Polygon: _dereq_('./tools/Polygon'),
   /*Pan: _dereq_('./tools/Pan'),*/
-  Eyedropper: _dereq_('./tools/Eyedropper'),
+  //Eyedropper: _dereq_('./tools/Eyedropper'),
   Tool: baseTools.Tool,
   ToolWithStroke: baseTools.ToolWithStroke
 };
 
-defaultTools = [/*tools.Card,*/ tools.Pencil, tools.Eraser, tools.Line, tools.Rectangle, tools.Ellipse, tools.Text, tools.Polygon, /*tools.Pan,*/ tools.Eyedropper];
+defaultTools = [/*tools.Card,*/ tools.Pencil, tools.Eraser, tools.Line, tools.Rectangle, tools.Ellipse, tools.Text, tools.Polygon/*, tools.Pan, tools.Eyedropper*/];
 
 
 defaultImageURLPrefix = 'lib/img';
