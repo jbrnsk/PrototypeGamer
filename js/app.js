@@ -14,6 +14,8 @@ var myCards = {
   }
 };
 
+window.onbeforeunload = function(){ return 'Are you sure you want to navigate away from this page? Remember to export the deck for Tabletop Simulator first. You will not be able to edit the cards again.' };
+
 window.onload = function()  {
   canvas_1 = document.getElementsByTagName('canvas')[0];
   canvas_1.width  = 250;
