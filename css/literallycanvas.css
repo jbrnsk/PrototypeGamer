@@ -1,4 +1,9 @@
 /*# sourceMappingURL=literallycanvas.css.map */
+.containsAll {
+    display: table;
+    margin: 0 auto;
+}
+
 
 ul {
     list-style:none;
