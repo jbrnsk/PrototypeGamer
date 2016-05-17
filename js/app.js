@@ -159,7 +159,7 @@ function spritesToImgur() {
 
       TTS_Test.ObjectStates[0].CustomDeck[1] = {
                                                   "FaceURL": url,
-                                                  "BackURL": "https://i.imgur.com/UHmHyZ5.png",
+                                                  "BackURL": "https://i.imgur.com/V69E2vR.png",
                                                   "NumWidth": cardsCount,
                                                   "NumHeight": 1
                                                 };
