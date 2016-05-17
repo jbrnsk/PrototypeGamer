@@ -32,13 +32,13 @@
                 <button class="ttsButton">Download For Tabletop Simulator</button>
                 <a class="sprite-maker" href="#">Save Deck as TTS Save File</a>
                 <a id = "downloadHiddenButton" href="data:application/xml;charset=utf-8,your code here" download="TS_Save_1.json">Save Deck</a>
-                <button class="downloadAsPDF">Download As PDF</button>
+                <button style="display: none" class="downloadAsPDF">Download As PDF</button>
             </div>
         </div>
 
         <canvas id = "sprite"></canvas>
         <input id = "customFileUpload" type="file" onchange="previewFile()"><br>
-        <img src="" height="00" alt="Image preview...">
+        <img style="display: none" src="" height="00" alt="Image preview...">
      </div>
     <!-- kick it off -->
     <script>
