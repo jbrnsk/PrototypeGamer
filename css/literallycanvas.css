@@ -1,4 +1,23 @@
 /*# sourceMappingURL=literallycanvas.css.map */
+.containsAll {
+    display: table;
+    margin: 0 auto;
+}
+
+
+ul {
+    list-style:none;
+    padding-top:0;
+    padding-bottom: 0;
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+li {
+    display: inline;
+    margin: 2px;
+}
 
 .literally .button-style-1 {
     border: 2px solid transparent;
@@ -47,7 +66,7 @@
 }
 .literally {
     position: relative;
-    min-height: 400px;
+    min-height: 382px;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -67,7 +86,7 @@
 }
 .literally .lc-picker {
     top: 0;
-    left: 61px;
+    left: 314px;
     bottom: 0;
     width: 61px;
     margin-top: 31px;
@@ -79,11 +98,23 @@
     bottom: 0;
     width: 61px;
     margin-top: 0px;
-    background-color: red;
+    background-color: #BF4D28;
 }
+
+.card-list-container {
+    top: 0;
+    left: 0px;
+    bottom: 0;
+    width: 375px;
+    margin-top: 0px;
+    background-color: #BF4D28;
+}
+
 .literally .lc-drawing {
     right: 0;
-    left: 122px;
+    left: 61px;
+    width: 254px;
+    height: 354px;
     cursor: default
 }
 .literally .lc-drawing>* {
@@ -112,7 +143,7 @@
     border-right: 1px solid #555
 }
 .literally .lc-picker .toolbar-button {
-    width: 26px;
+    width: 25px;
     height: 26px;
     line-height: 26px;
     margin: 2px;
@@ -255,7 +286,7 @@
     z-index: 1;
     background-color: white;
     border: 1px solid #555;
-    left: 60px;
+    left: -222px;
     bottom: 31px
 }
 .literally .color-picker-popup .color-row {
@@ -325,19 +356,49 @@
     float: none;
     text-align: center
 }
+.imgur-submit{
+    padding-top: 10px;
+    margin-left: 10px;
+}
+.deckButtons{
+    padding-top: 10px;
+    margin-left: 10px;
+}
+
 .literally .polygon-toolbar {
     border-top: 1px solid #555
 }
+
 .literally .lc-options {
     z-index: 1;
-    right: 0;
+    width: 314px;
     left: 61px
 }
+
+#sprite{
+    display: none;
+}
+
+#downloadHiddenButton{
+    display: none;
+}
+
+.sprite-maker{
+    display: none;
+}
+
 .literally .lc-options .lc-font-settings {
     height: 30px;
     line-height: 31px;
     padding-left: 4px;
     background-color: #f5f5f5
+}
+
+.cardNamer {
+    height:40px;
+    background-color: grey;
+    width: 375px;
+    
 }
 .literally .lc-options .lc-font-settings input {
     margin: 0 0.5em 0 0
@@ -347,5 +408,5 @@
 }
 
 canvas {
-  border: 2px dotted red;
+  border: 1px dotted white;
 }

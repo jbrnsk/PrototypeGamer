@@ -1,6 +1,45 @@
-//Don't touch the scary ugly beast from lines 3 to 9.
+////////////////////////////////////////////////////////
+//Don't touch the scary ugly beast from lines 5 to 36.//
+////////////////////////////////////////////////////////
 
-!function(e){if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.LC=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
+! function(e) {
+    if ("object" == typeof exports) module.exports = e();
+    else if ("function" == typeof define && define.amd) define(e);
+    else {
+        var f;
+        "undefined" != typeof window ? f = window : "undefined" != typeof global ? f = global : "undefined" != typeof self && (f = self), f.LC = e()
+    }
+}(function() {
+        var define, module, exports;
+        return (function e(t, n, r) {
+            function s(o, u) {
+                if (!n[o]) {
+                    if (!t[o]) {
+                        var a = typeof require == "function" && require;
+                        if (!u && a) return a(o, !0);
+                        if (i) return i(o, !0);
+                        throw new Error("Cannot find module '" + o + "'")
+                    }
+                    var f = n[o] = {
+                        exports: {}
+                    };
+                    t[o][0].call(f.exports, function(e) {
+                        var n = t[o][1][e];
+                        return s(n ? n : e)
+                    }, f, f.exports, e, t, n, r)
+                }
+                return n[o].exports
+            }
+            var i = typeof require == "function" && require;
+            for (var o = 0; o < r.length; o++) s(r[o]);
+            return s
+        })({
+
+///////////////////////////////////
+//Element 1. I don't really know.//
+///////////////////////////////////
+
+1:[function(_dereq_,module,exports){
 
 },{}],
 
@@ -61,7 +100,7 @@ module.exports = LiterallyCanvas = (function() {
     this.colors = {
       primary: opts.primaryColor || '#000',
       secondary: opts.secondaryColor || '#fff',
-      background: opts.backgroundColor || 'transparent'
+      background: opts.backgroundColor || 'white'
     };
     this.containerEl.style['background-color'] = 'this.colors.background';
     this.watermarkImage = opts.watermarkImage;
@@ -72,10 +111,11 @@ module.exports = LiterallyCanvas = (function() {
     this.backgroundShapes = opts.backgroundShapes || [];
     this._shapesInProgress = [];
     this.canvas = document.createElement('canvas');
-    this.canvas.style['background-color'] = '#ddd';
+    //Background color is set to black now.
+    this.canvas.style['background-color'] = 'clear';
     this.containerEl.appendChild(this.canvas);
     this.buffer = document.createElement('canvas');
-    this.buffer.style['background-color'] = 'transparent';
+    this.buffer.style['background-color'] = 'red';
     this.ctx = this.canvas.getContext('2d');
     this.bufferCtx = this.buffer.getContext('2d');
     this.backingScale = util.getBackingScale(this.ctx);
@@ -386,7 +426,7 @@ module.exports = LiterallyCanvas = (function() {
     }
     switch (repaintLayerKey) {
       case 'background':
-        this.backgroundCtx.clearRect(0, 0, this.backgroundCanvas.width, this.backgroundCanvas.height);
+        this.backgroundCtx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         retryCallback = (function(_this) {
           return function() {
             return _this.repaintLayer('background');
@@ -652,7 +692,8 @@ module.exports = LiterallyCanvas = (function() {
   };
 
   LiterallyCanvas.prototype.canvasForExport = function() {
-    this.repaintAllLayers();
+    //this.repaintAllLayers();
+      this.repaintLayer('main');
     return util.combineCanvases(this.backgroundCanvas, this.canvas);
   };
 
@@ -766,7 +807,8 @@ module.exports = LiterallyCanvas = (function() {
     if (snapshot.scale) {
       this.scale = snapshot.scale;
     }
-    this.repaintAllLayers();
+    //this.repaintAllLayers();
+      this.repaintLayer('main');
     this.trigger('snapshotLoad');
     return this.trigger('drawingChange', {});
   };
@@ -780,11 +822,22 @@ module.exports = LiterallyCanvas = (function() {
 
 })();
 
+
+},{"../tools/Pencil":41,
+   "./actions":4,
+   "./bindEvents":5,
+   "./canvasRenderer":6,
+   "./math":10,
+   "./renderSnapshotToImage":11,
+   "./renderSnapshotToSVG":12,
+   "./shapes":13,
+   "./svgRenderer":14,
+   "./util":15}],
+
+
 //^And so ends the bear of an export function.
 
 //Now begins the long list of elements of which the entire tool is comprised.
-},{"../tools/Pencil":41,"./actions":4,"./bindEvents":5,"./canvasRenderer":6,"./math":10,"./renderSnapshotToImage":11,"./renderSnapshotToSVG":12,"./shapes":13,"./svgRenderer":14,"./util":15}],
-
 
 /////////////////////////////////////////////
 //Element 3: Defines font option behaviors.//
@@ -1204,7 +1257,8 @@ module.exports = bindEvents = function(lc, canvas, panWithKeyboard) {
         case 41:
           lc.pan(0, 10);
       }
-      return lc.repaintAllLayers();
+      //return lc.repaintAllLayers();
+        return lc.repaintLayer('main');
     };
     document.addEventListener('keydown', listener);
     unsubs.push(function() {
@@ -1457,18 +1511,21 @@ drawLinePathLatest = function(ctx, bufferCtx, shape) {
 
 defineCanvasRenderer('LinePath', drawLinePath, drawLinePathLatest);
 
+//We replace destination-over with source-over for our new white eraser.
+    
+    
 drawErasedLinePath = function(ctx, shape) {
   ctx.save();
-  ctx.globalCompositeOperation = "destination-out";
+  ctx.globalCompositeOperation = /*"destination-over"*/"source-over";
   drawLinePath(ctx, shape);
   return ctx.restore();
 };
 
 drawErasedLinePathLatest = function(ctx, bufferCtx, shape) {
   ctx.save();
-  ctx.globalCompositeOperation = "destination-out";
+  ctx.globalCompositeOperation = /*"destination-over"*/"source-over";
   bufferCtx.save();
-  bufferCtx.globalCompositeOperation = "destination-out";
+  bufferCtx.globalCompositeOperation = /*"destination-over"*/"source-over";
   drawLinePathLatest(ctx, bufferCtx, shape);
   ctx.restore();
   return bufferCtx.restore();
@@ -1754,7 +1811,9 @@ module.exports = {
 
 },{}],
 
-//Element 9 defines strings? What? For text tool, I guess?
+////////////////////////////////////////////////////////////
+//Element 9 defines strings? What? For text tool, I guess?//
+////////////////////////////////////////////////////////////
 
 9:[function(_dereq_,module,exports){
 var localize, strings, _;
@@ -1779,7 +1838,9 @@ module.exports = {
 
 },{}],
 
-//Element 10. Something something math.
+/////////////////////////////////////////
+//Element 10. Something something math.//
+/////////////////////////////////////////
 
 10:[function(_dereq_,module,exports){
 var Point, math, normals, unit, util, _slope;
@@ -1870,11 +1931,14 @@ math.scalePositionScalar = function(val, viewportSize, oldScale, newScale) {
 module.exports = math;
 
 
-},{"./shapes":13,"./util":15}],
+},{"./shapes":13,
+   "./util":15
+  }
+],
 
-/////////////////////////////////////////////////////////////////
-//Element 11 is for turning on a watermark or background image.//
-/////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+//Element 11 is rendering the snapshot of the canvas to an image.//
+///////////////////////////////////////////////////////////////////
 
 11:[function(_dereq_,module,exports){
 var INFINITE, JSONToShape, renderWatermark, util;
@@ -1975,7 +2039,10 @@ module.exports = function(snapshot, opts) {
 };
 
 
-},{"./shapes":13,"./util":15}],
+},{"./shapes":13,
+   "./util":15
+  }
+],
 
 //////////////////////////////////////////
 //Element 12 does stuff. Inifinite. Huh?//
@@ -2024,7 +2091,7 @@ module.exports = function(snapshot, opts) {
   };
   width = imageSize.width, height = imageSize.height;
   colors = snapshot.colors || {
-    background: 'transparent'
+    background: 'white'
   };
   allShapes = shapes.concat(backgroundShapes);
   dummyCanvas = document.createElement('canvas');
@@ -2056,7 +2123,10 @@ module.exports = function(snapshot, opts) {
 };
 
 
-},{"./shapes":13,"./util":15}],
+},{"./shapes":13,
+   "./util":15
+  }
+],
 
 /////////////////////////////////////////////////////////////////
 //Element 13 is another beast. Need more time to figure it out.//
@@ -2299,8 +2369,8 @@ defineShape('Card', {
     if (args == null) {
       args = {};
     }
-    this.x = 70;
-    this.y = 10;
+    this.x = 0;
+    this.y = 0;
     this.width = 250;
     this.height = 350;
     this.strokeWidth = args.strokeWidth || 1;
@@ -2855,7 +2925,13 @@ module.exports = {
 };
 
 
-},{"./TextRenderer":3,"./canvasRenderer":6,"./lineEndCapShapes.coffee":8,"./svgRenderer":14,"./util":15}],
+},{"./TextRenderer":3,
+   "./canvasRenderer":6,
+   "./lineEndCapShapes.coffee":8,
+   "./svgRenderer":14,
+   "./util":15
+  }
+],
 
 ///////////////////////////////////////////////////////////////////
 //Element 14. More rendering stuff. Rendering stuff is confusing.//
@@ -3003,7 +3079,9 @@ module.exports = {
 };
 
 
-},{"./lineEndCapShapes.coffee":8}],
+},{"./lineEndCapShapes.coffee":8
+  }
+],
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 //Element 15 does something important with rendering, but still doesn't make a ton of sense.//
@@ -3055,29 +3133,29 @@ util = {
 
     //RESIZE FUNCTION
 
-    // var resize;
-    // if (callback == null) {
-    //   callback = function() {};
-    // }
-    // resize = (function(_this) {
-    //   return function() {
-    //     var el, _i, _len;
-    //     for (_i = 0, _len = elementsToResize.length; _i < _len; _i++) {
-    //       el = elementsToResize[_i];
-    //       el.style.width = "" + elementToMatch.offsetWidth + "px";
-    //       el.style.height = "" + elementToMatch.offsetHeight + "px";
-    //       if (el.width != null) {
-    //         el.setAttribute('width', el.offsetWidth * scale);
-    //         el.setAttribute('height', el.offsetHeight * scale);
-    //       }
-    //     }
-    //     return callback();
-    //   };
-    // })(this);
-    // elementToMatch.addEventListener('resize', resize);
-    // window.addEventListener('resize', resize);
-    // window.addEventListener('orientationchange', resize);
-    // return resize();
+   /*  var resize;
+     if (callback == null) {
+       callback = function() {};
+     }
+     resize = (function(_this) {
+       return function() {
+         var el, _i, _len;
+         for (_i = 0, _len = elementsToResize.length; _i < _len; _i++) {
+           el = elementsToResize[_i];
+           el.style.width = "" + elementToMatch.offsetWidth + "px";
+           el.style.height = "" + elementToMatch.offsetHeight + "px";
+           if (el.width != null) {
+             el.setAttribute('width', el.offsetWidth * scale);
+             el.setAttribute('height', el.offsetHeight * scale);
+           }
+         }
+         return callback();
+       };
+     })(this);
+     elementToMatch.addEventListener('resize', resize);
+     window.addEventListener('resize', resize);
+     window.addEventListener('orientationchange', resize);
+     return resize();*/
   },
   combineCanvases: function() {
     var c, canvas, canvases, ctx, _i, _j, _len, _len1;
@@ -3186,7 +3264,10 @@ util = {
 module.exports = util;
 
 
-},{"./canvasRenderer":6,"./svgRenderer":14}],
+},{"./canvasRenderer":6,
+   "./svgRenderer":14
+  }
+],
 
 //////////////////////////////////////////////////
 //Element 16 defines something with custom events.
@@ -3283,21 +3364,21 @@ conversion = {
 baseTools = _dereq_('./tools/base');
 
 tools = {
+  //Card:  _dereq_('./tools/Card'),
   Pencil: _dereq_('./tools/Pencil'),
   Eraser: _dereq_('./tools/Eraser'),
   Line: _dereq_('./tools/Line'),
   Rectangle: _dereq_('./tools/Rectangle'),
-  Card: _dereq_('./tools/Card'),
   Ellipse: _dereq_('./tools/Ellipse'),
   Text: _dereq_('./tools/Text'),
   Polygon: _dereq_('./tools/Polygon'),
-  Pan: _dereq_('./tools/Pan'),
-  Eyedropper: _dereq_('./tools/Eyedropper'),
+  /*Pan: _dereq_('./tools/Pan'),*/
+  //Eyedropper: _dereq_('./tools/Eyedropper'),
   Tool: baseTools.Tool,
   ToolWithStroke: baseTools.ToolWithStroke
 };
 
-defaultTools = [tools.Card, tools.Pencil, tools.Eraser, tools.Line, tools.Rectangle, tools.Ellipse, tools.Text, tools.Polygon, tools.Pan, tools.Eyedropper];
+defaultTools = [/*tools.Card,*/ tools.Pencil, tools.Eraser, tools.Line, tools.Rectangle, tools.Ellipse, tools.Text, tools.Polygon/*, tools.Pan, tools.Eyedropper*/];
 
 
 defaultImageURLPrefix = 'lib/img';
@@ -3321,7 +3402,7 @@ init = function(el, opts) {
     opts.secondaryColor = '#fff';
   }
   if (opts.backgroundColor == null) {
-    opts.backgroundColor = 'transparent';
+    opts.backgroundColor = 'white';
   }
   if (opts.strokeWidths == null) {
     opts.strokeWidths = [1, 2, 5, 10, 20, 30];
@@ -3460,7 +3541,33 @@ module.exports = {
 };
 
 
-},{"./core/LiterallyCanvas":2,"./core/canvasRenderer":6,"./core/localization":9,"./core/renderSnapshotToImage":11,"./core/renderSnapshotToSVG":12,"./core/shapes":13,"./core/svgRenderer":14,"./core/util":15,"./ie_customevent":16,"./ie_setLineDash":17,"./optionsStyles/font":19,"./optionsStyles/line-options-and-stroke-width":20,"./optionsStyles/null":21,"./optionsStyles/optionsStyles":22,"./optionsStyles/stroke-width":23,"./reactGUI/init":35,"./tools/Ellipse":36,"./tools/Eraser":37,"./tools/Eyedropper":38,"./tools/Line":39,"./tools/Pan":40,"./tools/Pencil":41,"./tools/Polygon":42,"./tools/Rectangle":43,"./tools/Text":44,"./tools/base":45,"./tools/Card":46}],
+},{"./core/LiterallyCanvas":2,
+   "./core/canvasRenderer":6,
+   "./core/localization":9,
+   "./core/renderSnapshotToImage":11,
+   "./core/renderSnapshotToSVG":12,
+   "./core/shapes":13,
+   "./core/svgRenderer":14,
+   "./core/util":15,
+   "./ie_customevent":16,
+   "./ie_setLineDash":17,
+   "./optionsStyles/font":19,
+   "./optionsStyles/line-options-and-stroke-width":20,
+   "./optionsStyles/null":21,
+   "./optionsStyles/optionsStyles":22,
+   "./optionsStyles/stroke-width":23,
+   "./reactGUI/init":35,
+   "./tools/Ellipse":36,
+   "./tools/Eraser":37,
+   "./tools/Eyedropper":38,
+   "./tools/Line":39,
+   "./tools/Pan":40,
+   "./tools/Pencil":41,
+   "./tools/Polygon":42,
+   "./tools/Rectangle":43,
+   "./tools/Text":44,
+   "./tools/base":45,
+   "./tools/Card":46}],
 
 ////////////////////////////////////
 //Element 19 defines font options.//
@@ -3607,7 +3714,10 @@ defineOptionsStyle('font', React.createClass({
 module.exports = {};
 
 
-},{"../core/localization":9,"./optionsStyles":22}],
+},{"../core/localization":9,
+   "./optionsStyles":22
+  }
+],
 
 ///////////////////////////////////////////////////////////////
 //Element 20 defines the stroke option for tools with stroke.//
@@ -3708,7 +3818,8 @@ defineOptionsStyle('null', React.createClass({
 module.exports = {};
 
 
-},{"./optionsStyles":22}],
+},{"./optionsStyles":22}
+],
 
 ////////////////////////////////////////////////////
 //Element 22 defines options styles? No comprendo.//
@@ -3747,7 +3858,10 @@ defineOptionsStyle('stroke-width', StrokeWidthPicker);
 module.exports = {};
 
 
-},{"../reactGUI/StrokeWidthPicker":30,"./optionsStyles":22}],
+},{"../reactGUI/StrokeWidthPicker":30,
+   "./optionsStyles":22
+  }
+],
 
 ////////////////////////////////////////
 //Element 24 defines the clear button.//
@@ -3787,6 +3901,7 @@ ClearButton = React.createClass({
     });
     onClick = lc.canUndo() ? ((function(_this) {
       return function() {
+        ctx.drawImage(whiteBackground, 0, 0, canvas_2.width, canvas_2.height);
         return lc.clear();
       };
     })(this)) : function() {};
@@ -3800,7 +3915,12 @@ ClearButton = React.createClass({
 module.exports = ClearButton;
 
 
-},{"../core/localization":9,"../core/util":15,"./React-shim":29,"./createSetStateOnEventMixin":33}],
+},{"../core/localization":9,
+   "../core/util":15,
+   "./React-shim":29,
+   "./createSetStateOnEventMixin":33
+  }
+],
 
 /////////////////////////////////////
 //Element 25 defines the colorwell.//
@@ -3974,7 +4094,10 @@ ColorWell = React.createClass({
 module.exports = ColorWell;
 
 
-},{"../core/util":15,"./React-shim":29}],
+},{"../core/util":15,
+   "./React-shim":29
+  }
+],
 
 ////////////////////////////////////////////
 //Element 26 defines the tool options box.//
@@ -4018,7 +4141,11 @@ Options = React.createClass({
 module.exports = Options;
 
 
-},{"../optionsStyles/optionsStyles":22,"./React-shim":29,"./createSetStateOnEventMixin":33}],
+},{"../optionsStyles/optionsStyles":22,
+   "./React-shim":29,
+   "./createSetStateOnEventMixin":33
+  }
+],
 
 /////////////////////////////////////////
 //Element 27 defines the gameparts box.//
@@ -4076,7 +4203,10 @@ Gameparts = React.createClass({
 module.exports = Gameparts;
 
 
-},{"../core/localization":9,"./ClearButton":24,"./ColorWell":25,"./React-shim":29,"./UndoRedoButtons":31,"./ZoomButtons":32}],
+},{"../core/localization":9,
+   "./React-shim":29,
+  }
+],
 
 //////////////////////////////////////
 //Element 28 defines the picker box.//
@@ -4084,15 +4214,19 @@ module.exports = Gameparts;
 
 
 28:[function(_dereq_,module,exports){
-var ClearButton, ColorPickers, ColorWell, Picker, React, UndoRedoButtons, ZoomButtons, _;
+var ClearButton, ColorPickers, ColorWell, Picker, React, UndoRedoButtons, ZoomButtons, SaveComponentButton_;
 
 React = _dereq_('./React-shim');
 
 ClearButton = React.createFactory(_dereq_('./ClearButton'));
 
+SaveComponentButton = React.createFactory(_dereq_('./SaveComponentButton'));
+
 UndoRedoButtons = React.createFactory(_dereq_('./UndoRedoButtons'));
 
 ZoomButtons = React.createFactory(_dereq_('./ZoomButtons'));
+
+/*SaveButton = React.createFactory(_dereq_('./SaveButton'));*/
 
 _ = _dereq_('../core/localization')._;
 
@@ -4114,11 +4248,13 @@ ColorPickers = React.createFactory(React.createClass({
       lc: lc,
       colorName: 'secondary',
       label: _('fill')
-    }), ColorWell({
+    })
+         //Colorwell button has been removed for now.      
+               /*, ColorWell({
       lc: lc,
       colorName: 'background',
       label: _('bg')
-    }));
+    })*/);
   }
 }));
 
@@ -4164,12 +4300,15 @@ Picker = React.createClass({
     }), UndoRedoButtons({
       lc: lc,
       imageURLPrefix: imageURLPrefix
-    }), ZoomButtons({
+    }), /*ZoomButtons({
       lc: lc,
       imageURLPrefix: imageURLPrefix
-    }), ClearButton({
+    }),*/ ClearButton({
       lc: lc
-    })));
+    }),SaveComponentButton({
+      lc: lc
+    })
+    ));
   }
 });
 
@@ -4177,7 +4316,15 @@ module.exports = Picker;
 
 
 
-},{"../core/localization":9,"./ClearButton":24,"./ColorWell":25,"./React-shim":29,"./UndoRedoButtons":31,"./ZoomButtons":32}],
+},{"../core/localization":9,
+   "./ClearButton":24,
+   "./ColorWell":25,
+   "./React-shim":29,
+   "./UndoRedoButtons":31,
+   "./ZoomButtons":32,
+   "./SaveComponentButton":47
+  }
+],
 
 /////////////////////////////////////////////////////////////////////
 //Element 29 defines the error when the browser doesn't have react.//
@@ -4260,7 +4407,10 @@ module.exports = React.createClass({
 });
 
 
-},{"../core/util":15,"../reactGUI/createSetStateOnEventMixin":33}],
+},{"../core/util":15,
+   "../reactGUI/createSetStateOnEventMixin":33
+  }
+],
 
 /////////////////////////////////////////////////
 //Element 31 defines the undo and redo buttons.//
@@ -4350,7 +4500,11 @@ UndoRedoButtons = React.createClass({
 module.exports = UndoRedoButtons;
 
 
-},{"../core/util":15,"./React-shim":29,"./createSetStateOnEventMixin":33}],
+},{"../core/util":15,
+   "./React-shim":29,
+   "./createSetStateOnEventMixin":33
+  }
+],
 
 ////////////////////////////////////////
 //Element 32 defines the zoom buttons.//
@@ -4440,7 +4594,11 @@ ZoomButtons = React.createClass({
 module.exports = ZoomButtons;
 
 
-},{"../core/util":15,"./React-shim":29,"./createSetStateOnEventMixin":33}],
+},{"../core/util":15,
+   "./React-shim":29,
+   "./createSetStateOnEventMixin":33
+  }
+],
 
 //////////////////////////////////////////////////////////////////
 //Element 33 defines what happens when you click on a tool icon.//
@@ -4467,7 +4625,8 @@ module.exports = createSetStateOnEventMixin = function(eventName) {
 };
 
 
-},{"./React-shim":29}],
+},{"./React-shim":29}
+],
 
 ///////////////////////////////////////////////////////////
 //Element 34 defines how to create a tool button on load.//
@@ -4525,7 +4684,10 @@ createToolButton = function(_arg) {
 module.exports = createToolButton;
 
 
-},{"../core/util":15,"./React-shim":29}],
+},{"../core/util":15,
+   "./React-shim":29
+  }
+],
 
 ///////////////////////////////////////////////////////////////
 //Element 35 describes how to initialize the main containers.//
@@ -4562,11 +4724,11 @@ init = function(pickerElement, gamepartsElement, optionsElement, lc, tools, imag
     toolButtonComponents: toolButtonComponents,
     imageURLPrefix: imageURLPrefix
   }), pickerElement);
-  React.render(Gameparts({
+/*  React.render(Gameparts({
     lc: lc,
     toolButtonComponents: toolButtonComponents,
     imageURLPrefix: imageURLPrefix
-  }), gamepartsElement);
+  }), gamepartsElement);*/
   return React.render(Options({
     lc: lc,
     imageURLPrefix: imageURLPrefix
@@ -4576,7 +4738,13 @@ init = function(pickerElement, gamepartsElement, optionsElement, lc, tools, imag
 module.exports = init;
 
 
-},{"./Options":26,"./Gameparts":27,"./Picker":28,"./React-shim":29,"./createToolButton":34}],
+},{"./Options":26,
+   "./Gameparts":27,
+   "./Picker":28,
+   "./React-shim":29,
+   "./createToolButton":34
+  }
+],
 
 ////////////////////////////////////////
 //Element 36 defines the ellipse tool.//
@@ -4627,12 +4795,17 @@ module.exports = Ellipse = (function(_super) {
 })(ToolWithStroke);
 
 
-},{"../core/shapes":13,"./base":45}],
+},{"../core/shapes":13,
+   "./base":45
+  }
+],
 
 ////////////////////////////////////////////////////////////////////////////////
 //Element 37 defines the some general behaviors of the eraser and pencil tool.//
 ////////////////////////////////////////////////////////////////////////////////
 
+//First we have the old eraser, which we replace with a modified version that actually is drawing a white line.            
+            
 37:[function(_dereq_,module,exports){
 var Eraser, Pencil, createShape,
   __hasProp = {}.hasOwnProperty,
@@ -4642,6 +4815,9 @@ Pencil = _dereq_('./Pencil');
 
 createShape = _dereq_('../core/shapes').createShape;
 
+    
+
+    
 module.exports = Eraser = (function(_super) {
   __extends(Eraser, _super);
 
@@ -4658,7 +4834,7 @@ module.exports = Eraser = (function(_super) {
       x: x,
       y: y,
       size: this.strokeWidth,
-      color: '#000'
+      color: 'white' //Replacing black for our new white eraser.
     });
   };
 
@@ -4671,8 +4847,11 @@ module.exports = Eraser = (function(_super) {
 })(Pencil);
 
 
-},{"../core/shapes":13,"./Pencil":41}],
-
+},{"../core/shapes":13,
+   "./Pencil":41
+  }
+],
+            
 ///////////////////////////////////////////
 //Element 38 defines the eyedropper tool.//
 ///////////////////////////////////////////
@@ -4714,7 +4893,8 @@ module.exports = Eyedropper = (function(_super) {
 })(Tool);
 
 
-},{"./base":45}],
+},{"./base":45}
+],
 
 /////////////////////////////////////
 //Element 39 defines the line tool.//
@@ -4777,7 +4957,10 @@ module.exports = Line = (function(_super) {
 })(Tool);
 
 
-},{"../core/shapes":13,"./base":45}],
+},{"../core/shapes":13,
+   "./base":45
+  }
+],
 
 ////////////////////////////////////
 //Element 40 defines the pan tool.//
@@ -4852,7 +5035,10 @@ module.exports = Pan = (function(_super) {
 })(Tool);
 
 
-},{"../core/shapes":13,"./base":45}],
+},{"../core/shapes":13,
+   "./base":45
+  }
+],
 
 ///////////////////////////////////////
 //Element 41 defines the pencil tool.//
@@ -4920,11 +5106,14 @@ module.exports = Pencil = (function(_super) {
 })(ToolWithStroke);
 
 
-},{"../core/shapes":13,"./base":45}],
+},{"../core/shapes":13,
+   "./base":45
+  }
+],
 
-////////////////////////////////////////////////////////////////////////
-//Element 42 defines the pencil tool? What? Why so many pencil things?//
-////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////
+//Element 42 defines the polygon tool//
+///////////////////////////////////////
 
 42:[function(_dereq_,module,exports){
 var Pencil, ToolWithStroke, createShape,
@@ -5157,7 +5346,10 @@ module.exports = Pencil = (function(_super) {
 })(ToolWithStroke);
 
 
-},{"../core/shapes":13,"./base":45}],
+},{"../core/shapes":13,
+   "./base":45
+  }
+],
 
 //////////////////////////////////////////
 //Element 43 defines the rectangle tool.//
@@ -5208,58 +5400,10 @@ module.exports = Rectangle = (function(_super) {
 })(ToolWithStroke);
 
 
-},{"../core/shapes":13,"./base":45}],
-
-//////////////////////////////////////////////////////
-//Element 46 is out of order. Defines the card tool.//
-//////////////////////////////////////////////////////
-
-46:[function(_dereq_,module,exports){
-var Card, ToolWithStroke, createShape,
-  __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
-
-ToolWithStroke = _dereq_('./base').ToolWithStroke;
-
-createShape = _dereq_('../core/shapes').createShape;
-
-module.exports = Card = (function(_super) {
-  __extends(Card, _super);
-
-  function Card() {
-    return Card.__super__.constructor.apply(this, arguments);
+},{"../core/shapes":13,
+   "./base":45
   }
-
-  Card.prototype.name = 'Card';
-
-  Card.prototype.iconName = 'card';
-
-  Card.prototype.begin = function(x, y, lc) {
-    return this.currentShape = createShape('Card', {
-      x: x,
-      y: y,
-      strokeWidth: this.strokeWidth,
-      strokeColor: lc.getColor('primary'),
-      fillColor: lc.getColor('secondary')
-    });
-  };
-
-  Card.prototype["continue"] = function(x, y, lc) {
-   /* this.currentShape.width = x - this.currentShape.x;
-    this.currentShape.height = y - this.currentShape.y;
-    return lc.drawShapeInProgress(this.currentShape);
-  */};
-
-  Card.prototype.end = function(x, y, lc) {
-    return lc.saveShape(this.currentShape);
-  };
-
-  return Card;
-
-})(ToolWithStroke);
-
-
-},{"../core/shapes":13,"./base":45}],
+],
 
 /////////////////////////////////////////////////////////////////////////////////////
 //Element 44 defines the behavior for moving a text box.
@@ -5630,7 +5774,10 @@ module.exports = Text = (function(_super) {
 })(Tool);
 
 
-},{"../core/shapes":13,"./base":45}],
+},{"../core/shapes":13,
+   "./base":45
+  }
+],
 
 /////////////////////////////////////////
 //Element 45 defines tools with stroke.//
@@ -5684,6 +5831,136 @@ tools.ToolWithStroke = ToolWithStroke = (function(_super) {
 module.exports = tools;
 
 
-},{}]},{},[18])
+},{}],
+
+
+/////////////////////////////////////////////////////////////////
+//Element 46 defines the card tool, which needs to be banished.//
+/////////////////////////////////////////////////////////////////
+
+46:[function(_dereq_,module,exports){
+var Card, ToolWithStroke, createShape,
+  __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+ToolWithStroke = _dereq_('./base').ToolWithStroke;
+
+createShape = _dereq_('../core/shapes').createShape;
+
+module.exports = Card = (function(_super) {
+  __extends(Card, _super);
+
+  function Card() {
+    return Card.__super__.constructor.apply(this, arguments);
+  }
+
+  Card.prototype.name = 'Card';
+
+  Card.prototype.iconName = 'card';
+
+  Card.prototype.begin = function(x, y, lc) {
+    return this.currentShape = createShape('Card', {
+      x: x,
+      y: y,
+      strokeWidth: this.strokeWidth,
+      strokeColor: 'white',
+      fillColor: 'white'
+    });
+  };
+
+  Card.prototype["continue"] = function(x, y, lc) {
+   /* this.currentShape.width = x - this.currentShape.x;
+    this.currentShape.height = y - this.currentShape.y;
+    return lc.drawShapeInProgress(this.currentShape);
+  */};
+
+  Card.prototype.end = function(x, y, lc) {
+    return lc.saveShape(this.currentShape);
+  };
+
+  return Card;
+
+})(ToolWithStroke);
+
+
+},{"../core/shapes":13,
+   "./base":45
+  }
+],
+
+////////////////////////////////////////////////////////////
+//Element 47 defines the save component button./////////////
+//I'm trying to morph the clear button into a save button.//
+////////////////////////////////////////////////////////////
+
+47:[function(_dereq_,module,exports){
+var SaveComponentButton, React, classSet, createSetStateOnEventMixin, _;
+
+React = _dereq_('./React-shim');
+
+createSetStateOnEventMixin = _dereq_('./createSetStateOnEventMixin');
+
+_ = _dereq_('../core/localization')._;
+
+classSet = _dereq_('../core/util').classSet;
+
+var imageSize = {width: 250, height: 350};
+var imageBounds = {
+      x: 0, y: 0, width: imageSize.width, height: imageSize.height
+    };
+
+SaveComponentButton = React.createClass({
+  displayName: 'SaveComponentButton',
+  getState: function() {
+    return {
+      isEnabled: this.props.lc.canUndo()
+    };
+  },
+  getInitialState: function() {
+    return this.getState();
+  },
+  mixins: [createSetStateOnEventMixin('drawingChange')],
+  render: function() {
+    var className, div, lc, onClick;
+
+    //Going to be beastly for a moment, an entire TTS Save File.
+
+
+
+    div = React.DOM.div;
+    lc = this.props.lc;
+    className = classSet({
+      'lc-clear': true,
+      'toolbar-button': true,
+      'fat-button': true,
+      'disabled': !this.state.isEnabled
+    });
+
+    onClick = lc.canUndo() ? ((function(_this) {
+      return function() {
+         document.getElementsByClassName('lc-clear')[0].click();
+         preview.addEventListener("load", ctx.drawImage(preview, 0, 0, canvas_2.width, canvas_2.height), false);
+      };
+    })(this)) : function() {};
+    return div({
+      className: className,
+      onClick: onClick
+    }, _('Custom'));
+  }
+});
+
+module.exports = SaveComponentButton;
+
+},{"../core/localization":9,
+   "../core/util":15,
+   "./React-shim":29,
+   "./createSetStateOnEventMixin":33
+  }
+]
+
+
+
+
+},{},[18])
 (18)
 });
